@@ -1,11 +1,11 @@
 {
     "nodes": [
-      {"name": "Jovellanos", "link": "Gaspar_Melchor_de_Jovellanos"},
-      {"name": "Cthulu", "link": "Cthulhu"},
-      {"name": "Godoy", "link": "Manuel_Godoy"}
+      {"id": 1, "name": "Jovellanos", "link": "Gaspar_Melchor_de_Jovellanos"},
+      {"id": 2, "name": "Cthulu", "link": "Cthulhu"},
+      {"id": 3, "name": "Godoy", "link": "Manuel_Godoy"}
     ],
     "links": [
-      {"source": "Jovellanos", "target": "Cthulu", "value": 10},
-      {"source": "Jovellanos", "target": "Godoy", "value": 1}
+      {"source": 1, "target": 2, "value": 10, "mood": "Amistad"},
+      {"source": 1, "target": 3, "value": 1, "mood": "Enemistad"}
     ]
   }
