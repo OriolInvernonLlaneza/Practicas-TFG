@@ -1,0 +1,11 @@
+{
+    "nodes": [
+      {"name": "Jovellanos", "link": "Gaspar_Melchor_de_Jovellanos"},
+      {"name": "Cthulu", "link": "Cthulhu"},
+      {"name": "Godoy", "link": "Manuel_Godoy"}
+    ],
+    "links": [
+      {"source": "Jovellanos", "target": "Cthulu", "value": 10},
+      {"source": "Jovellanos", "target": "Godoy", "value": 1}
+    ]
+  }
