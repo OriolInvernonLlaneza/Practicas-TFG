@@ -1,3 +1,26 @@
+//force functions
+function dragstarted(d) {
+    if (!d3.event.active) {
+        simulation.alphaTarget(0.3).restart()
+    }
+    d.fx = d.x;
+    d.fy = d.y;
+}
+
+function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+}
+
+function dragended(d) {
+    if (!d3.event.active) {
+        simulation.alphaTarget(0);
+    }
+    d.fx = undefined;
+    d.fy = undefined;
+}
+
+//color scheme
 var colors = d3.scaleOrdinal(d3.schemeCategory10);
 
 //Create svg
@@ -15,9 +38,11 @@ var simulation = d3.forceSimulation()
 
 //Read from json
 d3.json("resources/jovellanos.json", function (error, graph) {
-    if (error) throw error;
+    if (error) {   
+        throw error;
+    }
     update(graph.links, graph.nodes);
-})
+});
 
 //
 function update(links, nodes) {
@@ -38,7 +63,7 @@ function update(links, nodes) {
         .enter()
         .append('path')
         .attr("class", "edgepath")
-        .attr("id", function (d, i) { return 'edgepath' + i })
+        .attr("id", function (d, i) { return "edgepath" + i; })
         .attr("fill-opacity", 0)
         .attr("stroke-opacity", 0)
         .style("pointer-events", "none");
@@ -107,38 +132,20 @@ function ticked() {
     node
         .attr("transform", function (d) { return "translate(" + d.x + ", " + d.y + ")"; });
 
-    edgepaths.attr('d', function (d) {
-        return 'M ' + d.source.x + ' ' + d.source.y + ' L ' + d.target.x + ' ' + d.target.y;
+    edgepaths.attr("d", function (d) {
+        return "M " + d.source.x + " " + d.source.y + " L " + d.target.x + " " + d.target.y;
     });
 
-    edgelabels.attr('transform', function (d) {
+    edgelabels.attr("transform", function (d) {
         if (d.target.x < d.source.x) {
             var bbox = this.getBBox();
 
             rx = bbox.x + bbox.width / 2;
             ry = bbox.y + bbox.height / 2;
-            return 'rotate(180 ' + rx + ' ' + ry + ')';
+            return "rotate(180 " + rx + " " + ry + ")";
         }
         else {
-            return 'rotate(0)';
+            return "rotate(0)";
         }
     });
-}
-
-//force functions
-function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart()
-    d.fx = d.x;
-    d.fy = d.y;
-}
-
-function dragged(d) {
-    d.fx = d3.event.x;
-    d.fy = d3.event.y;
-}
-
-function dragended(d) {
-    if (!d3.event.active) simulation.alphaTarget(0);
-    d.fx = undefined;
-    d.fy = undefined;
 }
