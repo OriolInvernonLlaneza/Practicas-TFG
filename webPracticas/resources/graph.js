@@ -19,7 +19,9 @@ d3.json("resources/jovellanos.json", function (error, graph) {
     update(graph.links, graph.nodes);
 })
 
+//
 function update(links, nodes) {
+    //create link line, width increases with number of letters
     link = svg.selectAll(".link")
         .data(links)
         .enter()
@@ -30,6 +32,7 @@ function update(links, nodes) {
     link.append("title")
         .text(function (d) { return d.mood; });
 
+    //path obj
     edgepaths = svg.selectAll(".edgepath")
         .data(links)
         .enter()
@@ -40,6 +43,7 @@ function update(links, nodes) {
         .attr("stroke-opacity", 0)
         .style("pointer-events", "none");
 
+    //link label obj
     edgelabels = svg.selectAll(".edgelabel")
         .data(links)
         .enter()
@@ -50,6 +54,7 @@ function update(links, nodes) {
         .attr("font-size", 15)
         .attr("fill", "#000");
 
+    //link label text
     edgelabels.append('textPath')
         .attr('xlink:href', function (d, i) { return '#edgepath' + i })
         .style("text-anchor", "middle")
@@ -57,6 +62,7 @@ function update(links, nodes) {
         .attr("startOffset", "50%")
         .text(function (d) { return d.mood });
 
+    //node obj
     node = svg.selectAll(".node")
         .data(nodes)
         .enter()
@@ -65,16 +71,19 @@ function update(links, nodes) {
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
-        //.on("end", dragended)
+            .on("end", dragended)
         );
 
+    //node drawing
     node.append("circle")
         .attr("r", 10)
         .style("fill", function (d, i) { return colors(i); });
 
+    //node title
     node.append("title")
         .text(function (d) { return d.id; });
 
+    //node name
     node.append("text")
         .attr("dy", -10)
         .text(function (d) { return d.name; });
@@ -87,6 +96,7 @@ function update(links, nodes) {
         .links(links);
 }
 
+//tick behaviour
 function ticked() {
     link
         .attr("x1", function (d) { return d.source.x; })
@@ -115,6 +125,7 @@ function ticked() {
     });
 }
 
+//force functions
 function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart()
     d.fx = d.x;
@@ -126,8 +137,8 @@ function dragged(d) {
     d.fy = d3.event.y;
 }
 
-//    function dragended(d) {
-//        if (!d3.event.active) simulation.alphaTarget(0);
-//        d.fx = undefined;
-//        d.fy = undefined;
-//    }
+function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = undefined;
+    d.fy = undefined;
+}
