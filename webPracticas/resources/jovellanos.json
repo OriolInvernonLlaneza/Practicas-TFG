@@ -1,11 +1,36 @@
 {
     "nodes": [
-      {"id": 1, "name": "Jovellanos", "link": "Gaspar_Melchor_de_Jovellanos"},
-      {"id": 2, "name": "Cthulu", "link": "Cthulhu"},
-      {"id": 3, "name": "Godoy", "link": "Manuel_Godoy"}
+      {
+        "id": 1, 
+        "name": "Jovellanos", 
+        "link": "Gaspar_Melchor_de_Jovellanos",
+        "color": "blue"
+      },
+      {
+        "id": 2, 
+        "name": "Cthulu", 
+        "link": "Cthulhu",
+        "color": "green"
+      },
+      {
+        "id": 3, 
+        "name": "Godoy", 
+        "link": "Manuel_Godoy",
+        "color": "red"
+      }
     ],
     "links": [
-      {"source": 1, "target": 2, "value": 10, "mood": "Amistad"},
-      {"source": 1, "target": 3, "value": 1, "mood": "Enemistad"}
+      {
+        "source": 1, 
+        "target": 2, 
+        "value": 10, 
+        "mood": "Amistad"
+      },
+      {
+        "source": 1, 
+        "target": 3, 
+        "value": 1, 
+        "mood": "Enemistad"
+      }
     ]
   }

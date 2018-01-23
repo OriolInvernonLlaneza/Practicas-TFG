@@ -52,7 +52,7 @@ function update(links, nodes) {
         .enter()
         .append("line")
         .attr("class", "link")
-        .attr('stroke-width', function (d) { return d.value; });
+        .attr("stroke-width", function (d) { return d.value; });
 
     link.append("title")
         .text(function (d) { return d.mood; });
@@ -75,13 +75,13 @@ function update(links, nodes) {
         .append("text")
         .style("pointer-events", "none")
         .attr("class", "edgelabel")
-        .attr("id", function (d, i) { return 'edgelabel' + i })
+        .attr("id", function (d, i) { return "edgelabel" + i })
         .attr("font-size", 15)
         .attr("fill", "#000");
 
     //link label text
-    edgelabels.append('textPath')
-        .attr('xlink:href', function (d, i) { return '#edgepath' + i })
+    edgelabels.append("textPath")
+        .attr("xlink:href", function (d, i) { return "#edgepath" + i })
         .style("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("startOffset", "50%")
