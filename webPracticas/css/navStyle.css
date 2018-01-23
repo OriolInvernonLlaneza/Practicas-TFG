@@ -7,6 +7,21 @@
 .framed {
     border: 1px solid black;
 }
+
+#d3 svg {
+    border: 1px solid;
+    font: 13px sans-serif;
+    text-anchor: end;
+}
+
+#d3 .node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node .selected {
+  stroke: black;
+}
 /*graph end*/  
 
 body {

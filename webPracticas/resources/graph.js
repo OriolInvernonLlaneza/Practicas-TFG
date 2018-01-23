@@ -1,3 +1,19 @@
+//color scheme
+var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+//Create svg
+var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height"),
+    node,
+    link;
+
+//Create force layout
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
 //force functions
 function dragstarted(d) {
     if (!d3.event.active) {
@@ -20,25 +36,9 @@ function dragended(d) {
     d.fy = undefined;
 }
 
-//color scheme
-var colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-//Create svg
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
-    node,
-    link;
-
-//Create force layout
-var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
-
 //Read from json
 d3.json("resources/jovellanos.json", function (error, graph) {
-    if (error) {   
+    if (error) {
         throw error;
     }
     update(graph.links, graph.nodes);
@@ -61,7 +61,7 @@ function update(links, nodes) {
     edgepaths = svg.selectAll(".edgepath")
         .data(links)
         .enter()
-        .append('path')
+        .append("path")
         .attr("class", "edgepath")
         .attr("id", function (d, i) { return "edgepath" + i; })
         .attr("fill-opacity", 0)
@@ -72,7 +72,7 @@ function update(links, nodes) {
     edgelabels = svg.selectAll(".edgelabel")
         .data(links)
         .enter()
-        .append('text')
+        .append("text")
         .style("pointer-events", "none")
         .attr("class", "edgelabel")
         .attr("id", function (d, i) { return 'edgelabel' + i })

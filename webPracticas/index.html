@@ -36,11 +36,22 @@
   </p>
   
   <h2>Red Social</h2>
-  <div style="margin-left:10%">
-  <svg class="framed" width="1080" height="600"></svg>
-  <script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
-  <script src="resources/graph.js"></script>
-  
+  <div style="margin-left: 10%">
+    <svg class="framed" id="d3"  width="1080" height="600"></svg>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <!--<script src="resources/graph.js"></script>-->
+    <script src="resources/drag.js"></script>
+    <script>
+      var svg = d3.select('#d3');
+
+      d3.json('resources/jovellanos.json', function(error, graph) {
+          if (!error) {
+              createGraph(svg, graph);
+          } else {
+              console.error(error);
+          }
+      });
+    </script>
   </div>
 
   <h2>Acerca De</h2>
