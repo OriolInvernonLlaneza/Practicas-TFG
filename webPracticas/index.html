@@ -1,68 +1,114 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+
 <head>
-<meta charset="UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/navStyle.css" media="screen" />
-<title>Red Social Jovellanos</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/navStyle.css" media="screen" />
+  <title>Red Social Jovellanos</title>
 </head>
 
 <body>
-	<header>
-		<h1>
-			<a href="index.html" title="Red Social Jovellanos" tabindex="1">
+  <header>
+    <h1>
+      <a href="index.html" title="Red Social Jovellanos" tabindex="1">
         Red Social Jovellanos</a>
-		</h1>
+    </h1>
   </header>
   <nav>
     <ul class="topnav">
-      <li><a class="active" href="#">Home</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">About</a></li>
-    </ul>  
+      <li>
+        <a class="active" href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+    </ul>
   </nav>
-  
+
   <div style="margin-top:10%;">
-  <h2>Introducción</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit mauris eget justo vestibulum, 
-    ac condimentum tellus viverra. Mauris iaculis diam ultrices leo dapibus, ac facilisis ex aliquet. Proin 
-    eu leo arcu. Etiam maximus pulvinar feugiat. In tincidunt semper mauris fermentum venenatis. Vivamus 
-    libero tortor, euismod in mauris eu, ultricies maximus leo. Proin scelerisque nibh eget laoreet dignissim. Donec ultrices semper ultricies. Nunc pellentesque, ipsum in facilisis tincidunt, turpis felis accumsan lectus, vel efficitur sem ante vitae turpis. Nam a tellus bibendum, venenatis ante ac, ultricies felis. Nulla sodales arcu sed urna ullamcorper, nec condimentum lacus congue.
-    Vestibulum molestie consectetur lectus nec efficitur. Aliquam tempus, nunc vel vehicula pellentesque, 
-    eros magna blandit mi, sed rutrum lorem odio nec eros. Pellentesque tempor luctus fringilla. Sed id 
-    molestie ligula. Morbi sit amet velit ipsum. Vivamus ut lectus sapien. Vivamus dignissim tortor non diam
-    condimentum, ac fermentum augue aliquet. Suspendisse rutrum luctus leo, at varius ipsum lacinia sit 
-    amet. Cras convallis turpis sed augue viverra accumsan. Integer posuere dui vitae metus egestas 
-    facilisis. Mauris mattis condimentum turpis, ut faucibus nibh suscipit a.
-  </p>
-  
-  <h2>Red Social</h2>
-  <div style="margin-left: 10%">
-    <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
-    <svg class="framed" id="d3"  width="1080" height="500"></svg>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <!--<script src="resources/graph.js"></script>-->
-    <script src="resources/drag.js"></script>
-    <script>
-      var svg = d3.select('#d3');
+    <h2>Introducción</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit mauris eget justo vestibulum, ac condimentum
+      tellus viverra. Mauris iaculis diam ultrices leo dapibus, ac facilisis ex aliquet. Proin eu leo arcu. Etiam maximus
+      pulvinar feugiat. In tincidunt semper mauris fermentum venenatis. Vivamus libero tortor, euismod in mauris eu, ultricies
+      maximus leo. Proin scelerisque nibh eget laoreet dignissim. Donec ultrices semper ultricies. Nunc pellentesque, ipsum
+      in facilisis tincidunt, turpis felis accumsan lectus, vel efficitur sem ante vitae turpis. Nam a tellus bibendum, venenatis
+      ante ac, ultricies felis. Nulla sodales arcu sed urna ullamcorper, nec condimentum lacus congue. Vestibulum molestie
+      consectetur lectus nec efficitur. Aliquam tempus, nunc vel vehicula pellentesque, eros magna blandit mi, sed rutrum
+      lorem odio nec eros. Pellentesque tempor luctus fringilla. Sed id molestie ligula. Morbi sit amet velit ipsum. Vivamus
+      ut lectus sapien. Vivamus dignissim tortor non diam condimentum, ac fermentum augue aliquet. Suspendisse rutrum luctus
+      leo, at varius ipsum lacinia sit amet. Cras convallis turpis sed augue viverra accumsan. Integer posuere dui vitae
+      metus egestas facilisis. Mauris mattis condimentum turpis, ut faucibus nibh suscipit a.
+    </p>
 
-      d3.json('resources/jovellanos.json', function(error, graph) {
+    <h2>Red Social</h2>
+    <div style="margin-left: 10%">
+      <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
+      <svg class="framed" id="d3" width="1080" height="500"></svg>
+      <script src="https://d3js.org/d3.v4.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+      <!--<script src="resources/graph.js"></script>-->
+      <script src="resources/drag.js"></script>
+      <script>
+        var svg = d3.select("#d3");
+
+        d3.json("resources/jovellanos.json", function (error, graph) {
           if (!error) {
-              createGraph(svg, graph);
+            createGraph(svg, graph);
           } else {
-              console.error(error);
+            console.error(error);
           }
-      });
-    </script>
-  </div>
+        });
+      </script>
+    </div>
+    <div>
+      <div id="insertTest"></div>
 
-  <h2>Acerca De</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, 
-    fringilla ullamcorper odio. Fusce in ipsum magna. Nulla lorem dui, auctor eget tellus non, semper 
-    ornare odio. Quisque bibendum et eros sed vestibulum. Curabitur maximus ligula at pretium blandit. 
-    Maecenas pulvinar ullamcorper tortor, sit amet interdum ligula pretium non. Cras condimentum sapien 
-    enim, eget vestibulum tortor tempor nec. Morbi volutpat est eu enim fringilla lobortis. Nulla ultrices
-    vel nisl sed hendrerit.
-  </p>
+      <script>
+        /*var wikipediaHTMLResult = function (data) {
+          var readData = $("<div>" + data.parse.text["*"] + "</div>");
+          // handle redirects
+          var redirect = readData.find('li:contains("REDIRECT") a').text();
+          if (redirect != "") {
+            callWikipediaAPI(redirect);
+            return;
+          }
+
+          var box = readData.find(".infobox");
+
+          var binomialName = box.find(".binomial").text();
+          var fishName = box.find("th").first().text();
+          var imageURL = null;
+          // Check if page has images
+          if (data.parse.images.length >= 1) {
+            imageURL = box.find("img").first().attr("src");
+          }
+
+          $("#insertTest").append("<div>"+ data.parse + "</div>");
+        };*/
+
+        function callWikipediaAPI() {
+          // http://www.mediawiki.org/wiki/API:Parsing_wikitext#parse
+          $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=parse&prop=extracts&exintro=&explaintext=&titles=Stack%20Overflow", 
+            {
+              origin: "*"
+            }, function(d) {
+              $("#insertTest").append("<div>"+ d.parse +"</div>");
+            });
+        }
+        callWikipediaAPI();
+      </script>
+    </div>
+
+    <h2>Acerca De</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
+      odio. Fusce in ipsum magna. Nulla lorem dui, auctor eget tellus non, semper ornare odio. Quisque bibendum et eros sed
+      vestibulum. Curabitur maximus ligula at pretium blandit. Maecenas pulvinar ullamcorper tortor, sit amet interdum ligula
+      pretium non. Cras condimentum sapien enim, eget vestibulum tortor tempor nec. Morbi volutpat est eu enim fringilla
+      lobortis. Nulla ultrices vel nisl sed hendrerit.
+    </p>
   </div>
   <footer></footer>
 </body>

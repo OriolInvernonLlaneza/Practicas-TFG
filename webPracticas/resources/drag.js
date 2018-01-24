@@ -83,7 +83,7 @@ function createGraph(svg, graph) {
     node.append("title")
         .text(function (d) { return d.name; });
 
-    //node name //Spaghetti si quito eso label no funciona, no debería pasar
+    //node name //Spaghetti si quito esto label no funciona, no debería pasar
     node.append("text")
         .attr("dy", -10)
         .text(function (d) { return d.name; });
