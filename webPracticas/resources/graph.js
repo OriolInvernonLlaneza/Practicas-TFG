@@ -87,16 +87,7 @@ function createGraph(svg, graph) {
     if (!("links" in graph)) {
         //console.log("No links found");
         return;
-    }
-
-    //array for nodes
-    var nodes = {};
-    // search nodes in json (graph), add them to array
-    // assign weight
-    for (var i = 0; i < graph.nodes.length; i++) {
-        nodes[i+1] = graph.nodes[i]; // Codacy takes this as unsafe code but it should not be given that there is no user input
-        graph.nodes[i].weight = 1.01; // https://blog.liftsecurity.io/2015/01/14/the-dangers-of-square-bracket-notation/
-    }                                    
+    }                                 
 
     // the brush needs to go before the nodes so that it doesn"t
     // get called when the mouse is over a node
