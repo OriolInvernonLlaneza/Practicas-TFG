@@ -4,9 +4,9 @@ function createGraph(svg, graph) {
     var width = +svg.attr("width"),
         height = +svg.attr("height");
 
-    var svg = d3.select("svg")
+    svg = d3.select("svg")
         .attr("width", width)
-        .attr("height", height)
+        .attr("height", height);
 
     // color scheme
     var fill = d3.scaleOrdinal(d3.schemeCategory20);
@@ -22,36 +22,78 @@ function createGraph(svg, graph) {
     var rect = gMain.append("rect")
         .attr("width", width)
         .attr("height", height)
-        .style("fill", "white")
+        .style("fill", "white");
 
     // append other g to frame    
     var gDraw = gMain.append("g");
 
-    // zoom
-    var zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/d3/d3-zoom
-        .on("zoom", zoomed) // listener
+    // force functions
+    function dragstarted(d) {
+        if (!d3.event.active) { simulation.alphaTarget(0.3).restart(); }
 
-    gMain.call(zoom);
+        if (!d.selected && !shiftKey) {
+            // if this node isn't selected, then we have to unselect every other node
+            node.classed("selected", function (p) {
+                return p.selected = p.previouslySelected = false;
+            });
+        }
 
+        d3.select(this).classed("selected", function (p) {
+            d.previouslySelected = d.selected;
+            return d.selected = true; // selection
+        });
+
+        node.filter(function (d) { return d.selected; })
+            .each(function (d) { // move the selected
+                d.fx = d.x;
+                d.fy = d.y;
+            });
+
+    }
+
+    function dragged(d) {
+        node.filter(function (d) { return d.selected; })
+            .each(function (d) {
+                d.fx += d3.event.dx;
+                d.fy += d3.event.dy;
+            });
+    }
+
+    function dragended(d) {
+        if (!d3.event.active) { simulation.alphaTarget(0); }
+        d.fx = null;
+        d.fy = null;
+        node.filter(function (d) { return d.selected; })
+            .each(function (d) {
+                d.fx = null;
+                d.fy = null;
+            });
+    }
+
+    // zoom list
     function zoomed() {
         gDraw.attr("transform", d3.event.transform); // transforms drawing with zoom event
     }
 
+    var zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/d3/d3-zoom
+        .on("zoom", zoomed); // add listener
+
+    gMain.call(zoom);
+
     // return if no links are found
     if (!("links" in graph)) {
-        console.log("No links found");
+        //console.log("No links found");
         return;
     }
 
     //array for nodes
     var nodes = {};
-    var i;
     // search nodes in json (graph), add them to array
     // assign weight
-    for (i = 0; i < graph.nodes.length; i++) {
+    for (var i = 0; i < graph.nodes.length; i++) {
         nodes[graph.nodes[i].id] = graph.nodes[i];
-        graph.nodes[i].weight = 1.01;
-    }
+        graph.nodes[i].weight = 1.01; // Codacy takes this as unsafe code but it should not be given that there is no user input
+    }                                  // https://blog.liftsecurity.io/2015/01/14/the-dangers-of-square-bracket-notation/  
 
     // the brush needs to go before the nodes so that it doesn"t
     // get called when the mouse is over a node
@@ -102,7 +144,7 @@ function createGraph(svg, graph) {
         .style("font-size", 12);
 
     // path under link
-    edgepaths = gDraw.selectAll(".edgepath")
+    var edgepaths = gDraw.selectAll(".edgepath")
         .data(graph.links)
         .enter()
         .append("path")
@@ -113,20 +155,20 @@ function createGraph(svg, graph) {
         .style("pointer-events", "none");
 
     // path label
-    edgelabels = gDraw.selectAll(".edgelabel")
+    var edgelabels = gDraw.selectAll(".edgelabel")
         .data(graph.links)
         .enter()
         .append("text")
         .style("pointer-events", "none")
         .attr("class", "edgelabel")
-        .attr("id", function (d, i) { return "edgelabel" + i })
+        .attr("id", function (d, i) { return "edgelabel" + i; })
         .style("fill", "#555")
         .style("font-family", "Arial")
         .style("font-size", 12);
 
     // path label text
     edgelabels.append("textPath")
-        .attr("xlink:href", function (d, i) { return "#edgepath" + i })
+        .attr("xlink:href", function (d, i) { return "#edgepath" + i; })
         .style("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("startOffset", "50%")
@@ -136,13 +178,6 @@ function createGraph(svg, graph) {
         .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
-
-    simulation
-        .nodes(graph.nodes) // add nodes to simulation
-        .on("tick", ticked);
-
-    simulation.force("link") // add links to simulation
-        .links(graph.links);
 
     function ticked() {
         // update node, link, label and path positions
@@ -166,8 +201,8 @@ function createGraph(svg, graph) {
             if (d.target.x < d.source.x) { // rotate text 
                 var bbox = this.getBBox(); // get svg bounding box
 
-                rx = bbox.x + bbox.width / 2;
-                ry = bbox.y + bbox.height / 2;
+                var rx = bbox.x + bbox.width / 2;
+                var ry = bbox.y + bbox.height / 2;
                 return "rotate(180 " + rx + " " + ry + ")";
             }
             else {
@@ -175,6 +210,13 @@ function createGraph(svg, graph) {
             }
         });
     }
+    
+    simulation
+        .nodes(graph.nodes) // add nodes to simulation
+        .on("tick", ticked);
+
+    simulation.force("link") // add links to simulation
+        .links(graph.links);
 
     //click on frame -> delete selection
     rect.on("click", () => {
@@ -187,11 +229,7 @@ function createGraph(svg, graph) {
 
     var brushMode = false;
     var brushing = false;
-
-    var brush = d3.brush() // brush functions
-        .on("start", brushstarted)
-        .on("brush", brushed)
-        .on("end", brushended);
+    var shiftKey;
 
     function brushstarted() {
         // keep track of whether we're actively brushing so that we
@@ -204,7 +242,7 @@ function createGraph(svg, graph) {
     }
 
     function brushed() {
-        if (!d3.event.sourceEvent) { return; } 
+        if (!d3.event.sourceEvent) { return; }
         if (!d3.event.selection) { return; }
 
         var extent = d3.event.selection; // brushable area
@@ -232,10 +270,13 @@ function createGraph(svg, graph) {
         brushing = false;
     }
 
+    var brush = d3.brush() // brush functions
+        .on("start", brushstarted)
+        .on("brush", brushed)
+        .on("end", brushended);
+
     d3.select("body").on("keydown", keydown); // event handler that starts the brushing
     d3.select("body").on("keyup", keyup); // event handler that ends the brushing
-
-    var shiftKey;
 
     function keydown() {
         shiftKey = d3.event.shiftKey; //push shift
@@ -256,8 +297,7 @@ function createGraph(svg, graph) {
         shiftKey = false;
         brushMode = false;
 
-        if (!gBrush)
-            return;
+        if (!gBrush) { return; }
 
         if (!brushing) {
             // only remove the brush if we"re not actively brushing
@@ -265,48 +305,6 @@ function createGraph(svg, graph) {
             gBrush.remove();
             gBrush = null;
         }
-    }
-
-    function dragstarted(d) {
-        if (!d3.event.active) { simulation.alphaTarget(0.3).restart(); }
-
-        if (!d.selected && !shiftKey) {
-            // if this node isn't selected, then we have to unselect every other node
-            node.classed("selected", function (p) {
-                return p.selected = p.previouslySelected = false;
-            });
-        }
-
-        d3.select(this).classed("selected", function (p) {
-            d.previouslySelected = d.selected;
-            return d.selected = true; // selection
-        });
-
-        node.filter(function (d) { return d.selected; })
-            .each(function (d) { // move the selected
-                d.fx = d.x;
-                d.fy = d.y;
-            })
-
-    }
-
-    function dragged(d) {
-        node.filter(function (d) { return d.selected; })
-            .each(function (d) {
-                d.fx += d3.event.dx;
-                d.fy += d3.event.dy;
-            })
-    }
-
-    function dragended(d) {
-        if (!d3.event.active) { simulation.alphaTarget(0); }
-        d.fx = undefined;
-        d.fy = undefined;
-        node.filter(function (d) { return d.selected; })
-            .each(function (d) {
-                d.fx = undefined;
-                d.fy = undefined;
-            })
     }
 
     return graph;
