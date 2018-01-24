@@ -166,12 +166,12 @@ function createGraph(svg, graph) {
         .style("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("startOffset", "50%")
-        .text(function (d) { return d.mood });
+        .text(function (d) { return d.mood; });
 
     simulation = d3.forceSimulation() // create and start simulation
         .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
         .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("center", d3.forceCenter(width / 2, height / 2));
 
     function ticked() {
         // update node, link, label and path positions

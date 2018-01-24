@@ -1,3 +1,5 @@
+var wikiImage;
+
 function callWikipediaAPI(wikiPage) {
   // http://www.mediawiki.org/wiki/API:Parsing_wikitext#parse
   $.getJSON("http://es.wikipedia.org/w/api.php?action=parse&format=json&callback=?",
@@ -17,7 +19,7 @@ function callWikipediaAPI(wikiPage) {
     });
 }
 
-var wikiImage = function (data) {
+wikiImage = function (data) {
   var readData = $("<div>" + data.parse.text["*"] + "</div>");
   // handle redirects
   var redirect = readData.find('li:contains("REDIRECT") a').text();
