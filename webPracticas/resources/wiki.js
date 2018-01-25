@@ -22,8 +22,8 @@ function callWikipediaAPI(wikiPage) {
       titles: wikiPage,
       origin: "*" // required by CORS, API includes allow credentials header
     }, function (data) {
-      content = data.query.pages[0].extract;
-      content = content.replace(/^\d+$/, " ");
+      var raw = data.query.pages[0].extract;
+      content = raw.replace(/\[\d+\]/g, " ");
     });
 }
 
