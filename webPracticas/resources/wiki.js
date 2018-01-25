@@ -1,6 +1,15 @@
 var wikiImage;
+var lastWikiPage;
+var content;
 
 function callWikipediaAPI(wikiPage) {
+  if(wikiPage === lastWikiPage) { // using three equals to avoid errors if json.link is blank
+    return; // if the selected node is the same as last time -> do nothing
+  }
+
+  lastWikiPage = wikiPage;
+  $("#wiki").empty(); //delete previous content
+
   // http://www.mediawiki.org/wiki/API:Parsing_wikitext#parse
   $.getJSON("http://es.wikipedia.org/w/api.php?action=parse&format=json&callback=?",
     {
@@ -13,9 +22,8 @@ function callWikipediaAPI(wikiPage) {
       titles: wikiPage,
       origin: "*" // required by CORS, API includes allow credentials header
     }, function (data) {
-      var content = data.query.pages[0].extract;
+      content = data.query.pages[0].extract;
       content = content.replace(/^\d+$/, " ");
-      $("#wiki").append("<p>" + content + "</p>)");
     });
 }
 
@@ -36,4 +44,5 @@ wikiImage = function (data) {
   }
 
   $("#wiki").append('<div><img src="' + imageURL + '"/>');
+  $("#wiki").append("<p>" + content + "</p>");
 };
