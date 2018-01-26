@@ -43,6 +43,6 @@ wikiImage = function (data) {
     imageURL = box.find("img").first().attr("src");
   }
 
-  $("#wiki").append('<div><img src="' + imageURL + '"/>');
+  $("#wiki").append("<div><img src='" + imageURL + "'/>");
   $("#wiki").append("<p>" + content + "</p>");
 };

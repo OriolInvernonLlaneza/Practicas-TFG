@@ -3,19 +3,19 @@
       {
         "id": 1, 
         "name": "Jovellanos", 
-        "link": "Gaspar_Melchor_de_Jovellanos",
+        "wiki": "Gaspar_Melchor_de_Jovellanos",
         "color": "blue"
       },
       {
         "id": 2, 
         "name": "Cthulu", 
-        "link": "Cthulhu",
+        "wiki": "Cthulhu",
         "color": "green"
       },
       {
         "id": 3, 
         "name": "Godoy", 
-        "link": "Manuel_Godoy",
+        "wiki": "Manuel_Godoy",
         "color": "red"
       }
     ],
