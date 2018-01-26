@@ -115,7 +115,7 @@ function createGraph(svg, graph) {
             .on("drag", dragged)
             .on("end", dragended));
     
-    node.on("click", function(d) { callWikipediaAPI(d.wiki);} )
+    node.on("click", function(d) { callWikipediaAPI(d.wiki);} );
     // tooltip titles
     node.append("title")
         .text(function (d) { return d.name; });

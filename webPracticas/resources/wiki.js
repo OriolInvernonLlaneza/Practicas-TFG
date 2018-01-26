@@ -30,7 +30,7 @@ function callWikipediaAPI(wikiPage) {
 wikiImage = function (data) {
   var readData = $("<div>" + data.parse.text["*"] + "</div>");
   // handle redirects
-  var redirect = readData.find('li:contains("REDIRECT") a').text();
+  var redirect = readData.find("li:contains('REDIRECT') a").text();
   if (redirect !== "") {
     callWikipediaAPI(redirect);
     return;

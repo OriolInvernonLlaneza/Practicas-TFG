@@ -1,15 +1,19 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-dispatch'), require('d3-drag'), require('d3-interpolate'), require('d3-selection'), require('d3-transition')) :
-        typeof define === 'function' && define.amd ? define(['exports', 'd3-dispatch', 'd3-drag', 'd3-interpolate', 'd3-selection', 'd3-transition'], factory) :
+    typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("d3-dispatch"), 
+        require("d3-drag"), require("d3-interpolate"), require("d3-selection"), require("d3-transition")) :
+        typeof define === "function" && define.amd ? define(["exports", "d3-dispatch", "d3-drag", 
+            "d3-interpolate", "d3-selection", "d3-transition"], factory) :
             (factory((global.d3 = global.d3 || {}), global.d3, global.d3, global.d3, global.d3, global.d3));
 }(this, (function (exports, d3Dispatch, d3Drag, d3Interpolate, d3Selection, d3Transition) {
-    'use strict';
+    "use strict";
 
     var constant = function (x) {
         return function () {
             return x;
         };
     };
+
+    var brush;
 
     var BrushEvent = function (target, type, selection) {
         this.target = target;
@@ -34,22 +38,22 @@
     var X = {
         name: "x",
         handles: ["e", "w"].map(type),
-        input: function (x, e) { return x && [[x[0], e[0][1]], [x[1], e[1][1]]]; },
-        output: function (xy) { return xy && [xy[0][0], xy[1][0]]; }
+        input(x, e) { return x && [[x[0], e[0][1]], [x[1], e[1][1]]]; },
+        output(xy) { return xy && [xy[0][0], xy[1][0]]; }
     };
 
     var Y = {
         name: "y",
         handles: ["n", "s"].map(type),
-        input: function (y, e) { return y && [[e[0][0], y[0]], [e[1][0], y[1]]]; },
-        output: function (xy) { return xy && [xy[0][1], xy[1][1]]; }
+        input(y, e) { return y && [[e[0][0], y[0]], [e[1][0], y[1]]]; },
+        output(xy) { return xy && [xy[0][1], xy[1][1]]; }
     };
 
     var XY = {
         name: "xy",
         handles: ["n", "e", "s", "w", "nw", "ne", "se", "sw"].map(type),
-        input: function (xy) { return xy; },
-        output: function (xy) { return xy; }
+        input(xy) { return xy; },
+        output(xy) { return xy; }
     };
 
     var cursors = {
@@ -125,7 +129,9 @@
 
     // Like d3.local, but with the name “__brush” rather than auto-generated.
     function local(node) {
-        while (!node.__brush) if (!(node = node.parentNode)) return;
+        while (!node.__brush) {
+            if (!(node = node.parentNode)) { return; }
+        }
         return node.__brush;
     }
 
@@ -138,18 +144,6 @@
         var state = node.__brush;
         return state ? state.dim.output(state.selection) : null;
     }
-
-    function brushX() {
-        return brush$1(X);
-    }
-
-    function brushY() {
-        return brush$1(Y);
-    }
-
-    var brush = function () {
-        return brush$1(XY);
-    };
 
     function brush$1(dim) {
         var extent = defaultExtent,
@@ -286,31 +280,44 @@
         }
 
         Emitter.prototype = {
-            beforestart: function () {
-                if (++this.active === 1) this.state.emitter = this, this.starting = true;
+            beforestart() {
+                if (++this.active === 1) { 
+                    this.state.emitter = this; 
+                    this.starting = true;
+                }
                 return this;
             },
-            start: function () {
-                if (this.starting) this.starting = false, this.emit("start");
+            start() {
+                if (this.starting) {
+                    this.starting = false;
+                    this.emit("start");
+                }
                 return this;
             },
-            brush: function () {
+            brush() {
                 this.emit("brush");
                 return this;
             },
-            end: function () {
-                if (--this.active === 0) delete this.state.emitter, this.emit("end");
+            end() {
+                if (--this.active === 0) { 
+                    delete this.state.emitter; 
+                    this.emit("end");
+                }
                 return this;
             },
-            emit: function (type) {
+            emit(type) {
                 d3Selection.customEvent(new BrushEvent(brush, type, dim.output(this.state.selection)), listeners.apply, listeners, [type, this.that, this.args]);
             }
         };
 
         function started() {
-            if (d3Selection.event.touches) { if (d3Selection.event.changedTouches.length < d3Selection.event.touches.length) return noevent(); }
-            else if (touchending) return;
-            if (!filter.apply(this, arguments)) return;
+            if (d3Selection.event.touches) { 
+                if (d3Selection.event.changedTouches.length < d3Selection.event.touches.length) {
+                    return noevent(); 
+                }
+            }
+            else if (touchending) { return; }
+            if (!filter.apply(this, arguments)) { return; }
 
             var that = this,
                 type = d3Selection.event.target.__data__.type,
@@ -392,20 +399,44 @@
                 switch (mode) {
                     case MODE_SPACE:
                     case MODE_DRAG: {
-                        if (signX) dx = Math.max(W - w0, Math.min(E - e0, dx)), w1 = w0 + dx, e1 = e0 + dx;
-                        if (signY) dy = Math.max(N - n0, Math.min(S - s0, dy)), n1 = n0 + dy, s1 = s0 + dy;
+                        if (signX) { 
+                            dx = Math.max(W - w0, Math.min(E - e0, dx)); 
+                            w1 = w0 + dx, e1 = e0 + dx;
+                        }
+                        if (signY) { 
+                            dy = Math.max(N - n0, Math.min(S - s0, dy));
+                            n1 = n0 + dy, s1 = s0 + dy;
+                        }
                         break;
                     }
                     case MODE_HANDLE: {
-                        if (signX < 0) dx = Math.max(W - w0, Math.min(E - w0, dx)), w1 = w0 + dx, e1 = e0;
-                        else if (signX > 0) dx = Math.max(W - e0, Math.min(E - e0, dx)), w1 = w0, e1 = e0 + dx;
-                        if (signY < 0) dy = Math.max(N - n0, Math.min(S - n0, dy)), n1 = n0 + dy, s1 = s0;
-                        else if (signY > 0) dy = Math.max(N - s0, Math.min(S - s0, dy)), n1 = n0, s1 = s0 + dy;
+                        if (signX < 0) {
+                            dx = Math.max(W - w0, Math.min(E - w0, dx));
+                            w1 = w0 + dx, e1 = e0;
+                        }
+                        else if (signX > 0) { 
+                            dx = Math.max(W - e0, Math.min(E - e0, dx));
+                            w1 = w0, e1 = e0 + dx;
+                        }
+                        if (signY < 0) { 
+                            dy = Math.max(N - n0, Math.min(S - n0, dy));
+                            n1 = n0 + dy, s1 = s0;
+                        }
+                        else if (signY > 0) { 
+                            dy = Math.max(N - s0, Math.min(S - s0, dy));
+                            n1 = n0, s1 = s0 + dy;
+                        }
                         break;
                     }
                     case MODE_CENTER: {
-                        if (signX) w1 = Math.max(W, Math.min(E, w0 - dx * signX)), e1 = Math.max(W, Math.min(E, e0 + dx * signX));
-                        if (signY) n1 = Math.max(N, Math.min(S, n0 - dy * signY)), s1 = Math.max(N, Math.min(S, s0 + dy * signY));
+                        if (signX) { 
+                            w1 = Math.max(W, Math.min(E, w0 - dx * signX));
+                            e1 = Math.max(W, Math.min(E, e0 + dx * signX));
+                        }
+                        if (signY) { 
+                            n1 = Math.max(N, Math.min(S, n0 - dy * signY));
+                            s1 = Math.max(N, Math.min(S, s0 + dy * signY));
+                        }
                         break;
                     }
                 }
@@ -414,19 +445,19 @@
                     signX *= -1;
                     t = w0, w0 = e0, e0 = t;
                     t = w1, w1 = e1, e1 = t;
-                    if (type in flipX) overlay.attr("cursor", cursors[type = flipX[type]]);
+                    if (type in flipX) { overlay.attr("cursor", cursors[type = flipX[type]]); }
                 }
 
                 if (s1 < n1) {
                     signY *= -1;
                     t = n0, n0 = s0, s0 = t;
                     t = n1, n1 = s1, s1 = t;
-                    if (type in flipY) overlay.attr("cursor", cursors[type = flipY[type]]);
+                    if (type in flipY) { overlay.attr("cursor", cursors[type = flipY[type]]); }
                 }
 
-                if (state.selection) selection = state.selection; // May be set by brush.move!
-                if (lockX) w1 = selection[0][0], e1 = selection[1][0];
-                if (lockY) n1 = selection[0][1], s1 = selection[1][1];
+                if (state.selection) { selection = state.selection; } // May be set by brush.move!
+                if (lockX) { w1 = selection[0][0], e1 = selection[1][0]; }
+                if (lockY) { n1 = selection[0][1], s1 = selection[1][1]; }
 
                 if (selection[0][0] !== w1
                     || selection[0][1] !== n1
@@ -451,8 +482,11 @@
                 }
                 group.attr("pointer-events", "all");
                 overlay.attr("cursor", cursors.overlay);
-                if (state.selection) selection = state.selection; // May be set by brush.move (on start)!
-                if (empty(selection)) state.selection = null, redraw.call(that);
+                if (state.selection) { selection = state.selection; } // May be set by brush.move (on start)!
+                if (empty(selection)) { 
+                    state.selection = null; 
+                    redraw.call(that);
+                }
                 emit.end();
             }
 
@@ -542,11 +576,23 @@
         return brush;
     }
 
+    function brushX() {
+        return brush$1(X);
+    }
+
+    function brushY() {
+        return brush$1(Y);
+    }
+
+    brush = function () {
+        return brush$1(XY);
+    };
+
     exports.brush = brush;
     exports.brushX = brushX;
     exports.brushY = brushY;
     exports.brushSelection = brushSelection;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
+    Object.defineProperty(exports, "__esModule", { value: true });
 
 })));
