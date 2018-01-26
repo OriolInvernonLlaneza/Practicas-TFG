@@ -6,13 +6,14 @@ function createGraph(svg, graph) {
     var shiftKey;
     var simulation;
     var node;
+    var _d3 = d3;
 
     // take size from svg
     var width = +svg.attr("width"),
         height = +svg.attr("height");
 
     // color scheme
-    var fill = d3.scaleOrdinal(d3.schemeCategory20);
+    var fill = _d3.scaleOrdinal(_d3.schemeCategory20);
 
     // remove any previous graphs
     svg.selectAll(".g-main").remove();
@@ -32,7 +33,7 @@ function createGraph(svg, graph) {
 
     // force functions
     function dragstarted(d) {
-        if (!d3.event.active) { simulation.alphaTarget(0.3).restart(); }
+        if (!_d3.event.active) { simulation.alphaTarget(0.3).restart(); }
 
         if (!d.selected && !shiftKey) {
             // if this node isn't selected, then we have to unselect every other node
@@ -41,7 +42,7 @@ function createGraph(svg, graph) {
             });
         }
 
-        d3.select(this).classed("selected", function (p) {
+        _d3.select(this).classed("selected", function (p) {
             d.previouslySelected = d.selected;
             return d.selected = true; // selection
         });
@@ -57,13 +58,13 @@ function createGraph(svg, graph) {
     function dragged(d) {
         node.filter(function (d) { return d.selected; })
             .each(function (d) {
-                d.fx += d3.event.dx;
-                d.fy += d3.event.dy;
+                d.fx += _d3.event.dx;
+                d.fy += _d3.event.dy;
             });
     }
 
     function dragended(d) {
-        if (!d3.event.active) { simulation.alphaTarget(0); }
+        if (!_d3.event.active) { simulation.alphaTarget(0); }
         d.fx = null;
         d.fy = null;
         node.filter(function (d) { return d.selected; })
@@ -75,10 +76,10 @@ function createGraph(svg, graph) {
 
     // zoom list
     function zoomed() {
-        gDraw.attr("transform", d3.event.transform); // transforms drawing with zoom event
+        gDraw.attr("transform", _d3.event.transform); // transforms drawing with zoom event
     }
 
-    var zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/d3/d3-zoom
+    var zoom = _d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
         .on("zoom", zoomed); // add listener
 
     gMain.call(zoom);
@@ -110,7 +111,7 @@ function createGraph(svg, graph) {
         .enter().append("circle")
         .attr("r", 10)
         .attr("fill", function (d) { return d.color; })
-        .call(d3.drag() // drag functions on node
+        .call(_d3.drag() // drag functions on node
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
@@ -169,10 +170,10 @@ function createGraph(svg, graph) {
         .attr("startOffset", "50%")
         .text(function (d) { return d.mood; });
 
-    simulation = d3.forceSimulation() // create and start simulation
-        .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
-        .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2));
+    simulation = _d3.forceSimulation() // create and start simulation
+        .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
+        .force("charge", _d3.forceManyBody())
+        .force("center", _d3.forceCenter(width / 2, height / 2));
 
     function ticked() {
         // update node, link, label and path positions
@@ -233,10 +234,10 @@ function createGraph(svg, graph) {
     }
 
     function brushed() {
-        if (!d3.event.sourceEvent) { return; }
-        if (!d3.event.selection) { return; }
+        if (!_d3.event.sourceEvent) { return; }
+        if (!_d3.event.selection) { return; }
 
-        var extent = d3.event.selection; // brushable area
+        var extent = _d3.event.selection; // brushable area
 
         node.classed("selected", function (d) { // node class selected if inside extent or prev selected.
             return d.selected = d.previouslySelected ^ // XOR
@@ -246,8 +247,8 @@ function createGraph(svg, graph) {
     }
 
     function brushended() {
-        if (!d3.event.sourceEvent) { return; }
-        if (!d3.event.selection) { return; }
+        if (!_d3.event.sourceEvent) { return; }
+        if (!_d3.event.selection) { return; }
         if (!gBrush) { return; }
 
         gBrush.call(brush.move, null); // clear brush selection
@@ -261,13 +262,13 @@ function createGraph(svg, graph) {
         brushing = false;
     }
 
-    brush = d3.brush() // brush functions
+    brush = _d3.brush() // brush functions
         .on("start", brushstarted)
         .on("brush", brushed)
         .on("end", brushended);
 
     function keydown() {
-        shiftKey = d3.event.shiftKey; //push shift
+        shiftKey = _d3.event.shiftKey; //push shift
 
         if (shiftKey) { //if true shift was pressed
             // if brush on, do nothing
@@ -295,8 +296,8 @@ function createGraph(svg, graph) {
         }
     }
 
-    d3.select("body").on("keydown", keydown); // event handler that starts the brushing
-    d3.select("body").on("keyup", keyup); // event handler that ends the brushing
+    _d3.select("body").on("keydown", keydown); // event handler that starts the brushing
+    _d3.select("body").on("keyup", keyup); // event handler that ends the brushing
 
     return graph;
 }

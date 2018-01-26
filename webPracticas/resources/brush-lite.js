@@ -21,6 +21,10 @@
         this.selection = selection;
     };
 
+    function type(t) {
+        return { type: t };
+    }
+
     function nopropagation() {
         d3Selection.event.stopImmediatePropagation();
     }
@@ -113,10 +117,6 @@
         sw: +1
     };
 
-    function type(t) {
-        return { type: t };
-    }
-
     // Ignore right-click, since that should open the context menu.
     function defaultFilter() {
         return !d3Selection.event.button;
@@ -146,11 +146,6 @@
     }
 
     function brush$1(dim) {
-        var extent = defaultExtent,
-            filter = defaultFilter,
-            listeners = d3Dispatch.dispatch(brush, "start", "brush", "end"),
-            handleSize = 6,
-            touchending;
 
         function brush(group) {
 
@@ -472,8 +467,8 @@
             function ended() {
                 nopropagation();
                 if (d3Selection.event.touches) {
-                    if (d3Selection.event.touches.length) return;
-                    if (touchending) clearTimeout(touchending);
+                    if (d3Selection.event.touches.length) { return; }
+                    if (touchending) { clearTimeout(touchending); }
                     touchending = setTimeout(function () { touchending = null; }, 500); // Ghost clicks are delayed!
                     group.on("touchmove.brush touchend.brush touchcancel.brush", null);
                 } else {
@@ -494,8 +489,14 @@
                 switch (d3Selection.event.keyCode) {
                     case 18: { // ALT
                         if (mode === MODE_HANDLE) {
-                            if (signX) e0 = e1 - dx * signX, w0 = w1 + dx * signX;
-                            if (signY) s0 = s1 - dy * signY, n0 = n1 + dy * signY;
+                            if (signX) { 
+                                e0 = e1 - dx * signX;
+                                w0 = w1 + dx * signX;
+                            }
+                            if (signY) {
+                                s0 = s1 - dy * signY; 
+                                n0 = n1 + dy * signY;
+                            }
                             mode = MODE_CENTER;
                             move();
                         }
@@ -503,8 +504,16 @@
                     }
                     case 32: { // SPACE; takes priority over ALT
                         if (mode === MODE_HANDLE || mode === MODE_CENTER) {
-                            if (signX < 0) e0 = e1 - dx; else if (signX > 0) w0 = w1 - dx;
-                            if (signY < 0) s0 = s1 - dy; else if (signY > 0) n0 = n1 - dy;
+                            if (signX < 0) { 
+                                e0 = e1 - dx; 
+                            } else if (signX > 0) { 
+                                w0 = w1 - dx;
+                            }
+                            if (signY < 0) { 
+                                s0 = s1 - dy; 
+                            } else if (signY > 0) { 
+                                n0 = n1 - dy;
+                            }
                             mode = MODE_SPACE;
                             overlay.attr("cursor", cursors.selection);
                             move();
@@ -520,8 +529,16 @@
                 switch (d3Selection.event.keyCode) {
                     case 18: { // ALT
                         if (mode === MODE_CENTER) {
-                            if (signX < 0) e0 = e1; else if (signX > 0) w0 = w1;
-                            if (signY < 0) s0 = s1; else if (signY > 0) n0 = n1;
+                            if (signX < 0) { 
+                                e0 = e1; 
+                            } else if (signX > 0) { 
+                                w0 = w1;
+                            }
+                            if (signY < 0) { 
+                                s0 = s1;
+                            } else if (signY > 0) { 
+                                n0 = n1; 
+                            }
                             mode = MODE_HANDLE;
                             move();
                         }
@@ -530,12 +547,26 @@
                     case 32: { // SPACE
                         if (mode === MODE_SPACE) {
                             if (d3Selection.event.altKey) {
-                                if (signX) e0 = e1 - dx * signX, w0 = w1 + dx * signX;
-                                if (signY) s0 = s1 - dy * signY, n0 = n1 + dy * signY;
+                                if (signX) { 
+                                    e0 = e1 - dx * signX;
+                                    w0 = w1 + dx * signX;
+                                }
+                                if (signY) {
+                                    s0 = s1 - dy * signY;
+                                    n0 = n1 + dy * signY;
+                                }
                                 mode = MODE_CENTER;
                             } else {
-                                if (signX < 0) e0 = e1; else if (signX > 0) w0 = w1;
-                                if (signY < 0) s0 = s1; else if (signY > 0) n0 = n1;
+                                if (signX < 0) {
+                                    e0 = e1;
+                                } else if (signX > 0) {
+                                    w0 = w1;
+                                }
+                                if (signY < 0) { 
+                                    s0 = s1;
+                                } else if (signY > 0) {
+                                    n0 = n1;
+                                }
                                 mode = MODE_HANDLE;
                             }
                             overlay.attr("cursor", cursors[type]);
@@ -548,6 +579,12 @@
                 noevent();
             }
         }
+
+        var extent = defaultExtent,
+        filter = defaultFilter,
+        listeners = d3Dispatch.dispatch(brush, "start", "brush", "end"),
+        handleSize = 6,
+        touchending;
 
         function initialize() {
             var state = this.__brush || { selection: null };
