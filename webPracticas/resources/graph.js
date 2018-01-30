@@ -36,7 +36,7 @@ function createGraph(svg, graph) {
         if (!_d3.event.active) { simulation.alphaTarget(0.3).restart(); }
 
         if (!d.selected && !shiftKey) {
-            // if this node isn't selected, then we have to unselect every other node
+            // if this node isn"t selected, then we have to unselect every other node
             node.classed("selected", function (p) {
                 return p.selected = p.previouslySelected = false;
             });
@@ -88,12 +88,26 @@ function createGraph(svg, graph) {
     if (!("links" in graph)) {
         //console.log("No links found");
         return;
-    }                                 
+    }
 
     // the brush needs to go before the nodes so that it doesn"t
     // get called when the mouse is over a node
     var gBrushHolder = gDraw.append("g");
     var gBrush = null;
+
+    svg.append("defs").append("marker")
+        .attr("id", "arrowhead")
+        .attr("viewBox", "-0 -5 10 10")
+        .attr("refX", 15)
+        .attr("refY", -1.5)
+        .attr("orient", "auto")
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
+        .attr("xoverflow", "visible")
+        .append("svg:path")
+        .attr("d", "M 0,-5 L 10 ,0 L 0,5")
+        .attr("fill", "#999")
+        .style("stroke", "none");
 
     //add links, stroke = number of letters
     var link = gDraw.append("g")
@@ -101,6 +115,7 @@ function createGraph(svg, graph) {
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
+        //.attr('marker-end','url(#arrowhead)')
         .attr("stroke-width", function (d) { return d.value; });
 
     //add nodes
@@ -115,15 +130,10 @@ function createGraph(svg, graph) {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
-    
-    node.on("click", function(d) { callWikipediaAPI(d.wiki);} );
+
+    node.on("click", function (d) { callWikipediaAPI(d.wiki); });
     // tooltip titles
     node.append("title")
-        .text(function (d) { return d.name; });
-
-    //node name //Spaghetti si quito esto label no funciona, no debería pasar
-    node.append("text")
-        .attr("dy", -10)
         .text(function (d) { return d.name; });
 
     //node label
@@ -146,8 +156,10 @@ function createGraph(svg, graph) {
         .append("path")
         .attr("class", "edgepath")
         .attr("id", function (d, i) { return "edgepath" + i; })
+        //.attr("class", "link")
         .attr("fill-opacity", 0)
-        .attr("stroke-opacity", 0)
+        //.attr("stroke-width", function (d) { return d.value; })
+        .attr("marker-end", "url(#arrowhead)")
         .style("pointer-events", "none");
 
     // path label
@@ -175,23 +187,30 @@ function createGraph(svg, graph) {
         .force("charge", _d3.forceManyBody())
         .force("center", _d3.forceCenter(width / 2, height / 2));
 
+    function linkArc(d) {
+        var dx = d.target.x - d.source.x,
+            dy = d.target.y - d.source.y,
+            dr = Math.sqrt(dx * dx + dy * dy);
+        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " +
+            d.target.x + "," + d.target.y;
+    }
+
     function ticked() {
-        // update node, link, label and path positions
+        // update node, label and path positions
         // at every step of the simulation
-        link.attr("x1", function (d) { return d.source.x; })
+
+        /*link.attr("x1", function (d) { return d.source.x; })
             .attr("y1", function (d) { return d.source.y; })
             .attr("x2", function (d) { return d.target.x; })
-            .attr("y2", function (d) { return d.target.y; });
-
+            .attr("y2", function (d) { return d.target.y; });*/
+            link.attr("d", linkArc)
         node.attr("cx", function (d) { return d.x; })
             .attr("cy", function (d) { return d.y; });
 
         label.attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y - 10; });
 
-        edgepaths.attr("d", function (d) {
-            return "M " + d.source.x + " " + d.source.y + " L " + d.target.x + " " + d.target.y;
-        });
+        edgepaths.attr("d", linkArc);
 
         edgelabels.attr("transform", function (d) {
             if (d.target.x < d.source.x) { // rotate text 
@@ -206,7 +225,7 @@ function createGraph(svg, graph) {
             }
         });
     }
-    
+
     simulation
         .nodes(graph.nodes) // add nodes to simulation
         .on("tick", ticked);
@@ -224,7 +243,7 @@ function createGraph(svg, graph) {
     });
 
     function brushstarted() {
-        // keep track of whether we're actively brushing so that we
+        // keep track of whether we"re actively brushing so that we
         // don"t remove the brush on keyup in the middle of a selection
         brushing = true;
 
