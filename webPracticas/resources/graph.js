@@ -318,7 +318,7 @@ function createGraph(svg, graph) {
     _d3.select("body").on("keyup", keyup); // event handler that ends the brushing
 
     //Toggle stores whether the highlighting is on
-    var toggle = 0;
+    var toggle = false;
 
     //Create an array logging what is connected to what
     var linkedByIndex = {};
@@ -336,7 +336,7 @@ function createGraph(svg, graph) {
     }
 
     function connectedNodes() {
-        if (toggle == 0) {
+        if (!toggle) {
             //Reduce the opacity of all but the isNeighbouring nodes
             d = d3.select(this).node().__data__;
 
@@ -355,15 +355,15 @@ function createGraph(svg, graph) {
             edgelabels.style("opacity", function (o) {
                 return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
             });
-            //Reduce the op
-            toggle = 1;
+            
+            toggle = true;
         } else {
             //Put them back to opacity=1
             node.style("opacity", 1);
             linkV.style("opacity", 1);
             edgepath.style("opacity", 1);
             edgelabels.style("opacity", 1);
-            toggle = 0;
+            toggle = false;
         }
     }
 
