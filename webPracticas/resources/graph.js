@@ -80,10 +80,10 @@ function createGraph(svg, graph) {
     }
 
     var zoom = _d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
-        .on("zoom", zoomed); // add listener
-
-    gMain.call(zoom);
-
+        .on("zoom", zoomed) // add listener
+        
+    gMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
+    
     // return if no links are found
     if (!("links" in graph)) {
         //console.log("No links found");
@@ -131,7 +131,7 @@ function createGraph(svg, graph) {
         }).attr("target", function (d) {
             return d.target.id;
         }).attr("fill-opacity", 0)
-        .attr('marker-end', 'url(#arrow)');
+        .attr("marker-end", "url(#arrow)");
 
     //add nodes
     node = gDraw.append("g")
@@ -147,6 +147,7 @@ function createGraph(svg, graph) {
             .on("end", dragended));
 
     node.on("click", function (d) { callWikipediaAPI(d.wiki); });
+    node.on('dblclick', connectedNodes); //Added code
     // tooltip titles
     node.append("title")
         .text(function (d) { return d.name; });
@@ -207,7 +208,7 @@ function createGraph(svg, graph) {
         label.attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y - 10; });
 
-        edgepath.attr("d", linkArc); 
+        edgepath.attr("d", linkArc);
         linkV.attr("d", linkArc);
 
         edgelabels.attr("transform", function (d) {
@@ -315,6 +316,56 @@ function createGraph(svg, graph) {
 
     _d3.select("body").on("keydown", keydown); // event handler that starts the brushing
     _d3.select("body").on("keyup", keyup); // event handler that ends the brushing
+
+    //Toggle stores whether the highlighting is on
+    var toggle = 0;
+
+    //Create an array logging what is connected to what
+    var linkedByIndex = {};
+    for (i = 0; i < graph.nodes.length; i++) {
+        linkedByIndex[i + "," + i] = 1; // nodes are connected to themselves
+    };
+
+    graph.links.forEach(function (d) {
+        linkedByIndex[d.source.index + "," + d.target.index] = 1; // link(a,b) -> connected(a,b)
+    });
+
+    //This function looks up whether a pair are neighbours
+    function isNeighbouring(a, b) {
+        return linkedByIndex[a.index + "," + b.index];
+    }
+
+    function connectedNodes() {
+        if (toggle == 0) {
+            //Reduce the opacity of all but the isNeighbouring nodes
+            d = d3.select(this).node().__data__;
+
+            node.style("opacity", function (o) {
+                return isNeighbouring(d, o) | isNeighbouring(o, d) ? 1 : 0.1;
+            });
+
+            linkV.style("opacity", function (o) {
+                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+            });
+
+            edgepath.style("opacity", function (o) {
+                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+            });
+
+            edgelabels.style("opacity", function (o) {
+                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+            });
+            //Reduce the op
+            toggle = 1;
+        } else {
+            //Put them back to opacity=1
+            node.style("opacity", 1);
+            linkV.style("opacity", 1);
+            edgepath.style("opacity", 1);
+            edgelabels.style("opacity", 1);
+            toggle = 0;
+        }
+    }
 
     return graph;
 }
