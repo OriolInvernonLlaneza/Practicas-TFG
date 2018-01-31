@@ -95,28 +95,43 @@ function createGraph(svg, graph) {
     var gBrushHolder = gDraw.append("g");
     var gBrush = null;
 
-    svg.append("defs").append("marker")
-        .attr("id", "arrowhead")
-        .attr("viewBox", "-0 -5 10 10")
-        .attr("refX", 15)
-        .attr("refY", -1.5)
-        .attr("orient", "auto")
+    //define arrows
+    gDraw.append("defs").append("marker")
+        .attr("id", "arrow")
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 27.5)
+        .attr("refY", -1)
         .attr("markerWidth", 6)
         .attr("markerHeight", 6)
-        .attr("xoverflow", "visible")
-        .append("svg:path")
-        .attr("d", "M 0,-5 L 10 ,0 L 0,5")
-        .attr("fill", "#999")
-        .style("stroke", "none");
+        .attr("orient", "auto")
+        .attr("stroke", "#999")
+        .style("stroke-width", 0)
+        .append("gDraw:path")
+        .attr("d", "M0,-5L10,0L0,5")
+        .style("stroke-width", 0);
 
-    //add links, stroke = number of letters
-    var link = gDraw.append("g")
-        .attr("class", "link")
-        .selectAll("line")
-        .data(graph.links)
-        .enter().append("line")
-        //.attr('marker-end','url(#arrowhead)')
-        .attr("stroke-width", function (d) { return d.value; });
+    //add curved links, stroke <= number of letters
+    var linkV = gDraw.selectAll(".link").data(graph.links).enter()
+        .append("path").attr("source", function (d) {
+            return d.source.id;
+        }).attr("target", function (d) {
+            return d.target.id;
+        }).attr("class", "link")
+        .attr("fill-opacity", 0)
+        .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
+
+    //invisible path + arrow
+    var edgepath = gDraw.selectAll(".edgepath").
+        data(graph.links).enter()
+        .append("path")
+        .attr("class", "edgepath")
+        .attr("id", function (d, i) { return "edgepath" + i; })
+        .attr("source", function (d) {
+            return d.source.id;
+        }).attr("target", function (d) {
+            return d.target.id;
+        }).attr("fill-opacity", 0)
+        .attr('marker-end', 'url(#arrow)');
 
     //add nodes
     node = gDraw.append("g")
@@ -148,19 +163,6 @@ function createGraph(svg, graph) {
         .style("fill", "#555")
         .style("font-family", "Arial")
         .style("font-size", 12);
-
-    // path under link
-    var edgepaths = gDraw.selectAll(".edgepath")
-        .data(graph.links)
-        .enter()
-        .append("path")
-        .attr("class", "edgepath")
-        .attr("id", function (d, i) { return "edgepath" + i; })
-        //.attr("class", "link")
-        .attr("fill-opacity", 0)
-        //.attr("stroke-width", function (d) { return d.value; })
-        .attr("marker-end", "url(#arrowhead)")
-        .style("pointer-events", "none");
 
     // path label
     var edgelabels = gDraw.selectAll(".edgelabel")
@@ -199,18 +201,14 @@ function createGraph(svg, graph) {
         // update node, label and path positions
         // at every step of the simulation
 
-        /*link.attr("x1", function (d) { return d.source.x; })
-            .attr("y1", function (d) { return d.source.y; })
-            .attr("x2", function (d) { return d.target.x; })
-            .attr("y2", function (d) { return d.target.y; });*/
-            link.attr("d", linkArc)
         node.attr("cx", function (d) { return d.x; })
             .attr("cy", function (d) { return d.y; });
 
         label.attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y - 10; });
 
-        edgepaths.attr("d", linkArc);
+        edgepath.attr("d", linkArc); 
+        linkV.attr("d", linkArc);
 
         edgelabels.attr("transform", function (d) {
             if (d.target.x < d.source.x) { // rotate text 
