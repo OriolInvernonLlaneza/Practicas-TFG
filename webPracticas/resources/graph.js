@@ -3,6 +3,7 @@ var edgepath;
 var node;
 var edgelabels;
 var label;
+var _d3 = d3;
 
 function createGraph(svg, graph) {
 
@@ -11,11 +12,11 @@ function createGraph(svg, graph) {
     var brushing = false;
     var shiftKey;
     var simulation;
-    var _d3 = d3;
     
+    // jquery search and autocomplete
     var optArray = [];
     for (var i = 0; i < graph.nodes.length - 1; i++) {
-        optArray.push(graph.nodes[i].name);
+        optArray.push(graph.nodes[i].name); //all node names
     }
     optArray = optArray.sort();
     $(function () {
@@ -96,7 +97,7 @@ function createGraph(svg, graph) {
     }
 
     var zoom = _d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
-        .on("zoom", zoomed) // add listener
+        .on("zoom", zoomed); // add listener
 
     gMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
 
@@ -163,7 +164,7 @@ function createGraph(svg, graph) {
             .on("end", dragended));
 
     node.on("click", function (d) { callWikipediaAPI(d.wiki); });
-    node.on('dblclick', connectedNodes); //Added code
+    
     // tooltip titles
     node.append("title")
         .text(function (d) { return d.name; });
@@ -338,9 +339,9 @@ function createGraph(svg, graph) {
 
     //Create an array logging what is connected to what
     var linkedByIndex = {};
-    for (i = 0; i < graph.nodes.length; i++) {
-        linkedByIndex[i + "," + i] = 1; // nodes are connected to themselves
-    };
+    for (var j = 0; j < graph.nodes.length; j++) {
+        linkedByIndex[j + "," + j] = 1; // nodes are connected to themselves
+    }
 
     graph.links.forEach(function (d) {
         linkedByIndex[d.source.index + "," + d.target.index] = 1; // link(a,b) -> connected(a,b)
@@ -354,22 +355,22 @@ function createGraph(svg, graph) {
     function connectedNodes() {
         if (!toggle) {
             //Reduce the opacity of all the non-neighbours
-            d = d3.select(this).node().__data__;
+            var d = _d3.select(this).node().__data__;
 
             node.style("opacity", function (o) {
                 return isNeighbouring(d, o) | isNeighbouring(o, d) ? 1 : 0.1;
             });
 
             linkV.style("opacity", function (o) {
-                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+                return d.index === o.source.index | d.index === o.target.index ? 1 : 0.1;
             });
 
             edgepath.style("opacity", function (o) {
-                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+                return d.index === o.source.index | d.index === o.target.index ? 1 : 0.1;
             });
 
             edgelabels.style("opacity", function (o) {
-                return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
+                return d.index === o.source.index | d.index === o.target.index ? 1 : 0.1;
             });
 
             toggle = true;
@@ -382,25 +383,26 @@ function createGraph(svg, graph) {
             toggle = false;
         }
     }
+    node.on("dblclick", connectedNodes); // dblclick listener (neigh)
 
     return graph;
 }
 
+//search function
 function searchNode() {
     //find the node
     var selectedVal = document.getElementById("search").value;
-    if (selectedVal === "") {
-
-    } else {
+    if (selectedVal !== "" && selectedVal !== "none") {
         var selected = node.filter(function (d, i) {
-            return d.name != selectedVal;
+            return d.name !== selectedVal;
         });
+        //Reduce the opacity of the non searched
         selected.style("opacity", 0);
         linkV.style("opacity", 0);
         edgepath.style("opacity", 0);
         edgelabels.style("opacity", 0);
-        d3.selectAll("circle, .link, .edgepath, .edgelabel").transition()
-            .duration(5000)
+        _d3.selectAll("circle, .link, .edgepath, .edgelabel").transition()
+            .duration(5000) // restore opacity
             .style("opacity", 1);
     }
 }
