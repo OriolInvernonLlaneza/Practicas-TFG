@@ -1,3 +1,9 @@
+var linkV;
+var edgepath;
+var node;
+var edgelabels;
+var label;
+
 function createGraph(svg, graph) {
 
     var brush;
@@ -5,8 +11,18 @@ function createGraph(svg, graph) {
     var brushing = false;
     var shiftKey;
     var simulation;
-    var node;
     var _d3 = d3;
+    
+    var optArray = [];
+    for (var i = 0; i < graph.nodes.length - 1; i++) {
+        optArray.push(graph.nodes[i].name);
+    }
+    optArray = optArray.sort();
+    $(function () {
+        $("#search").autocomplete({
+            source: optArray
+        });
+    });
 
     // take size from svg
     var width = +svg.attr("width"),
@@ -81,9 +97,9 @@ function createGraph(svg, graph) {
 
     var zoom = _d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
         .on("zoom", zoomed) // add listener
-        
+
     gMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
-    
+
     // return if no links are found
     if (!("links" in graph)) {
         //console.log("No links found");
@@ -111,7 +127,7 @@ function createGraph(svg, graph) {
         .style("stroke-width", 0);
 
     //add curved links, stroke <= number of letters
-    var linkV = gDraw.selectAll(".link").data(graph.links).enter()
+    linkV = gDraw.selectAll(".link").data(graph.links).enter()
         .append("path").attr("source", function (d) {
             return d.source.id;
         }).attr("target", function (d) {
@@ -121,7 +137,7 @@ function createGraph(svg, graph) {
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
 
     //invisible path + arrow
-    var edgepath = gDraw.selectAll(".edgepath").
+    edgepath = gDraw.selectAll(".edgepath").
         data(graph.links).enter()
         .append("path")
         .attr("class", "edgepath")
@@ -153,7 +169,7 @@ function createGraph(svg, graph) {
         .text(function (d) { return d.name; });
 
     //node label
-    var label = gDraw.append("g")
+    label = gDraw.append("g")
         .attr("class", "label")
         .selectAll("label")
         .data(graph.nodes)
@@ -166,7 +182,7 @@ function createGraph(svg, graph) {
         .style("font-size", 12);
 
     // path label
-    var edgelabels = gDraw.selectAll(".edgelabel")
+    edgelabels = gDraw.selectAll(".edgelabel")
         .data(graph.links)
         .enter()
         .append("text")
@@ -337,7 +353,7 @@ function createGraph(svg, graph) {
 
     function connectedNodes() {
         if (!toggle) {
-            //Reduce the opacity of all but the isNeighbouring nodes
+            //Reduce the opacity of all the non-neighbours
             d = d3.select(this).node().__data__;
 
             node.style("opacity", function (o) {
@@ -355,10 +371,10 @@ function createGraph(svg, graph) {
             edgelabels.style("opacity", function (o) {
                 return d.index == o.source.index | d.index == o.target.index ? 1 : 0.1;
             });
-            
+
             toggle = true;
         } else {
-            //Put them back to opacity=1
+            //Restore opacity
             node.style("opacity", 1);
             linkV.style("opacity", 1);
             edgepath.style("opacity", 1);
@@ -368,4 +384,23 @@ function createGraph(svg, graph) {
     }
 
     return graph;
+}
+
+function searchNode() {
+    //find the node
+    var selectedVal = document.getElementById("search").value;
+    if (selectedVal === "") {
+
+    } else {
+        var selected = node.filter(function (d, i) {
+            return d.name != selectedVal;
+        });
+        selected.style("opacity", 0);
+        linkV.style("opacity", 0);
+        edgepath.style("opacity", 0);
+        edgelabels.style("opacity", 0);
+        d3.selectAll("circle, .link, .edgepath, .edgelabel").transition()
+            .duration(5000)
+            .style("opacity", 1);
+    }
 }

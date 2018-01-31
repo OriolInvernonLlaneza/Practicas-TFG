@@ -24,6 +24,10 @@
 }
 /*graph end*/  
 
+.ui-helper-hidden-accessible { 
+    display:none; 
+}
+
 body {
     margin: 0;
 }
