@@ -16,7 +16,7 @@ function createGraph(svg, graph) {
     // jquery search and autocomplete
     var optArray = [];
     for (var i = 0; i < graph.nodes.length - 1; i++) {
-        optArray.push(graph.nodes[i].name); //all node names
+        optArray.push(graph.nodes[i].fname); //all node names
     }
     optArray = optArray.sort();
     $(function () {
@@ -167,7 +167,7 @@ function createGraph(svg, graph) {
     
     // tooltip titles
     node.append("title")
-        .text(function (d) { return d.name; });
+        .text(function (d) { return d.fname; });
 
     //node label
     label = gDraw.append("g")
