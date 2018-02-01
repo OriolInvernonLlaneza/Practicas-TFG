@@ -12,7 +12,7 @@ function createGraph(svg, graph) {
     var brushing = false;
     var shiftKey;
     var simulation;
-    
+
     // jquery search and autocomplete
     var optArray = [];
     for (var i = 0; i < graph.nodes.length - 1; i++) {
@@ -157,14 +157,20 @@ function createGraph(svg, graph) {
         .data(graph.nodes)
         .enter().append("circle")
         .attr("r", 10)
-        .attr("fill", function (d) { return d.color; })
+        .attr("fill", function (d) {
+            if (d.hasOwnProperty("color")) {
+                return d.color;
+            } else {
+                return "lavender";
+            }
+        })
         .call(_d3.drag() // drag functions on node
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
 
     node.on("click", function (d) { callWikipediaAPI(d.wiki); });
-    
+
     // tooltip titles
     node.append("title")
         .text(function (d) { return d.fname; });
@@ -176,7 +182,13 @@ function createGraph(svg, graph) {
         .data(graph.nodes)
         .enter().append("text")
         .style("pointer-events", "none")
-        .text(function (d) { return d.name; })
+        .text(function (d) {
+            if (d.hasOwnProperty("name")) {
+                return d.name;
+            } else {
+                return "";
+            }
+        })
         .style("text-anchor", "middle")
         .style("fill", "#555")
         .style("font-family", "Arial")

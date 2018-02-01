@@ -3,8 +3,12 @@ var lastWikiPage;
 var content;
 
 function callWikipediaAPI(wikiPage) {
-  if(wikiPage === lastWikiPage) { // using three equals to avoid errors if json.link is blank
+  if (wikiPage === lastWikiPage) { // using three equals to avoid errors if json.link is blank
     return; // if the selected node is the same as last time -> do nothing
+  }
+  if (wikiPage === "") {
+    $("#wiki").empty();
+    return;
   }
 
   lastWikiPage = wikiPage;
@@ -40,9 +44,15 @@ wikiImage = function (data) {
   var imageURL = null;
   // Check if page has images
   if (data.parse.images.length >= 1) { //get the one on the box
-    imageURL = box.find("img").first().attr("src");
+    if (box != null) {
+      imageURL = box.find("img").first().attr("src");
+    }
   }
 
-  $("#wiki").append("<div><img src='" + imageURL + "'/>");
-  $("#wiki").append("<p>" + content + "</p>");
+  if (image != null) {
+    $("#wiki").append("<div><img src='" + imageURL + "'/>");
+  }
+  if (content != null) {
+    $("#wiki").append("<p>" + content + "</p>");
+  }
 };
