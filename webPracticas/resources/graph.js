@@ -394,7 +394,7 @@ function searchNode() {
     var selectedVal = document.getElementById("search").value;
     if (selectedVal !== "" && selectedVal !== "none") {
         var selected = node.filter(function (d, i) {
-            return d.name !== selectedVal;
+            return d.fname !== selectedVal;
         });
         //Reduce the opacity of the non searched
         selected.style("opacity", 0);
