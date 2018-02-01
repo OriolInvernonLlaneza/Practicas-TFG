@@ -48,6 +48,10 @@
         <input id="search">
         <button type="button" onclick="searchNode()">Search</button>
       </div>
+      <form>
+        <h3> Link threshold 0
+          <input type="range" id="thersholdSlider" name="points" value=0 min="0" max="10" onchange="threshold(this.value)"> 10 </h3>
+      </form>
       <svg class="framed" id="d3" width="1080" height="500"></svg>
       <script src="resources/brush-lite.js"></script>
       <script src="resources/graph.js"></script>

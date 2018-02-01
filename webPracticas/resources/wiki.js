@@ -49,7 +49,7 @@ wikiImage = function (data) {
     }
   }
 
-  if (image != null) {
+  if (imageURL != null) {
     $("#wiki").append("<div><img src='" + imageURL + "'/>");
   }
   if (content != null) {

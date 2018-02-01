@@ -4,6 +4,7 @@ var node;
 var edgelabels;
 var label;
 var _d3 = d3;
+var gThresh = "";
 
 function createGraph(svg, graph) {
 
@@ -12,6 +13,9 @@ function createGraph(svg, graph) {
     var brushing = false;
     var shiftKey;
     var simulation;
+
+    graphOG = JSON.parse(JSON.stringify(graph)); //Add this line
+    gThresh = graph;
 
     // jquery search and autocomplete
     var optArray = [];
@@ -161,7 +165,7 @@ function createGraph(svg, graph) {
             if (d.hasOwnProperty("color")) {
                 return d.color;
             } else {
-                return "lavender";
+                return "GoldenRod";
             }
         })
         .call(_d3.drag() // drag functions on node
@@ -215,7 +219,7 @@ function createGraph(svg, graph) {
         .text(function (d) { return d.mood; });
 
     simulation = _d3.forceSimulation() // create and start simulation
-        .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(1))
+        .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
         .force("charge", _d3.forceManyBody())
         .force("center", _d3.forceCenter(width / 2, height / 2));
 
@@ -417,4 +421,19 @@ function searchNode() {
             .duration(5000) // restore opacity
             .style("opacity", 1);
     }
+}
+
+//adjust threshold
+function threshold(thresh) {
+    gThresh.links.splice(0, gThresh.links.length);
+    for (var i = 0; i < graphOG.links.length; i++) {
+        if (graphOG.links[i].value > thresh) {
+            gThresh.links.push(graphOG.links[i]);
+        }
+    }
+    restart();
+}
+//Restart the visualisation after any node and link changes
+function restart() {
+
 }
