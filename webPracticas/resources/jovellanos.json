@@ -135,8 +135,10 @@
     },
     {
       "id": 20,
+      "name": "Vargas Ponce",
       "fname": "José de Vargas Ponce",
-      "wiki": "José_de_Vargas_Ponce"
+      "wiki": "José_de_Vargas_Ponce",
+      "color": "green"
     },
     {
       "id": 21,
@@ -2776,7 +2778,7 @@
     {
       "source": 1,
       "target": 134,
-      "value": 2,
+      "value": 1,
       "mood": ""
     },
     {

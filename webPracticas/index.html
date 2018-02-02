@@ -49,23 +49,15 @@
         <button type="button" onclick="searchNode()">Search</button>
       </div>
       <form>
-        <h3> Link threshold 0
-          <input type="range" id="thersholdSlider" name="points" value=0 min="0" max="10" onchange="threshold(this.value)"> 10 </h3>
+        <h3> Mínimo nº de cartas: 0
+          <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h3>
       </form>
       <svg class="framed" id="d3" width="1080" height="500"></svg>
       <script src="resources/brush-lite.js"></script>
       <script src="resources/graph.js"></script>
       <script src="resources/wiki.js"></script>
       <script>
-        var svg = d3.select("#d3");
-
-        d3.json("resources/jovellanos.json", function (error, graph) {
-          if (!error) {
-            createGraph(svg, graph);
-          } else {
-            //console.error(error);
-          }
-        });
+        addGraph();
       </script>
     </div>
     <div id="wiki"></div>

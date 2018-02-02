@@ -4,23 +4,32 @@ var node;
 var edgelabels;
 var label;
 var _d3 = d3;
-var gThresh = "";
+var svg;
+var graph;
+var simulation;
 
-function createGraph(svg, graph) {
+function addGraph() {
+    svg = _d3.select("#d3");
+    _d3.json("resources/jovellanos.json", function (error, json) {
+        if (!error) {
+            graph = json;
+            graphOG = JSON.parse(JSON.stringify(graph));
+            createGraph(graph);
+        }
+    });
+}
+
+function createGraph(ngraph) {
 
     var brush;
     var brushMode = false;
     var brushing = false;
     var shiftKey;
-    var simulation;
-
-    graphOG = JSON.parse(JSON.stringify(graph)); //Add this line
-    gThresh = graph;
 
     // jquery search and autocomplete
     var optArray = [];
-    for (var i = 0; i < graph.nodes.length - 1; i++) {
-        optArray.push(graph.nodes[i].fname); //all node names
+    for (var i = 0; i < ngraph.nodes.length - 1; i++) {
+        optArray.push(ngraph.nodes[i].fname); //all node names
     }
     optArray = optArray.sort();
     $(function () {
@@ -106,7 +115,7 @@ function createGraph(svg, graph) {
     gMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
 
     // return if no links are found
-    if (!("links" in graph)) {
+    if (!("links" in ngraph)) {
         //console.log("No links found");
         return;
     }
@@ -132,7 +141,7 @@ function createGraph(svg, graph) {
         .style("stroke-width", 0);
 
     //add curved links, stroke <= number of letters
-    linkV = gDraw.selectAll(".link").data(graph.links).enter()
+    linkV = gDraw.selectAll(".link").data(ngraph.links).enter()
         .append("path").attr("source", function (d) {
             return d.source.id;
         }).attr("target", function (d) {
@@ -143,7 +152,7 @@ function createGraph(svg, graph) {
 
     //invisible path + arrow
     edgepath = gDraw.selectAll(".edgepath").
-        data(graph.links).enter()
+        data(ngraph.links).enter()
         .append("path")
         .attr("class", "edgepath")
         .attr("id", function (d, i) { return "edgepath" + i; })
@@ -158,7 +167,7 @@ function createGraph(svg, graph) {
     node = gDraw.append("g")
         .attr("class", "node")
         .selectAll("circle")
-        .data(graph.nodes)
+        .data(ngraph.nodes)
         .enter().append("circle")
         .attr("r", 5)
         .attr("fill", function (d) {
@@ -183,7 +192,7 @@ function createGraph(svg, graph) {
     label = gDraw.append("g")
         .attr("class", "label")
         .selectAll("label")
-        .data(graph.nodes)
+        .data(ngraph.nodes)
         .enter().append("text")
         .style("pointer-events", "none")
         .text(function (d) {
@@ -194,19 +203,19 @@ function createGraph(svg, graph) {
             }
         })
         .style("text-anchor", "middle")
-        .style("fill", "#555")
+        .style("fill", "#000")
         .style("font-family", "Arial")
         .style("font-size", 12);
 
     // path label
     edgelabels = gDraw.selectAll(".edgelabel")
-        .data(graph.links)
+        .data(ngraph.links)
         .enter()
         .append("text")
         .style("pointer-events", "none")
         .attr("class", "edgelabel")
         .attr("id", function (d, i) { return "edgelabel" + i; })
-        .style("fill", "#555")
+        .style("fill", "#000")
         .style("font-family", "Arial")
         .style("font-size", 12);
 
@@ -221,7 +230,7 @@ function createGraph(svg, graph) {
     simulation = _d3.forceSimulation() // create and start simulation
         .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
         .force("charge", _d3.forceManyBody())
-        .force("collide", _d3.forceCollide().radius(10).iterations(16))
+        .force("collide", _d3.forceCollide().radius(20).iterations(16))
         .force("center", _d3.forceCenter(width / 2, height / 2));
 
     function linkArc(d) {
@@ -260,11 +269,11 @@ function createGraph(svg, graph) {
     }
 
     simulation
-        .nodes(graph.nodes) // add nodes to simulation
+        .nodes(ngraph.nodes) // add nodes to simulation
         .on("tick", ticked);
 
     simulation.force("link") // add links to simulation
-        .links(graph.links);
+        .links(ngraph.links);
 
     //click on frame -> delete selection
     rect.on("click", () => {
@@ -356,11 +365,11 @@ function createGraph(svg, graph) {
 
     //Create an array logging what is connected to what
     var linkedByIndex = {};
-    for (var j = 0; j < graph.nodes.length; j++) {
+    for (var j = 0; j < ngraph.nodes.length; j++) {
         linkedByIndex[j + "," + j] = 1; // nodes are connected to themselves
     }
 
-    graph.links.forEach(function (d) {
+    ngraph.links.forEach(function (d) {
         linkedByIndex[d.source.index + "," + d.target.index] = 1; // link(a,b) -> connected(a,b)
     });
 
@@ -402,7 +411,7 @@ function createGraph(svg, graph) {
     }
     node.on("dblclick", connectedNodes); // dblclick listener (neigh)
 
-    return graph;
+    return ngraph;
 }
 
 //search function
@@ -422,19 +431,23 @@ function searchNode() {
             .duration(5000) // restore opacity
             .style("opacity", 1);
     }
+    document.getElementById("search").value = "";
 }
 
 //adjust threshold
 function threshold(thresh) {
-    gThresh.links.splice(0, gThresh.links.length);
+    graph.links.splice(0, graph.links.length);
     for (var i = 0; i < graphOG.links.length; i++) {
         if (graphOG.links[i].value > thresh) {
-            gThresh.links.push(graphOG.links[i]);
+            graph.links.push(graphOG.links[i]);
         }
     }
     restart();
 }
+
 //Restart the visualisation after any node and link changes
 function restart() {
-
+    simulation.stop();
+    _d3.selectAll("svg > *").remove();
+    createGraph(graph);
 }
