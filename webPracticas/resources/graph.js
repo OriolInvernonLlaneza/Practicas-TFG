@@ -120,7 +120,7 @@ function createGraph(svg, graph) {
     gDraw.append("defs").append("marker")
         .attr("id", "arrow")
         .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 27.5)
+        .attr("refX", 19)
         .attr("refY", -1)
         .attr("markerWidth", 6)
         .attr("markerHeight", 6)
@@ -160,7 +160,7 @@ function createGraph(svg, graph) {
         .selectAll("circle")
         .data(graph.nodes)
         .enter().append("circle")
-        .attr("r", 10)
+        .attr("r", 5)
         .attr("fill", function (d) {
             if (d.hasOwnProperty("color")) {
                 return d.color;
@@ -221,6 +221,7 @@ function createGraph(svg, graph) {
     simulation = _d3.forceSimulation() // create and start simulation
         .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
         .force("charge", _d3.forceManyBody())
+        .force("collide", _d3.forceCollide().radius(10).iterations(16))
         .force("center", _d3.forceCenter(width / 2, height / 2));
 
     function linkArc(d) {
@@ -239,7 +240,7 @@ function createGraph(svg, graph) {
             .attr("cy", function (d) { return d.y; });
 
         label.attr("x", function (d) { return d.x; })
-            .attr("y", function (d) { return d.y - 10; });
+            .attr("y", function (d) { return d.y - 5; });
 
         edgepath.attr("d", linkArc);
         linkV.attr("d", linkArc);
