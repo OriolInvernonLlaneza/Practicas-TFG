@@ -7,17 +7,7 @@ var _d3 = d3;
 var svg;
 var graph;
 var simulation;
-
-function addGraph() {
-    svg = _d3.select("#d3");
-    _d3.json("resources/jovellanos.json", function (error, json) {
-        if (!error) {
-            graph = json;
-            graphOG = JSON.parse(JSON.stringify(graph));
-            createGraph(graph);
-        }
-    });
-}
+var graphOG;
 
 function createGraph(ngraph) {
 
@@ -434,6 +424,13 @@ function searchNode() {
     document.getElementById("search").value = "";
 }
 
+//Restart the visualisation after any node and link changes
+function restart() {
+    simulation.stop();
+    _d3.selectAll("svg > *").remove();
+    createGraph(graph);
+}
+
 //adjust threshold
 function threshold(thresh) {
     graph.links.splice(0, graph.links.length);
@@ -445,9 +442,13 @@ function threshold(thresh) {
     restart();
 }
 
-//Restart the visualisation after any node and link changes
-function restart() {
-    simulation.stop();
-    _d3.selectAll("svg > *").remove();
-    createGraph(graph);
+function addGraph() {
+    svg = _d3.select("#d3");
+    _d3.json("resources/jovellanos.json", function (error, json) {
+        if (!error) {
+            graph = json;
+            graphOG = JSON.parse(JSON.stringify(graph));
+            createGraph(graph);
+        }
+    });
 }
