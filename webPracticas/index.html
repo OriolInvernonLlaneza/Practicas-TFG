@@ -45,13 +45,13 @@
     </p>
 
     <h2 id="redes">Redes</h2>
-    <div style="margin-left: 10%">
-      <div class="tab">
-        <button class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
-        <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
-        <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
-        <button class="tablinks" onclick="">Geolocalizado</button>
-      </div>
+    <div class="tab" style="margin-left:10%; margin-right:10%">
+      <button class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
+      <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
+      <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
+      <button class="tablinks" onclick="">Geolocalizado</button>
+    </div>
+    <div id="graph" style="margin-left: 10%; visibility: hidden">
       <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
       <div class="ui-widget">
         <input id="search">
@@ -62,8 +62,8 @@
           <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h3>
       </form>
       <svg class="framed" id="d3" width="1080" height="500"></svg>
+      <div id="wiki"></div>
     </div>
-    <div id="wiki"></div>
 
     <h2 id="about">Acerca De</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper

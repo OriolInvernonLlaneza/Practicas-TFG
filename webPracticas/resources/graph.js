@@ -220,7 +220,7 @@ function createGraph(ngraph) {
     simulation = _d3.forceSimulation() // create and start simulation
         .force("link", _d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
         .force("charge", _d3.forceManyBody())
-        .force("collide", _d3.forceCollide().radius(20).iterations(16))
+        .force("collide", _d3.forceCollide().radius(20).iterations(8))
         .force("center", _d3.forceCenter(width / 2, height / 2));
 
     function linkArc(d) {
@@ -466,5 +466,6 @@ function addGraph(resource, evt) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
+    document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
 }
