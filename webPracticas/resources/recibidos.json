@@ -1,48 +1,1536 @@
 {
-    "nodes": [
-      {
-        "id": 1, 
-        "name": "Jovellanos", 
-        "wiki": "Gaspar_Melchor_de_Jovellanos",
-        "color": "blue"
-      },
-      {
-        "id": 2, 
-        "name": "Cthulu", 
-        "wiki": "Cthulhu",
-        "color": "green"
-      },
-      {
-        "id": 3, 
-        "name": "Godoy", 
-        "wiki": "Manuel_Godoy",
-        "color": "red"
-      },
-      {
-        "id": 4, 
-        "name": "sss", 
-        "wiki": "Manuel_Godoy",
-        "color": "red"
-      }
-    ],
-    "links": [
-      {
-        "source": 1, 
-        "target": 2, 
-        "value": 15, 
-        "mood": "Amistad"
-      },
-      {
-        "source": 2, 
-        "target": 1, 
-        "value": 10, 
-        "mood": "Amistad"
-      },
-      {
-        "source": 1, 
-        "target": 3, 
-        "value": 1, 
-        "mood": "Enemistad"
-      }
-    ]
-  }
+  "nodes": [
+    {
+      "id": 1,
+      "name": "G.M. Jovellanos",
+      "fname": "Gaspar Melchor de Jovellanos",
+      "wiki": "Gaspar_Melchor_de_Jovellanos",
+      "color": "blue"
+    },
+    {
+      "fname": "Lord Holland",
+      "id": 2,
+      "wiki": "Henry_Richard_Vassal_Fox"
+    },
+    {
+      "fname": "Juan Meléndez Valdés",
+      "id": 3,
+      "wiki": "Juan_Meléndez_Valdés"
+    },
+    {
+      "fname": "Francisco Cabarrús",
+      "id": 4,
+      "wiki": "Francisco_Cabarrús"
+    },
+    {
+      "fname": "Josefa Jovellanos",
+      "id": 5,
+      "wiki": "Josefa_de_Jovellanos"
+    },
+    {
+      "fname": "Antonio Valdés y Bazán",
+      "id": 6,
+      "wiki": "Antonio_Valdés_y_Fernández_Bazán"
+    },
+    {
+      "fname": "Conde del Carpio",
+      "id": 7,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Manuel de Valdés Llanos",
+      "id": 8,
+      "wiki": ""
+    },
+    {
+      "fname": "Fray Diego González",
+      "id": 9,
+      "wiki": "Diego_Tadeo_González"
+    },
+    {
+      "fname": "Valentín García",
+      "id": 10,
+      "wiki": ""
+    },
+    {
+      "fname": "Leandro Fernández de Moratín",
+      "id": 11,
+      "wiki": "Leandro_Fernández_de_Moratín"
+    },
+    {
+      "fname": "Rafael Roselló",
+      "id": 12,
+      "wiki": ""
+    },
+    {
+      "fname": "Alexander Jardine",
+      "id": 13,
+      "wiki": "Alexander_Jardine"
+    },
+    {
+      "fname": "Marqués de Casa Jara",
+      "id": 14,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan José Arias de Saavedra",
+      "id": 15,
+      "wiki": ""
+    },
+    {
+      "fname": "Marqués de la Hinojosa",
+      "id": 16,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Javier de Larumbe",
+      "id": 17,
+      "wiki": ""
+    },
+    {
+      "fname": "José Rodríguez Argüelles",
+      "id": 18,
+      "wiki": ""
+    },
+    {
+      "fname": "Baltasar González de Cienfuegos",
+      "id": 19,
+      "wiki": ""
+    },
+    {
+      "fname": "Leonardo Planes",
+      "id": 20,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Agustín Ceán Bermúdez",
+      "id": 21,
+      "wiki": "Juan_Agustín_Ceán_Bermúdez"
+    },
+    {
+      "fname": "Rosendo Sieres",
+      "id": 22,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Tavira",
+      "id": 23,
+      "wiki": "Antonio_Tavira_Almazán&usg=AOvVaw2uL2ENA3US3vNzPjrSr_F_#jCo4isn4DZAhWFbxQKHT_ZBmQQFgguMAA&url=https%3A%2F%2Fes.wiki.org%2Fwiki%2FAntonio_Tavira_Almazán&usg=AOvVaw2uL2ENA3US3vNzPjrSr_F_#"
+    },
+    {
+      "fname": "Fernando Casado de Torres",
+      "id": 24,
+      "wiki": "Francisco_de_Lorenzana"
+    },
+    {
+      "fname": "Francisco de Paula Jovellanos",
+      "id": 25,
+      "wiki": ""
+    },
+    {
+      "fname": "Catalina de Sena",
+      "id": 26,
+      "wiki": ""
+    },
+    {
+      "fname": "José de Vargas Ponce",
+      "id": 27,
+      "wiki": "José_de_Vargas_Ponce"
+    },
+    {
+      "fname": "Antonio Ponz",
+      "id": 28,
+      "wiki": "#Antonio_Ponz"
+    },
+    {
+      "fname": "María Gertrudis del Busto y Miranda",
+      "id": 29,
+      "wiki": ""
+    },
+    {
+      "fname": "Campomanes",
+      "id": 30,
+      "wiki": "Pedro_Rodríguez_de_Campomanes"
+    },
+    {
+      "fname": "Pedro García Argüelles",
+      "id": 31,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Díaz de Valdés",
+      "id": 32,
+      "wiki": "Pedro_Díaz_de_Valdés"
+    },
+    {
+      "fname": "Pedro de Quevedo y Quintano",
+      "id": 33,
+      "wiki": "Pedro_de_Quevedo_y_Quintano"
+    },
+    {
+      "fname": "Manuel Godoy",
+      "id": 34,
+      "wiki": "Manuel_Godoy"
+    },
+    {
+      "fname": "Jacinto Roque Lorenzana",
+      "id": 35,
+      "wiki": ""
+    },
+    {
+      "fname": "Genaro Fernández Blanco",
+      "id": 36,
+      "wiki": ""
+    },
+    {
+      "fname": "Justo Zurro",
+      "id": 37,
+      "wiki": ""
+    },
+    {
+      "fname": "Marqués de Camposagrado",
+      "id": 38,
+      "wiki": ""
+    },
+    {
+      "fname": "Carlos González de Posada",
+      "id": 39,
+      "wiki": ""
+    },
+    {
+      "fname": "José Le Roy",
+      "id": 40,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel de Lardizábal y Uribe",
+      "id": 41,
+      "wiki": "Manuel_de_Lardizábal_y_Uribe"
+    },
+    {
+      "fname": "Manuel Martín Rodríguez",
+      "id": 42,
+      "wiki": "Manuel_Martín_Rodríguez"
+    },
+    {
+      "fname": "Manuel Reguera González",
+      "id": 43,
+      "wiki": "Manuel_Reguera_González"
+    },
+    {
+      "fname": "José Gil de Araujo y Cerigo",
+      "id": 44,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Martínez Marina",
+      "id": 45,
+      "wiki": "Francisco_Martínez_Marina"
+    },
+    {
+      "fname": "Miguel Galcerán",
+      "id": 46,
+      "wiki": ""
+    },
+    {
+      "fname": "Miguel José de Azanza",
+      "id": 47,
+      "wiki": "Miguel_José_de_Azanza"
+    },
+    {
+      "fname": "Jose Cornide y Saavedra",
+      "id": 48,
+      "wiki": "José_Andrés_Cornide_de_Folgueira_y_Saavedra"
+    },
+    {
+      "fname": "José Carreño y Cañedo",
+      "id": 49,
+      "wiki": ""
+    },
+    {
+      "fname": "José Alvargonzález Zarracina",
+      "id": 50,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco de Paula Caveda y Solares",
+      "id": 51,
+      "wiki": "Francisco_de_Paula_Caveda_y_Solares"
+    },
+    {
+      "fname": "Ignacio Bas y Bauzá",
+      "id": 52,
+      "wiki": ""
+    },
+    {
+      "fname": "Conde del Campo de Alange",
+      "id": 53,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel Osorio",
+      "id": 54,
+      "wiki": ""
+    },
+    {
+      "fname": "Cándido María Trigueros",
+      "id": 55,
+      "wiki": "Cándido_María_Trigueros"
+    },
+    {
+      "fname": "Francisco Venegas",
+      "id": 56,
+      "wiki": ""
+    },
+    {
+      "fname": "Ángel Pérez",
+      "id": 57,
+      "wiki": ""
+    },
+    {
+      "fname": "Ayuntamiento de Gijón",
+      "id": 58,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Díaz Pedregal",
+      "id": 59,
+      "wiki": ""
+    },
+    {
+      "fname": "Marqués de Santa Cruz del Viso",
+      "id": 60,
+      "wiki": ""
+    },
+    {
+      "fname": "Barón de Bourgoing",
+      "id": 61,
+      "wiki": "Jean-François_de_Bourgoing"
+    },
+    {
+      "fname": "Desconocido",
+      "id": 62,
+      "wiki": ""
+    },
+    {
+      "fname": "Miguel Juan de Padrinas",
+      "id": 63,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco García González",
+      "id": 64,
+      "wiki": ""
+    },
+    {
+      "fname": "Luis Folgueras",
+      "id": 65,
+      "wiki": "Luis_Folgueras_y_Sión"
+    },
+    {
+      "fname": "Manuel de Aizpún y Redín",
+      "id": 66,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Javier de Cienfuegos y Jovellanos",
+      "id": 67,
+      "wiki": ""
+    },
+    {
+      "fname": "Policarpo Sáenz de Tejada Hermoso",
+      "id": 68,
+      "wiki": ""
+    },
+    {
+      "fname": "Rafael de Floranes",
+      "id": 69,
+      "wiki": "Rafael_de_Floranes"
+    },
+    {
+      "fname": "Antonio Noriega de Bada",
+      "id": 70,
+      "wiki": "Antonio_Noriega_de_Bada"
+    },
+    {
+      "fname": "Ramón Durán",
+      "id": 71,
+      "wiki": ""
+    },
+    {
+      "fname": "Rodrigo González de Cienfuegos y Velarde",
+      "id": 72,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco de Saavedra",
+      "id": 73,
+      "wiki": ""
+    },
+    {
+      "fname": "Santiago Joumard",
+      "id": 74,
+      "wiki": ""
+    },
+    {
+      "fname": "Tomás Menéndez Jove",
+      "id": 75,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Javier Melgarejo",
+      "id": 76,
+      "wiki": ""
+    },
+    {
+      "fname": "Lady Holland",
+      "id": 77,
+      "wiki": "Elizabeth_Fox_Baroness_Holland"
+    },
+    {
+      "fname": "Antonio Carreño y Cañedo",
+      "id": 78,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Fernández de Prado",
+      "id": 79,
+      "wiki": ""
+    },
+    {
+      "fname": "Condesa de Montijo",
+      "id": 80,
+      "wiki": ""
+    },
+    {
+      "fname": "Fray Juan Fernández de Rojas",
+      "id": 81,
+      "wiki": "Juan_Fernández_de_Rojas"
+    },
+    {
+      "fname": "Gonzalo O'Farril y José de Mazarredo y Salazar",
+      "id": 82,
+      "wiki": ""
+    },
+    {
+      "fname": "Ana Álvarez Valdés",
+      "id": 83,
+      "wiki": ""
+    },
+    {
+      "fname": "Diego de Cayón y Presno",
+      "id": 84,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel Gil",
+      "id": 85,
+      "wiki": ""
+    },
+    {
+      "fname": "Duque de Almodóvar",
+      "id": 86,
+      "wiki": ""
+    },
+    {
+      "fname": "Joaquín Méndez Vigo",
+      "id": 87,
+      "wiki": ""
+    },
+    {
+      "fname": "Duque del Parque",
+      "id": 88,
+      "wiki": ""
+    },
+    {
+      "fname": "José Amar y Arguedas",
+      "id": 89,
+      "wiki": "Antonio_José_Amar_y_Borbón"
+    },
+    {
+      "fname": "José Antonio Sampil",
+      "id": 90,
+      "wiki": "José_Antonio_Sampil_Labiades"
+    },
+    {
+      "fname": "Mariano Colón de Larreátegui",
+      "id": 91,
+      "wiki": ""
+    },
+    {
+      "fname": "Mariano Luis de Urquijo",
+      "id": 92,
+      "wiki": "Mariano_Luis_de_Urquijo"
+    },
+    {
+      "fname": "Enrique Roger de Caux",
+      "id": 93,
+      "wiki": ""
+    },
+    {
+      "fname": "Felipe Antonio Fernández Vallejo",
+      "id": 94,
+      "wiki": "Felipe_Antonio_Fernández_Vallejo"
+    },
+    {
+      "fname": "José de Areales",
+      "id": 95,
+      "wiki": ""
+    },
+    {
+      "fname": "José de Espinosa y Tello",
+      "id": 96,
+      "wiki": "José_Espinosa_y_Tello"
+    },
+    {
+      "fname": "Marqués del Campo",
+      "id": 97,
+      "wiki": ""
+    },
+    {
+      "fname": "Martín Fernández de Navarrete",
+      "id": 98,
+      "wiki": "Martín_Fernández_de_Navarrete"
+    },
+    {
+      "fname": "Micaela Fortuny",
+      "id": 99,
+      "wiki": ""
+    },
+    {
+      "fname": "Miguel Cayetano Soler",
+      "id": 100,
+      "wiki": "Miguel_Cayetano_Soler"
+    },
+    {
+      "fname": "José de Guevara Vasconcelos",
+      "id": 101,
+      "wiki": ""
+    },
+    {
+      "fname": "Benita Jovellanos",
+      "id": 102,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Antonio de Luaces",
+      "id": 103,
+      "wiki": ""
+    },
+    {
+      "fname": "Miguel Martínez Marina",
+      "id": 104,
+      "wiki": ""
+    },
+    {
+      "fname": "Bernardo Juan",
+      "id": 105,
+      "wiki": ""
+    },
+    {
+      "fname": "Ángel de Eymar",
+      "id": 106,
+      "wiki": ""
+    },
+    {
+      "fname": "José Mazarredo y Salazar",
+      "id": 107,
+      "wiki": "José_de_Mazarredo_Salazar"
+    },
+    {
+      "fname": "Antonio Porlier",
+      "id": 108,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Martínez Marina",
+      "id": 109,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Montero y Peña",
+      "id": 110,
+      "wiki": ""
+    },
+    {
+      "fname": "José Iglesias de la Casa",
+      "id": 111,
+      "wiki": "José_Iglesias_de_la_Casa"
+    },
+    {
+      "fname": "Prior de San Marcos de León",
+      "id": 112,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Capmany",
+      "id": 113,
+      "wiki": "Antonio_de_Capmany"
+    },
+    {
+      "fname": "Juan Bautista Capó",
+      "id": 114,
+      "wiki": ""
+    },
+    {
+      "fname": "Ramón de Castro",
+      "id": 115,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan de Lángara y Huarte",
+      "id": 116,
+      "wiki": "Juan_de_Lángara"
+    },
+    {
+      "fname": "Ramón López Angulo",
+      "id": 117,
+      "wiki": ""
+    },
+    {
+      "fname": "Real Sociedad Económica de Asturias",
+      "id": 118,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan García Jovellanos",
+      "id": 119,
+      "wiki": ""
+    },
+    {
+      "fname": "Conde de Revillagigedo",
+      "id": 120,
+      "wiki": ""
+    },
+    {
+      "fname": "Sancho de Llamas",
+      "id": 121,
+      "wiki": ""
+    },
+    {
+      "fname": "Conde de Toreno",
+      "id": 122,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Pérez Villaamil",
+      "id": 123,
+      "wiki": "Juan_Pérez_Villaamil"
+    },
+    {
+      "fname": "Tomasa Aparicio de Juan",
+      "id": 124,
+      "wiki": ""
+    },
+    {
+      "fname": "Agustín Argüelles",
+      "id": 125,
+      "wiki": ""
+    },
+    {
+      "fname": "Joaquín Antonio Sánchez",
+      "id": 126,
+      "wiki": ""
+    },
+    {
+      "fname": "Joaquín de Olmeda",
+      "id": 127,
+      "wiki": ""
+    },
+    {
+      "fname": "Joaquín García",
+      "id": 128,
+      "wiki": ""
+    },
+    {
+      "fname": "Joaquín Jordán",
+      "id": 129,
+      "wiki": ""
+    },
+    {
+      "fname": "Alonso Cañedo y Vigil",
+      "id": 130,
+      "wiki": "Alonso_Cañedo_Vigil"
+    },
+    {
+      "fname": "Jorge White",
+      "id": 131,
+      "wiki": ""
+    },
+    {
+      "fname": "José Acebedo Villarroel",
+      "id": 132,
+      "wiki": ""
+    },
+    {
+      "fname": "José Agustín de Llano",
+      "id": 133,
+      "wiki": ""
+    },
+    {
+      "fname": "Jose Agustín Ibáñez de la Rentería",
+      "id": 134,
+      "wiki": "José_Agustín_Ibáñez_de_la_Rentería"
+    },
+    {
+      "fname": "Agustín Pedrayes",
+      "id": 135,
+      "wiki": "Agustín_de_Pedrayes"
+    },
+    {
+      "fname": "Antonio Valdés y Bazán?",
+      "id": 136,
+      "wiki": ""
+    },
+    {
+      "fname": "José Antonio Armona",
+      "id": 137,
+      "wiki": "José_Antonio_de_Armona"
+    },
+    {
+      "fname": "José Antonio Caballero",
+      "id": 138,
+      "wiki": ""
+    },
+    {
+      "fname": "José Antonio Quintana",
+      "id": 139,
+      "wiki": ""
+    },
+    {
+      "fname": "José Antonio Ruenes",
+      "id": 140,
+      "wiki": ""
+    },
+    {
+      "fname": "Arcediano de Burgos",
+      "id": 141,
+      "wiki": ""
+    },
+    {
+      "fname": "José Barberi",
+      "id": 142,
+      "wiki": ""
+    },
+    {
+      "fname": "Condesa de la Vega del Pozo",
+      "id": 143,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Cucha",
+      "id": 144,
+      "wiki": ""
+    },
+    {
+      "fname": "Condesa del Carpio",
+      "id": 145,
+      "wiki": ""
+    },
+    {
+      "fname": "Ayuntamiento de Valdés",
+      "id": 146,
+      "wiki": ""
+    },
+    {
+      "fname": "Ayuntamiento de Villarcayo",
+      "id": 147,
+      "wiki": ""
+    },
+    {
+      "fname": "Diego de Sierra",
+      "id": 148,
+      "wiki": ""
+    },
+    {
+      "fname": "José de Vargas Ponce?",
+      "id": 149,
+      "wiki": ""
+    },
+    {
+      "fname": "Diputación de Asturias",
+      "id": 150,
+      "wiki": ""
+    },
+    {
+      "fname": "José González",
+      "id": 151,
+      "wiki": ""
+    },
+    {
+      "fname": "Domingo Cabarrús y Fourcade",
+      "id": 152,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio de Heredia",
+      "id": 153,
+      "wiki": ""
+    },
+    {
+      "fname": "José Linares Salazar",
+      "id": 154,
+      "wiki": ""
+    },
+    {
+      "fname": "José María Cienfuegos Quiñones",
+      "id": 155,
+      "wiki": ""
+    },
+    {
+      "fname": "Jose María Cirer",
+      "id": 156,
+      "wiki": ""
+    },
+    {
+      "fname": "José María González de Cienfuegos y Jovellanos",
+      "id": 157,
+      "wiki": ""
+    },
+    {
+      "fname": "José María Tineo",
+      "id": 158,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio de Oliveras y Prats",
+      "id": 159,
+      "wiki": ""
+    },
+    {
+      "fname": "José Miguel de Flores",
+      "id": 160,
+      "wiki": "José_Miguel_de_Flores_Barrera"
+    },
+    {
+      "fname": "José Nicolás de Faes",
+      "id": 161,
+      "wiki": ""
+    },
+    {
+      "fname": "José Pizarro",
+      "id": 162,
+      "wiki": ""
+    },
+    {
+      "fname": "Enrique de Chauveron",
+      "id": 163,
+      "wiki": ""
+    },
+    {
+      "fname": "José Tuñón de Llamas",
+      "id": 164,
+      "wiki": ""
+    },
+    {
+      "fname": "José Valdés y Flórez-Peón",
+      "id": 165,
+      "wiki": ""
+    },
+    {
+      "fname": "Barón de Bruere",
+      "id": 166,
+      "wiki": ""
+    },
+    {
+      "fname": "Eugenio Antonio del Riego y Núñez",
+      "id": 167,
+      "wiki": ""
+    },
+    {
+      "fname": "Eugenio de Llaguno y Amírola",
+      "id": 168,
+      "wiki": "Eugenio_de_Llaguno_y_Amírola"
+    },
+    {
+      "fname": "Juan de Arce y Morís",
+      "id": 169,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan de Cabo y Santiago González Arango",
+      "id": 170,
+      "wiki": ""
+    },
+    {
+      "fname": "Eugenio Miguel Fernández Maldonado",
+      "id": 171,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan de Llano Ponte",
+      "id": 172,
+      "wiki": "Juan_de_Llano_Ponte"
+    },
+    {
+      "fname": "Juan Ducros",
+      "id": 173,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Francisco Díaz y Parreño",
+      "id": 174,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Francisco Masdeu",
+      "id": 175,
+      "wiki": "Juan_Francisco_Masdeu"
+    },
+    {
+      "fname": "Fabián de Miranda Argüelles y Sierra",
+      "id": 176,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Ignacio de Ayestarán",
+      "id": 177,
+      "wiki": ""
+    },
+    {
+      "fname": "Barón de Purgoldt",
+      "id": 178,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan José de Aldama",
+      "id": 179,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Lespardat",
+      "id": 180,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Manuel Álvarez y Faría",
+      "id": 181,
+      "wiki": ""
+    },
+    {
+      "fname": "Felipe Peláez Caunedo",
+      "id": 182,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Nepomuceno Cónsul",
+      "id": 183,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Nepomuceno Fernández San Miguel",
+      "id": 184,
+      "wiki": ""
+    },
+    {
+      "fname": "Juan Pedro de Urdaibai",
+      "id": 185,
+      "wiki": ""
+    },
+    {
+      "fname": "Baronesa de Castelnau",
+      "id": 186,
+      "wiki": ""
+    },
+    {
+      "fname": "Julián Valerio Fernández San Miguel",
+      "id": 187,
+      "wiki": ""
+    },
+    {
+      "fname": "Conde de Floridablanca",
+      "id": 188,
+      "wiki": "Conde_de_Floridablanca"
+    },
+    {
+      "fname": "La Patrona",
+      "id": 189,
+      "wiki": ""
+    },
+    {
+      "fname": "Lacalprade",
+      "id": 190,
+      "wiki": ""
+    },
+    {
+      "fname": "Fraile de Sevilla",
+      "id": 191,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Antonio de Larraza",
+      "id": 192,
+      "wiki": ""
+    },
+    {
+      "fname": "Baronesa?",
+      "id": 193,
+      "wiki": ""
+    },
+    {
+      "fname": "León de Puga y Feijoo",
+      "id": 194,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Antonio Lorenzana y Buitrón",
+      "id": 195,
+      "wiki": "Francisco_de_Lorenzana"
+    },
+    {
+      "fname": "Lespardat padre",
+      "id": 196,
+      "wiki": ""
+    },
+    {
+      "fname": "Andrés Ángel de la Vega Infanzón",
+      "id": 197,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Campuzano",
+      "id": 198,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel Bayeu Subías",
+      "id": 199,
+      "wiki": "Manuel_Bayeu"
+    },
+    {
+      "fname": "Manuel de Aguirre",
+      "id": 200,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco de Goya",
+      "id": 201,
+      "wiki": "Francisco_de_Goya"
+    },
+    {
+      "fname": "Francisco de la Concha Miera",
+      "id": 202,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel de las Heras",
+      "id": 203,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel de Moy",
+      "id": 204,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel de Taboas",
+      "id": 205,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel Galcerán",
+      "id": 206,
+      "wiki": ""
+    },
+    {
+      "fname": "Bernardo Carreño?",
+      "id": 207,
+      "wiki": ""
+    },
+    {
+      "fname": "Bernardo de Iriarte",
+      "id": 208,
+      "wiki": "Bernardo_de_Iriarte"
+    },
+    {
+      "fname": "Manuel José Quintana",
+      "id": 209,
+      "wiki": "Manuel_José_Quintana"
+    },
+    {
+      "fname": "Manuel María González Reconco",
+      "id": 210,
+      "wiki": ""
+    },
+    {
+      "fname": "Abad de Obona",
+      "id": 211,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco de Zamora",
+      "id": 212,
+      "wiki": "Francisco_de_Zamora"
+    },
+    {
+      "fname": "Francisco de Zamora y Aguilar",
+      "id": 213,
+      "wiki": ""
+    },
+    {
+      "fname": "Manuel Sánchez Toscano",
+      "id": 214,
+      "wiki": ""
+    },
+    {
+      "fname": "María Antonia de Enlate",
+      "id": 215,
+      "wiki": ""
+    },
+    {
+      "fname": "María de la Bermeja",
+      "id": 216,
+      "wiki": ""
+    },
+    {
+      "fname": "María Francisca Sánchez Piñuela",
+      "id": 217,
+      "wiki": ""
+    },
+    {
+      "fname": "Bonifacio de Murga",
+      "id": 218,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Durango",
+      "id": 219,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Páramo y Somoza",
+      "id": 220,
+      "wiki": "Antonio_Páramo_y_Somoza"
+    },
+    {
+      "fname": "Mariano Sánchez",
+      "id": 221,
+      "wiki": ""
+    },
+    {
+      "fname": "Mariano Villella de Mola",
+      "id": 222,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Javier de Cabanes",
+      "id": 223,
+      "wiki": ""
+    },
+    {
+      "fname": "Alonso Antonio Álvarez",
+      "id": 224,
+      "wiki": ""
+    },
+    {
+      "fname": "Marqués de la Colonilla",
+      "id": 225,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Javier Delgado y Venegas",
+      "id": 226,
+      "wiki": "Francisco_Javier_Delgado_Venegas"
+    },
+    {
+      "fname": "Francisco Javier González de Cienfuegos",
+      "id": 227,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Porcel",
+      "id": 228,
+      "wiki": "José_Antonio_Porcel"
+    },
+    {
+      "fname": "Carlos Ricardo Fox",
+      "id": 229,
+      "wiki": ""
+    },
+    {
+      "fname": "Melchor Alonso y Manrique",
+      "id": 230,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco Pérez Sedano",
+      "id": 231,
+      "wiki": ""
+    },
+    {
+      "fname": "Miguel Antonio García Nava",
+      "id": 232,
+      "wiki": ""
+    },
+    {
+      "fname": "Carlota Joaquina de Borbón",
+      "id": 233,
+      "wiki": "Carlota_Joaquina_de_Borbón"
+    },
+    {
+      "fname": "Miguel de Manuel",
+      "id": 234,
+      "wiki": "Miguel_de_Manuel"
+    },
+    {
+      "fname": "Francolín de Solares Jove",
+      "id": 235,
+      "wiki": ""
+    },
+    {
+      "fname": "Fray Bruno Muntaner",
+      "id": 236,
+      "wiki": ""
+    },
+    {
+      "fname": "Antonio Bustamante",
+      "id": 237,
+      "wiki": ""
+    },
+    {
+      "fname": "Cayetano Sixto",
+      "id": 238,
+      "wiki": ""
+    },
+    {
+      "fname": "Ministerios de Estado y Marina",
+      "id": 239,
+      "wiki": ""
+    },
+    {
+      "fname": "Monje del monasterio de la Estrella",
+      "id": 240,
+      "wiki": ""
+    },
+    {
+      "fname": "Mr. Bellanger",
+      "id": 241,
+      "wiki": ""
+    },
+    {
+      "fname": "N. Silva",
+      "id": 242,
+      "wiki": ""
+    },
+    {
+      "fname": "Natilo",
+      "id": 243,
+      "wiki": ""
+    },
+    {
+      "fname": "Nicolás de Llano Ponte y Ventura González de Cienfuegos",
+      "id": 244,
+      "wiki": ""
+    },
+    {
+      "fname": "Nicolás Ramón de Sama",
+      "id": 245,
+      "wiki": ""
+    },
+    {
+      "fname": "Pablo Antonio de Ondarza",
+      "id": 246,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Inguanzo y Rivero",
+      "id": 247,
+      "wiki": "Pedro_Inguanzo_Rivero"
+    },
+    {
+      "fname": "Pedro Bayón Bayón",
+      "id": 248,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Canel Acevedo",
+      "id": 249,
+      "wiki": "Pedro_Canel_Acevedo"
+    },
+    {
+      "fname": "Pedro Cevallos Guerra",
+      "id": 250,
+      "wiki": "Pedro_Cevallos_Guerra"
+    },
+    {
+      "fname": "Fray Matías Mariño",
+      "id": 251,
+      "wiki": ""
+    },
+    {
+      "fname": "Francisco García de la Cruz y Obregón",
+      "id": 252,
+      "wiki": "Francisco_García_de_la_Cruz_y_Obregón"
+    },
+    {
+      "fname": "Pedro Figuerola",
+      "id": 253,
+      "wiki": ""
+    },
+    {
+      "fname": "Gaspar Leal",
+      "id": 254,
+      "wiki": ""
+    },
+    {
+      "fname": "Genaro Figueroa",
+      "id": 255,
+      "wiki": ""
+    },
+    {
+      "fname": "Gonzalo O'Farril",
+      "id": 256,
+      "wiki": "Gonzalo_O'Farrill"
+    },
+    {
+      "fname": "Cifré",
+      "id": 257,
+      "wiki": ""
+    },
+    {
+      "fname": "Pedro Zuláibar",
+      "id": 258,
+      "wiki": ""
+    },
+    {
+      "fname": "Gregorio Menéndez Valdés",
+      "id": 259,
+      "wiki": ""
+    },
+    {
+      "fname": "Horacio Sebastiani",
+      "id": 260,
+      "wiki": "Horace_Sebastiani_de_la_Porta"
+    },
+    {
+      "fname": "Priora del convento de agustinas de Gijón",
+      "id": 261,
+      "wiki": ""
+    },
+    {
+      "fname": "Ignacio Armorira",
+      "id": 262,
+      "wiki": ""
+    },
+    {
+      "fname": "Rafael Gómez Roubaud",
+      "id": 263,
+      "wiki": ""
+    },
+    {
+      "fname": "Claudio de Juglart",
+      "id": 264,
+      "wiki": ""
+    },
+    {
+      "fname": "Ignacio de Asso",
+      "id": 265,
+      "wiki": "Jordán_de_Asso"
+    },
+    {
+      "fname": "Ramón de Obés García",
+      "id": 266,
+      "wiki": ""
+    },
+    {
+      "fname": "Ramón de Posada y Soto",
+      "id": 267,
+      "wiki": "Ramón_Posada_y_Soto"
+    },
+    {
+      "fname": "Ignacio Rodríguez",
+      "id": 268,
+      "wiki": ""
+    },
+    {
+      "fname": "Ramón González Villarmil",
+      "id": 269,
+      "wiki": ""
+    },
+    {
+      "fname": "Irlandés",
+      "id": 270,
+      "wiki": ""
+    },
+    {
+      "fname": "Ramón Varela",
+      "id": 271,
+      "wiki": ""
+    },
+    {
+      "fname": "Ramona Carreño y Cañedo",
+      "id": 272,
+      "wiki": ""
+    },
+    {
+      "fname": "Isabel Parreño",
+      "id": 273,
+      "wiki": ""
+    },
+    {
+      "fname": "Rita de Barrenechea y Morante",
+      "id": 274,
+      "wiki": ""
+    },
+    {
+      "fname": "Rodrigo de Llano Ponte",
+      "id": 275,
+      "wiki": ""
+    },
+    {
+      "fname": "Isidro Carnicero",
+      "id": 276,
+      "wiki": "Isidro_Carnicero"
+    },
+    {
+      "fname": "Roque Domingo de la Figuera",
+      "id": 277,
+      "wiki": ""
+    },
+    {
+      "fname": "Rosalía Bermúdez",
+      "id": 278,
+      "wiki": ""
+    },
+    {
+      "fname": "Isla",
+      "id": 279,
+      "wiki": ""
+    },
+    {
+      "fname": "Rubín",
+      "id": 280,
+      "wiki": ""
+    },
+    {
+      "fname": "Conde de Ayamans",
+      "id": 281,
+      "wiki": "Josep_de_Togores_i_Sanglada"
+    },
+    {
+      "fname": "Jaime Robatel",
+      "id": 282,
+      "wiki": ""
+    },
+    {
+      "fname": "Sebastián Piñuela y Alonso",
+      "id": 283,
+      "wiki": "Sebastián_Piñuela_Alonso"
+    },
+    {
+      "fname": "Segismundo Planas",
+      "id": 284,
+      "wiki": ""
+    },
+    {
+      "fname": "Sociedad Económica de Madrid",
+      "id": 285,
+      "wiki": ""
+    },
+    {
+      "fname": "Sor Isabel María Rogliani",
+      "id": 286,
+      "wiki": ""
+    },
+    {
+      "fname": "Sor Manuela Antonia del Espíritu Santo",
+      "id": 287,
+      "wiki": ""
+    },
+    {
+      "fname": "Tomás García Tamargo",
+      "id": 288,
+      "wiki": ""
+    },
+    {
+      "fname": "Tomás González Carvajal",
+      "id": 289,
+      "wiki": "Tomás_González_Carvajal"
+    },
+    {
+      "fname": "Conde de Montijo",
+      "id": 290,
+      "wiki": ""
+    },
+    {
+      "fname": "Tomás Menéndez Jove?",
+      "id": 291,
+      "wiki": ""
+    },
+    {
+      "fname": "Jerónimo Mas",
+      "id": 292,
+      "wiki": ""
+    },
+    {
+      "fname": "Un joven",
+      "id": 293,
+      "wiki": ""
+    },
+    {
+      "fname": "Universidad de Oviedo",
+      "id": 294,
+      "wiki": "Universidad_de_Oviedo"
+    },
+    {
+      "fname": "Joaquín Alonso de Viado y Castro",
+      "id": 295,
+      "wiki": ""
+    },
+    {
+      "fname": "Varios",
+      "id": 296,
+      "wiki": ""
+    },
+    {
+      "fname": "Ventura de Arquellada",
+      "id": 297,
+      "wiki": ""
+    },
+    {
+      "fname": "Vicente Joaquín Nogueras",
+      "id": 298,
+      "wiki": ""
+    },
+    {
+      "fname": "Vicente Pedrosa Rubio",
+      "id": 299,
+      "wiki": ""
+    },
+    {
+      "fname": "Victorio de Navia (Virrey de Valencia)",
+      "id": 300,
+      "wiki": ""
+    },
+    {
+      "fname": "Villa de Candás",
+      "id": 301,
+      "wiki": ""
+    },
+    {
+      "fname": "Zacarías Velázquez",
+      "id": 302,
+      "wiki": "Zacarías_González_Velázquez"
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "target": 2,
+      "value": 15,
+      "mood": "Amistad"
+    },
+    {
+      "source": 2,
+      "target": 1,
+      "value": 10,
+      "mood": "Amistad"
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "value": 1,
+      "mood": "Enemistad"
+    }
+  ]
+}
