@@ -442,13 +442,29 @@ function threshold(thresh) {
     restart();
 }
 
-function addGraph() {
+function addGraph(resource, evt) {
     svg = _d3.select("#d3");
-    _d3.json("resources/jovellanos.json", function (error, json) {
+    _d3.json(resource, function (error, json) {
         if (!error) {
             graph = json;
             graphOG = JSON.parse(JSON.stringify(graph));
             createGraph(graph);
         }
     });
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    evt.currentTarget.className += " active";
 }
