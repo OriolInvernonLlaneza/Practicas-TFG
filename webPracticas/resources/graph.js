@@ -129,16 +129,39 @@ function createGraph(ngraph) {
         .append("gDraw:path")
         .attr("d", "M0,-5L10,0L0,5")
         .style("stroke-width", 0);
+    
+    function showArrow(i) {
+        var path = _d3.select("#edgepath"+i);
+        if(path.attr("target") === "1") { //get target === Jovellanos
+            path.style("visibility", "visible");
+        }
+    }
+
+    function hideArrow(i) {
+        var path = _d3.select("#edgepath"+i);
+        if(path.attr("target") === "1") { //get target === Jovellanos
+            path.style("visibility", "hidden");
+        }
+    }
 
     //add curved links, stroke <= number of letters
     linkV = gDraw.selectAll(".link").data(ngraph.links).enter()
-        .append("path").attr("source", function (d) {
+        .append("path")
+        .attr("id", function (d, i) { return "link" + i; })
+        .attr("source", function (d) {
             return d.source.id;
         }).attr("target", function (d) {
             return d.target.id;
         }).attr("class", "link")
         .attr("fill-opacity", 0)
-        .attr("stroke-width", function (d) { return Math.sqrt(d.value); });
+        .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
+        .on("mouseover", function (d, i) {
+            _d3.select(this).style("stroke", "cyan");
+            showArrow(i);
+        }).on("mouseout", function (d, i) {
+            _d3.select(this).style("stroke", "#999");
+            hideArrow(i);
+        });
 
     //invisible path + arrow
     edgepath = gDraw.selectAll(".edgepath").
@@ -147,11 +170,18 @@ function createGraph(ngraph) {
         .attr("class", "edgepath")
         .attr("id", function (d, i) { return "edgepath" + i; })
         .attr("source", function (d) {
-            return d.source.id;
+            return d.source;
         }).attr("target", function (d) {
-            return d.target.id;
+            return d.target;
         }).attr("fill-opacity", 0)
-        .attr("marker-end", "url(#arrow)");
+        .attr("marker-end", "url(#arrow)")
+        .attr("visibility", function (d) {
+            if (d.target == 1) { // id=1 is Jovellanos (avoid reduced visibility)
+                return "hidden";
+            } else {
+                return "visible";
+            }
+        });
 
     //add nodes
     node = gDraw.append("g")

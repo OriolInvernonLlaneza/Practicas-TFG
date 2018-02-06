@@ -4,6 +4,10 @@
     stroke-opacity: 0.6;
 }
 
+.edgepath:hover {
+    visibility: visible;
+}
+
 .framed {
     border: 1px solid black;
 }
