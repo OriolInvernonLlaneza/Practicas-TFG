@@ -176,7 +176,7 @@ function createGraph(ngraph) {
         }).attr("fill-opacity", 0)
         .attr("marker-end", "url(#arrow)")
         .attr("visibility", function (d) {
-            if (d.target == 1) { // id=1 is Jovellanos (avoid reduced visibility)
+            if (d.target === 1) { // id=1 is Jovellanos (avoid reduced visibility)
                 return "hidden";
             } else {
                 return "visible";
