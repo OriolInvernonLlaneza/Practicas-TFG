@@ -8,7 +8,9 @@
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="resources/brush-lite.js"></script>
   <script src="resources/graph.js"></script>
+  <script src="resources/geograph.js"></script>
   <script src="resources/wiki.js"></script>
+  <script src=""></script>
   <link rel="stylesheet" type="text/css" href="css/navStyle.css" media="screen" />
   <title>Red Social Jovellanos</title>
 </head>
@@ -49,7 +51,7 @@
       <button class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
       <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
       <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
-      <button class="tablinks" onclick="">Geolocalizado</button>
+      <button class="tablinks" onclick="addGeoGraph('resources/jovellanos.json', event)">Geolocalizado</button>
     </div>
     <div id="graph" style="margin-left: 10%; visibility: hidden">
       <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
