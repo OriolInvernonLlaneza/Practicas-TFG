@@ -1,47 +1,36 @@
 {
-    "nodes": [
-      {
-        "id": 1, 
-        "name": "Jovellanos", 
-        "wiki": "Gaspar_Melchor_de_Jovellanos",
-        "color": "blue"
-      },
-      {
-        "id": 2, 
-        "name": "Cthulu", 
-        "wiki": "Cthulhu",
-        "color": "green"
-      },
-      {
-        "id": 3, 
-        "name": "Godoy", 
-        "wiki": "Manuel_Godoy",
-        "color": "red"
-      },
-      {
-        "id": 4, 
-        "name": "sss", 
-        "wiki": "Manuel_Godoy",
-        "color": "red"
-      }
-    ],
     "links": [
       {
-        "source": 1, 
-        "target": 2, 
-        "value": 15, 
+        "source": "Jovellanos", 
+        "target": "Godoy", 
+        "origin": "Gijón",
+        "destination": "Madrid",
+        "orLat": 43.5293101,
+        "orLong": -5.6773233,
+        "deLat": 40.4167,
+        "deLong": -3.70325, 
         "mood": "Amistad"
       },
       {
-        "source": 2, 
-        "target": 1, 
-        "value": 10, 
+        "source": "Godoy",
+        "target": "Jovellanos", 
+        "origin": "Madrid",
+        "destination": "Gijón",
+        "orLat": 40.4167,
+        "orLong": -3.70325,
+        "deLat": 43.5293101,
+        "deLong": -5.6773233, 
         "mood": "Amistad"
       },
       {
-        "source": 1, 
-        "target": 3, 
-        "value": 1, 
+        "source": "Jovellanos",
+        "target": "Bonaparte", 
+        "origin": "Gijón",
+        "destination": "Burdeos",
+        "orLat": 43.5293101,
+        "orLong": -5.6773233,
+        "deLat": 44.8404400,
+        "deLong": -0.5805000, 
         "mood": "Enemistad"
       }
     ]

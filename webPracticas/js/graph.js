@@ -129,17 +129,17 @@ function createGraph(ngraph) {
         .append("gDraw:path")
         .attr("d", "M0,-5L10,0L0,5")
         .style("stroke-width", 0);
-    
+
     function showArrow(i) {
-        var path = _d3.select("#edgepath"+i);
-        if(path.attr("target") === "1") { //get target === Jovellanos
+        var path = _d3.select("#edgepath" + i);
+        if (path.attr("target") === "1") { //get target === Jovellanos
             path.style("visibility", "visible");
         }
     }
 
     function hideArrow(i) {
-        var path = _d3.select("#edgepath"+i);
-        if(path.attr("target") === "1") { //get target === Jovellanos
+        var path = _d3.select("#edgepath" + i);
+        if (path.attr("target") === "1") { //get target === Jovellanos
             path.style("visibility", "hidden");
         }
     }
@@ -472,15 +472,8 @@ function threshold(thresh) {
     restart();
 }
 
-function addGraph(resource, evt) {
+function changeTab(evt) {
     svg = _d3.select("#d3");
-    _d3.json(resource, function (error, json) {
-        if (!error) {
-            graph = json;
-            graphOG = JSON.parse(JSON.stringify(graph));
-            createGraph(graph);
-        }
-    });
     // Declare all variables
     let i, tabcontent, tablinks;
 
@@ -498,4 +491,15 @@ function addGraph(resource, evt) {
 
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
+}
+
+function addGraph(resource, evt) {
+    changeTab(evt);
+    _d3.json(resource, function (error, json) {
+        if (!error) {
+            graph = json;
+            graphOG = JSON.parse(JSON.stringify(graph));
+            createGraph(graph);
+        }
+    });
 }
