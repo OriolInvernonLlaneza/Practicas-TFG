@@ -81,137 +81,11 @@
     </div>-->
     <div id="map" style="margin-left: 10%;"></div>
     <script>
-      var map = new google.maps.Map(d3.select("#map").node(), {
+      /*var map = new google.maps.Map(d3.select("#map").node(), {
         center: { lat: 51,//43.5293101, 
           lng: 0},//-5.6773233 },
         zoom: 6
       });// Create the Google Map…
-
-      /*var data = {
-        "links": [
-          {
-            "source": "Jovellanos",
-            "target": "Godoy",
-            "origin": "Gijón",
-            "destination": "Madrid",
-            "orLat": 43.5293101,
-            "orLong": -5.6773233,
-            "deLat": 40.4167,
-            "deLong": -3.70325,
-            "mood": "Amistad"
-          },
-          {
-            "source": "Godoy",
-            "target": "Jovellanos",
-            "origin": "Madrid",
-            "destination": "Gijón",
-            "orLat": 40.4167,
-            "orLong": -3.70325,
-            "deLat": 43.5293101,
-            "deLong": -5.6773233,
-            "mood": "Amistad"
-          },
-          {
-            "source": "Jovellanos",
-            "target": "Bonaparte",
-            "origin": "Gijón",
-            "destination": "Burdeos",
-            "orLat": 43.5293101,
-            "orLong": -5.6773233,
-            "deLat": 44.8404400,
-            "deLong": -0.5805000,
-            "mood": "Enemistad"
-          }
-        ]
-      }
-
-      var overlay = new google.maps.OverlayView();
-
-      overlay.onAdd = function () {
-        var layer = d3.select(this.getPanes().overlayLayer).append("div")
-          .attr("class", "stations");
-
-        var nodes = {};
-
-        // Compute the distinct nodes from the links.
-        data.links.forEach(function (link) {
-          link.source = nodes[link.source] || (
-            nodes[link.source] = { 
-              name: link.source, 
-              lat: link.orLat, 
-              long: link.orLong 
-            });
-          link.target = nodes[link.target] || (
-            nodes[link.target] = { 
-              name: link.target,
-              lat: link.deLat, 
-              long: link.deLong 
-            });
-        });
-
-        overlay.draw = function () {
-
-          layer.select('svg').remove();
-
-          var projection = this.getProjection(),
-            padding = 10;
-
-          var svg = layer.append("svg")
-            .attr('width', 1080)
-            .attr('height', 500)
-
-          var node = svg.selectAll(".stations")
-            .data(nodes)
-            .enter().append("g")
-            .each(transform)
-            .attr("class", "node");
-
-          var link = svg.selectAll(".link")
-            .data(data.links)
-            .enter().append("line")
-            .attr("class", "link")
-            .each(drawlink);
-
-          node.append("circle")
-            .attr("r", 4.5);
-
-          node.append("text")
-            .attr("x", 7)
-            .attr("y", 0)
-            .attr("dy", ".31em")
-            .text(function (d) {
-              return d.name;
-            });
-
-          function latLongToPos(d) {
-            var p = new google.maps.LatLng(d.lat, d.long);
-            p = projection.fromLatLngToDivPixel(p);
-            p.x = p.x - padding;
-            p.y = p.y - padding;
-            return p;
-          }
-
-          function transform(d) {
-            var p = latLongToPos(d);
-            return d3.select(this)
-              .attr("transform", "translate(" + p.x + "," + p.y + ")");
-          }
-
-          function drawlink(d) {
-            var p1 = latLongToPos(nodes[d.source]),
-              p2 = latLongToPos(nodes[d.target]);
-            d3.select(this)
-              .attr('x1', p1.x)
-              .attr('y1', p1.y)
-              .attr('x2', p2.x)
-              .attr('y2', p2.y)
-              .style('fill', 'none')
-              .style('stroke', 'steelblue');
-          }
-        };
-      };
-
-      overlay.setMap(map);*/
 
       var data = {
         "nodes": [{
@@ -318,7 +192,7 @@
         };
       };
 
-      overlay.setMap(map);
+      overlay.setMap(map);*/
     </script>
 
     <h2 id="about">Acerca De</h2>
