@@ -47,19 +47,31 @@
 
         var graticule = d3.geoGraticule();
 
-        d3.json("https://gist.githubusercontent.com/abenrob/787723ca91772591b47e/raw/8a7f176072d508218e120773943b595c998991be/world-50m.json", function (error, world) {
+        d3.json("resources/world-50m.json", function (error, world) {
+            // zoom list
+            function zoomed() {
+                svg.attr("transform", d3.event.transform); // transforms drawing with zoom event
+            }
+
+            var zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
+                .on("zoom", zoomed); // add listener
+
+            svg.call(zoom);
+
             svg.append("g")
                 .attr("class", "land")
                 .selectAll("path")
                 .data([topojson.object(world, world.objects.land)])
                 .enter().append("path")
                 .attr("d", path);
+
             svg.append("g")
                 .attr("class", "boundary")
                 .selectAll("boundary")
                 .data([topojson.object(world, world.objects.countries)])
                 .enter().append("path")
                 .attr("d", path);
+
             svg.append("g")
                 .attr("class", "graticule")
                 .selectAll("path")
