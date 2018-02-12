@@ -5,10 +5,10 @@
         "target": "Godoy", 
         "origin": "Gijón",
         "destination": "Madrid",
-        "orLat": 43.5293101,
         "orLong": -5.6773233,
-        "deLat": 40.4167,
-        "deLong": -3.70325, 
+        "orLat": 43.5293101,
+        "deLong": -3.70325,
+        "deLat": 40.4167, 
         "mood": "Amistad"
       },
       {
@@ -16,10 +16,10 @@
         "target": "Jovellanos", 
         "origin": "Madrid",
         "destination": "Gijón",
-        "orLat": 40.4167,
         "orLong": -3.70325,
+        "orLat": 40.4167,
+        "deLong": -5.6773233,
         "deLat": 43.5293101,
-        "deLong": -5.6773233, 
         "mood": "Amistad"
       },
       {
@@ -27,10 +27,10 @@
         "target": "Bonaparte", 
         "origin": "Gijón",
         "destination": "Burdeos",
-        "orLat": 43.5293101,
         "orLong": -5.6773233,
-        "deLat": 44.8404400,
+        "orLat": 43.5293101,
         "deLong": -0.5805000, 
+        "deLat": 44.8404400,
         "mood": "Enemistad"
       }
     ]
