@@ -48,7 +48,7 @@ function createGraph(ngraph) {
         .attr("height", height)
         .style("fill", "white");
 
-    // append other g to frame    
+    // append draw    
     var gDraw = gMain.append("g");
 
     // force functions
