@@ -58,12 +58,11 @@
         gDraw.append("defs").append("marker")
             .attr("id", "arrow")
             .attr("viewBox", "0 -5 10 10")
-            .attr("refX", 19)
-            .attr("refY", -1)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
+            .attr("refX", 20)
+            .attr("refY", 0)
+            .attr("markerWidth", 1)
+            .attr("markerHeight", 1)
             .attr("orient", "auto")
-            .attr("stroke", "#999")
             .style("stroke-width", 0)
             .append("gDraw:path")
             .attr("d", "M0,-5L10,0L0,5")
@@ -124,9 +123,19 @@
                     link.target = nodes[link.target] || (nodes[link.target] = {
                         name: link.target,
                         long: link.deLong,
-                        lat: link.deLat                        
+                        lat: link.deLat
                     });
                 });
+
+                function arc(d) {
+                    let coordDe = projection([d.deLong, d.deLat]),
+                        coordOr = projection([d.orLong, d.orLat]);
+                    let dx = coordDe[0] - coordOr[0],
+                        dy = coordDe[1] - coordOr[1],
+                        dr = Math.sqrt(dx * dx + dy * dy);
+                    return "M" + coordOr[0] + "," + coordOr[1] + "A" + dr + "," + dr + " 0 0,1 " +
+                    coordDe[0] + "," + coordDe[1];
+                }
 
                 //add curved links, stroke <= number of letters
                 link = gDraw.selectAll(".link").data(links).enter()
@@ -138,29 +147,31 @@
                     }).attr("class", "link")
                     .attr("fill-opacity", 0)
                     .attr("stroke-width", 1)
+                    .attr("stroke", "cyan")
                     .attr("marker-end", "url(#arrow)")
+                    .attr("d", function(d) { return arc(d); })
                     .on("mouseover", function (d, i) {
-                        _d3.select(this).style("stroke", "cyan");
+                        d3.select(this).style("stroke", "red");
                     }).on("mouseout", function (d, i) {
-                        _d3.select(this).style("stroke", "#999");
+                        d3.select(this).style("stroke", "cyan");
                     });
 
                 //add nodes
                 node = gDraw.append("g")
-                        .selectAll(".node")
-                        .data(d3.values(nodes))
-                        .attr("class", "node")
-                        .enter().append("circle")
-                        .attr("r", 1)
-                        .attr("cx", function (d) {
-                            let aux = [d.long, d.lat];
-                            return projection(aux)[0]; 
-                        })
-                        .attr("cy", function (d) { 
-                            let aux = [d.long, d.lat];
-                            return projection(aux)[1]; 
-                        })
-                        .attr("fill", "GoldenRod");
+                    .selectAll(".node")
+                    .data(d3.values(nodes))
+                    .attr("class", "node")
+                    .enter().append("circle")
+                    .attr("r", 1)
+                    .attr("cx", function (d) {
+                        let aux = [d.long, d.lat];
+                        return projection(aux)[0];
+                    })
+                    .attr("cy", function (d) {
+                        let aux = [d.long, d.lat];
+                        return projection(aux)[1];
+                    })
+                    .attr("fill", "GoldenRod");
 
                 // tooltip titles
                 node.append("title").text(function (d) { return d.name; });
