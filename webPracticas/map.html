@@ -28,10 +28,10 @@
     div.tooltip {
         position: absolute;
         text-align: center;
-        width: 60px;
+        width: 150px;
         height: 28px;
         padding: 2px;
-        font: 12px sans-serif;
+        font: 11px arial;
         background: lightsteelblue;
         border: 0px;
         border-radius: 8px;
@@ -155,6 +155,22 @@
                         coordDe[0] + "," + coordDe[1];
                 }
 
+                function popUp(d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div.html("Origen: " + d.source.name + " (" + d.origin + ")<br/>"
+                        + "Destino: " + d.target.name + " (" + d.destination + ")")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                }
+
+                function popOff() {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                }
+
                 //add curved links, stroke <= number of letters
                 link = gDraw.selectAll(".link").data(links).enter()
                     .append("path")
@@ -170,17 +186,10 @@
                     .attr("d", function (d) { return arc(d); })
                     .on("mouseover", function (d, i) {
                         d3.select(this).style("stroke", "red");
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.date + "<br/>" + d.close)
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 28) + "px");
+                        popUp(d);
                     }).on("mouseout", function (d, i) {
                         d3.select(this).style("stroke", "cyan");
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
+                        popOff();
                     });
 
                 //add nodes
