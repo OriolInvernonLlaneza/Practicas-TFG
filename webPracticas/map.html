@@ -24,11 +24,25 @@
         stroke: #235;
         stroke-width: 2;
     }
+
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        height: 28px;
+        padding: 2px;
+        font: 12px sans-serif;
+        background: lightsteelblue;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
+    }
 </style>
 
 <body>
     <script src="//d3js.org/d3.v4.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="js/d3-tip.js"></script>
     <p id="demo"></p>
     <script>
         var width = 960,
@@ -86,6 +100,10 @@
 
         var graticule = d3.geoGraticule();
 
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
         d3.json("resources/world-50m.json", function (error, world) { //load map
 
             gDraw.append("g")
@@ -134,7 +152,7 @@
                         dy = coordDe[1] - coordOr[1],
                         dr = Math.sqrt(dx * dx + dy * dy);
                     return "M" + coordOr[0] + "," + coordOr[1] + "A" + dr + "," + dr + " 0 0,1 " +
-                    coordDe[0] + "," + coordDe[1];
+                        coordDe[0] + "," + coordDe[1];
                 }
 
                 //add curved links, stroke <= number of letters
@@ -149,11 +167,20 @@
                     .attr("stroke-width", 1)
                     .attr("stroke", "cyan")
                     .attr("marker-end", "url(#arrow)")
-                    .attr("d", function(d) { return arc(d); })
+                    .attr("d", function (d) { return arc(d); })
                     .on("mouseover", function (d, i) {
                         d3.select(this).style("stroke", "red");
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(d.date + "<br/>" + d.close)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
                     }).on("mouseout", function (d, i) {
                         d3.select(this).style("stroke", "cyan");
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
                     });
 
                 //add nodes
