@@ -681,7 +681,7 @@
     },
     {
       "id": 98,
-      "name": "Camposagrado",
+      "name": "",
       "fname": "Marqués de Camposagrado y Antonio Hegreenia y Velarde",
       "wiki": "",
       "color": "green"
@@ -1030,6 +1030,7 @@
     },
     {
       "id": 150,
+      "name": "Zarracina",
       "fname": "José Alegría",
       "wiki": "",
       "color": ""
@@ -1144,6 +1145,7 @@
     },
     {
       "id": 169,
+      "name": "Le Roy",
       "fname": "José Le Roy",
       "wiki": "",
       "color": ""
@@ -1853,6 +1855,7 @@
     },
     {
       "id": 287,
+      "name": "P.G. Argüelles",
       "fname": "Pedro García Argüelles",
       "wiki": "",
       "color": ""
@@ -2229,6 +2232,71 @@
       "id": 348,
       "wiki": "",
       "color": "green"
+    },
+    {
+      "fname": "Antonio Ponz",
+      "id": 349,
+      "wiki": "Antonio_Ponz",
+      "color": "green"
+    },
+    {
+      "name": "Genaro",
+      "fname": "Genaro Fernández Blanco",
+      "id": 350,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "name": "M. Martín",
+      "fname": "Manuel Martín Rodríguez",
+      "id": 351,
+      "wiki": "Manuel_Martín_Rodríguez",
+      "color": "green"
+    },
+    {
+      "name": "Galcerán",
+      "fname": "Miguel Galcerán",
+      "id": 352,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "name": "J.C. Saavedra",
+      "fname": "Jose Cornide y Saavedra",
+      "id": 353,
+      "wiki": "José_Andrés_Cornide_de_Folgueira_y_Saavedra",
+      "color": "green"
+    },
+    {
+      "name": "Osorio",
+      "fname": "Manuel Osorio",
+      "id": 354,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "fname": "Luis Folgueras",
+      "id": 355,
+      "wiki": "Luis_Folgueras_y_Sión",
+      "color": "green"
+    },
+    {
+      "fname": "Antonio Noriega de Bada",
+      "id": 356,
+      "wiki": "Antonio_Noriega_de_Bada",
+      "color": "green"
+    },
+    {
+      "fname": "Francisco de Saavedra",
+      "id": 357,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "fname": "Santiago Joumard",
+      "id": 358,
+      "wiki": "",
+      "color": "green"
     }
   ],
   "links": [
@@ -2281,6 +2349,12 @@
       "mood": ""
     },
     {
+      "source": 6,
+      "target": 1,
+      "value": 7,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 7,
       "value": 26,
@@ -2329,6 +2403,12 @@
       "mood": ""
     },
     {
+      "source": 11,
+      "target": 1,
+      "value": 6,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 12,
       "value": 16,
@@ -2365,6 +2445,12 @@
       "mood": ""
     },
     {
+      "source": 16,
+      "target": 1,
+      "value": 6,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 17,
       "value": 13,
@@ -2389,9 +2475,21 @@
       "mood": ""
     },
     {
+      "source": 19,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 20,
       "value": 11,
+      "mood": ""
+    },
+    {
+      "source": 20,
+      "target": 1,
+      "value": 7,
       "mood": ""
     },
     {
@@ -2443,6 +2541,12 @@
       "mood": ""
     },
     {
+      "source": 26,
+      "target": 1,
+      "value": 5,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 27,
       "value": 10,
@@ -2458,6 +2562,12 @@
       "source": 1,
       "target": 28,
       "value": 9,
+      "mood": ""
+    },
+    {
+      "source": 28,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -2497,6 +2607,12 @@
       "mood": ""
     },
     {
+      "source": 33,
+      "target": 1,
+      "value": 7,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 34,
       "value": 8,
@@ -2518,6 +2634,12 @@
       "source": 1,
       "target": 37,
       "value": 6,
+      "mood": ""
+    },
+    {
+      "source": 37,
+      "target": 1,
+      "value": 5,
       "mood": ""
     },
     {
@@ -2563,15 +2685,33 @@
       "mood": ""
     },
     {
+      "source": 44,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 45,
       "value": 5,
       "mood": ""
     },
     {
+      "source": 45,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 46,
       "value": 5,
+      "mood": ""
+    },
+    {
+      "source": 46,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -2590,6 +2730,12 @@
       "source": 1,
       "target": 49,
       "value": 5,
+      "mood": ""
+    },
+    {
+      "source": 49,
+      "target": 1,
+      "value": 4,
       "mood": ""
     },
     {
@@ -2677,15 +2823,33 @@
       "mood": ""
     },
     {
+      "source": 62,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 63,
       "value": 4,
       "mood": ""
     },
     {
+      "source": 63,
+      "target": 1,
+      "value": 5,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 64,
       "value": 4,
+      "mood": ""
+    },
+    {
+      "source": 1,
+      "target": 64,
+      "value": 3,
       "mood": ""
     },
     {
@@ -2774,6 +2938,12 @@
     },
     {
       "source": 1,
+      "target": 77,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 1,
       "target": 78,
       "value": 3,
       "mood": ""
@@ -2815,8 +2985,20 @@
       "mood": ""
     },
     {
+      "source": 84,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 85,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 85,
+      "target": 1,
       "value": 3,
       "mood": ""
     },
@@ -2863,6 +3045,12 @@
       "mood": ""
     },
     {
+      "source": 92,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 93,
       "value": 2,
@@ -2872,6 +3060,12 @@
       "source": 1,
       "target": 94,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 94,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -2935,9 +3129,21 @@
       "mood": ""
     },
     {
+      "source": 104,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 105,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 105,
+      "target": 1,
+      "value": 4,
       "mood": ""
     },
     {
@@ -2959,6 +3165,12 @@
       "mood": ""
     },
     {
+      "source": 108,
+      "target": 1,
+      "value": 5,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 109,
       "value": 2,
@@ -2971,6 +3183,12 @@
       "mood": ""
     },
     {
+      "source": 110,
+      "target": 1,
+      "value": 5,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 111,
       "value": 2,
@@ -2980,6 +3198,12 @@
       "source": 1,
       "target": 112,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 112,
+      "target": 1,
+      "value": 4,
       "mood": ""
     },
     {
@@ -3007,6 +3231,12 @@
       "mood": ""
     },
     {
+      "source": 116,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 117,
       "value": 2,
@@ -3016,6 +3246,12 @@
       "source": 1,
       "target": 118,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 118,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -3049,6 +3285,12 @@
       "mood": ""
     },
     {
+      "source": 123,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 124,
       "value": 2,
@@ -3076,6 +3318,12 @@
       "source": 1,
       "target": 128,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 128,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -3118,6 +3366,12 @@
       "source": 1,
       "target": 135,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 135,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -3217,6 +3471,12 @@
       "mood": ""
     },
     {
+      "source": 150,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 151,
       "value": 1,
@@ -3226,6 +3486,12 @@
       "source": 1,
       "target": 152,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 152,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -3319,6 +3585,12 @@
       "mood": ""
     },
     {
+      "source": 167,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 168,
       "value": 1,
@@ -3328,6 +3600,12 @@
       "source": 1,
       "target": 169,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 169,
+      "target": 1,
+      "value": 4,
       "mood": ""
     },
     {
@@ -3472,6 +3750,12 @@
       "source": 1,
       "target": 193,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 193,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -3895,6 +4179,12 @@
       "mood": ""
     },
     {
+      "source": 262,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 263,
       "value": 1,
@@ -3958,6 +4248,12 @@
       "source": 1,
       "target": 273,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 273,
+      "target": 1,
+      "value": 3,
       "mood": ""
     },
     {
@@ -4042,6 +4338,12 @@
       "source": 1,
       "target": 287,
       "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 287,
+      "target": 1,
+      "value": 5,
       "mood": ""
     },
     {
@@ -4185,6 +4487,12 @@
     {
       "source": 1,
       "target": 309,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 309,
+      "target": 3,
       "value": 1,
       "mood": ""
     },
@@ -4420,6 +4728,66 @@
       "source": 348,
       "target": 1,
       "value": 7,
+      "mood": ""
+    },
+    {
+      "source": 349,
+      "target": 1,
+      "value": 6,
+      "mood": ""
+    },
+    {
+      "source": 350,
+      "target": 1,
+      "value": 5,
+      "mood": ""
+    },
+    {
+      "source": 351,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
+      "source": 352,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
+      "source": 353,
+      "target": 1,
+      "value": 4,
+      "mood": ""
+    },
+    {
+      "source": 354,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 355,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 356,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 357,
+      "target": 1,
+      "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 358,
+      "target": 1,
+      "value": 3,
       "mood": ""
     }
   ]

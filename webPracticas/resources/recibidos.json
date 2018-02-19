@@ -175,12 +175,14 @@
       "color": "green"
     },
     {
+      "name": "Catalina",
       "fname": "Catalina de Sena",
       "id": 26,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "Vargas Ponce",
       "fname": "José de Vargas Ponce",
       "id": 27,
       "wiki": "José_de_Vargas_Ponce",
@@ -193,48 +195,56 @@
       "color": "green"
     },
     {
+      "name": "Gertrudis",
       "fname": "María Gertrudis del Busto y Miranda",
       "id": 29,
       "wiki": "",
       "color": "green"
     },
     {
-      "fname": "Campomanes",
+      "name": "Campomanes",
+      "fname": "Pedro Rodríguez de Campomanes",
       "id": 30,
       "wiki": "Pedro_Rodríguez_de_Campomanes",
       "color": "green"
     },
     {
+      "name": "P.G. Argüelles",
       "fname": "Pedro García Argüelles",
       "id": 31,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "de Valdés",
       "fname": "Pedro Díaz de Valdés",
       "id": 32,
       "wiki": "Pedro_Díaz_de_Valdés",
       "color": "green"
     },
     {
+      "name": "P. Quevedo",
       "fname": "Pedro de Quevedo y Quintano",
       "id": 33,
       "wiki": "Pedro_de_Quevedo_y_Quintano",
       "color": "green"
     },
     {
+      "name": "Godoy",
       "fname": "Manuel Godoy",
       "id": 34,
       "wiki": "Manuel_Godoy",
       "color": "green"
     },
     {
+      "name": "Lorenzana",
       "fname": "Jacinto Roque Lorenzana",
       "id": 35,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "Genaro",
       "fname": "Genaro Fernández Blanco",
       "id": 36,
       "wiki": "",
@@ -253,30 +263,35 @@
       "color": "green"
     },
     {
+      "name": "C.G Posada",
       "fname": "Carlos González de Posada",
       "id": 39,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "Le Roy",
       "fname": "José Le Roy",
       "id": 40,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "Lardizábal",
       "fname": "Manuel de Lardizábal y Uribe",
       "id": 41,
       "wiki": "Manuel_de_Lardizábal_y_Uribe",
       "color": "green"
     },
     {
+      "name": "M. Martín",
       "fname": "Manuel Martín Rodríguez",
       "id": 42,
       "wiki": "Manuel_Martín_Rodríguez",
       "color": "green"
     },
     {
+      "name": "M. Reguera",
       "fname": "Manuel Reguera González",
       "id": 43,
       "wiki": "Manuel_Reguera_González",
@@ -289,12 +304,14 @@
       "color": "green"
     },
     {
+      "name": "F.M. Marina",
       "fname": "Francisco Martínez Marina",
       "id": 45,
       "wiki": "Francisco_Martínez_Marina",
       "color": "green"
     },
     {
+      "name": "Galcerán",
       "fname": "Miguel Galcerán",
       "id": 46,
       "wiki": "",
@@ -313,18 +330,21 @@
       "color": "green"
     },
     {
+      "name": "J. Carreño",
       "fname": "José Carreño y Cañedo",
       "id": 49,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "Zarracina",
       "fname": "José Alvargonzález Zarracina",
       "id": 50,
       "wiki": "",
       "color": "green"
     },
     {
+      "name": "F. de Paula",
       "fname": "Francisco de Paula Caveda y Solares",
       "id": 51,
       "wiki": "Francisco_de_Paula_Caveda_y_Solares",
