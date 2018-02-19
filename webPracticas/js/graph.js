@@ -130,15 +130,15 @@ function createGraph(ngraph) {
         .attr("d", "M0,-5L10,0L0,5")
         .style("stroke-width", 0);
 
-    function showArrow(i) {
-        var path = _d3.select("#edgepath" + i);
+    function showArrow(path) {
+        //var path = _d3.select("#edgepath" + i);
         if (path.attr("target") === "1") { //get target === Jovellanos
             path.style("visibility", "visible");
         }
     }
 
-    function hideArrow(i) {
-        var path = _d3.select("#edgepath" + i);
+    function hideArrow(path) {
+        //var path = _d3.select("#edgepath" + i);
         if (path.attr("target") === "1") { //get target === Jovellanos
             path.style("visibility", "hidden");
         }
@@ -157,10 +157,10 @@ function createGraph(ngraph) {
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
         .on("mouseover", function (d, i) {
             _d3.select(this).style("stroke", "cyan");
-            showArrow(i);
+            showArrow(this);
         }).on("mouseout", function (d, i) {
             _d3.select(this).style("stroke", "#999");
-            hideArrow(i);
+            hideArrow(this);
         });
 
     //invisible path + arrow

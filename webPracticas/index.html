@@ -3,15 +3,16 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="css/style1.css" media="screen" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"> </script>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="js/brush-lite.js"></script>
   <script src="js/graph.js"></script>
   <script src="js/wiki.js"></script>
+  <script src="js/changeCSS.js"></script>
   <!--<script src="js/map.js"></script>-->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPxl9AMeEiPmPZkToTKHvsa9mmPIggaqI"></script>
-  <link rel="stylesheet" type="text/css" href="css/navStyle.css" media="screen" />
+  
   <title>Red Social Jovellanos</title>
 </head>
 
@@ -71,129 +72,7 @@
     <div class="tab" style="margin-left:10%; margin-right:10%">
       <button class="tablinks">Cartas completas</button>
     </div>
-    <!--<div id="style-selector-control" class="map-control">
-      <select id="style-selector" class="selector-control">
-        <option value="default" selected="selected">Default</option>
-        <option value="silver">Silver</option>
-        <option value="night">Night mode</option>
-        <option value="retro">Retro</option>
-      </select>
-    </div>-->
     <div id="map" style="margin-left: 10%;"></div>
-    <script>
-      /*var map = new google.maps.Map(d3.select("#map").node(), {
-        center: { lat: 51,//43.5293101, 
-          lng: 0},//-5.6773233 },
-        zoom: 6
-      });// Create the Google Map…
-
-      var data = {
-        "nodes": [{
-          "name": "A",
-          "long": 0.0000,
-          "lat": 51.4800
-        }, {
-          "name": "B",
-          "long": -0.1684,
-          "lat": 51.4875
-        }, {
-          "name": "C",
-          "long": -0.2043,
-          "lat": 51.5096
-        }, {
-          "name": "D",
-          "long": -0.1269,
-          "lat": 51.5295
-        }],
-        "links": [{
-          "source": 0,
-          "target": 1
-        }, {
-          "source": 0,
-          "target": 2
-        }, {
-          "source": 0,
-          "target": 3
-        }, {
-          "source": 2,
-          "target": 3
-        }]
-      }
-
-      var overlay = new google.maps.OverlayView();
-
-      overlay.onAdd = function () {
-        var layer = d3.select(this.getPanes().overlayLayer).append("div")
-          .attr("class", "stations");
-
-        overlay.draw = function () {
-
-          layer.select('svg').remove();
-
-          var projection = this.getProjection(),
-            padding = 10;
-
-          var svg = layer.append("svg")
-            .attr('width', 1200)
-            .attr('height', 600)
-
-          var node = svg.selectAll(".stations")
-            .data(data.nodes)
-            .enter().append("g")
-            .each(transform)
-            .attr("class", "node");
-
-          var link = svg.selectAll(".link")
-            .data(data.links)
-            .enter().append("line")
-            .attr("class", "link")
-            .each(drawlink).on("mouseover", function (d, i) {
-            _d3.select(this).style("stroke", "cyan");
-        }).on("mouseout", function (d, i) {
-            _d3.select(this).style("stroke", "#999");
-        });
-
-          node.append("circle")
-            .attr("r", 4.5);
-
-          node.append("text")
-            .attr("x", 7)
-            .attr("y", 0)
-            .attr("dy", ".31em")
-            .text(function (d) {
-              return d.name;
-            });
-
-          function latLongToPos(d) {
-            var p = new google.maps.LatLng(d.lat, d.long);
-            p = projection.fromLatLngToDivPixel(p);
-            p.x = p.x - padding;
-            p.y = p.y - padding;
-            return p;
-          }
-
-          function transform(d) {
-            var p = latLongToPos(d);
-            return d3.select(this)
-              .attr("transform", "translate(" + p.x + "," + p.y + ")");
-          }
-
-          function drawlink(d) {
-            var p1 = latLongToPos(data.nodes[d.source]),
-              p2 = latLongToPos(data.nodes[d.target]);
-            d3.select(this)
-              .attr('x1', p1.x)
-              .attr('y1', p1.y)
-              .attr('x2', p2.x)
-              .attr('y2', p2.y)
-              .style('fill', 'none')
-              .style('stroke', 'steelblue');
-          }
-        };
-      };
-
-      overlay.setMap(map);*/
-    </script>
 
     <h2 id="about">Acerca De</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
@@ -203,7 +82,10 @@
       lobortis. Nulla ultrices vel nisl sed hendrerit.
     </p>
   </div>
-  <footer></footer>
+  <footer>
+    <a href="#" onclick="changeCSS('css/style1.css', 0);">STYLE 1</a> 
+    <a href="#" onclick="changeCSS('css/style2.css', 0);">STYLE 2</a>
+  </footer>
 </body>
 
 </html>
