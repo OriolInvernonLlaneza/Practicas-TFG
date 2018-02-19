@@ -191,7 +191,7 @@ function createGraph(ngraph) {
         .enter().append("circle")
         .attr("r", 5)
         .attr("fill", function (d) {
-            if (d.hasOwnProperty("color")) {
+            if (d.hasOwnProperty("color") && d.color !== "") {
                 return d.color;
             } else {
                 return "GoldenRod";
