@@ -2681,6 +2681,168 @@
       "id": 422,
       "wiki": "",
       "color": ""
+    },
+    {
+      "fname": "Manuel de Moy",
+      "id": 423,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Manuel Galcerán",
+      "id": 424,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Manuel José Quintana",
+      "id": 425,
+      "wiki": "Manuel_José_Quintana",
+      "color": ""
+    },
+    {
+      "fname": "Manuel María González Reconco",
+      "id": 426,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Abad de Obona",
+      "id": 427,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Francisco de Zamora y Aguilar",
+      "id": 428,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "María Antonia de Enlate",
+      "id": 429,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "María de la Bermeja",
+      "id": 430,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "María Francisca Sánchez Piñuela",
+      "id": 431,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Bonifacio de Murga",
+      "id": 432,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Mariano Villella de Mola",
+      "id": 433,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Francisco Javier de Cabanes",
+      "id": 434,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Alonso Antonio Álvarez",
+      "id": 435,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Marqués de la Colonilla",
+      "id": 436,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Francisco Javier de Cienfuegos y Jovellanos",
+      "id": 437,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "fname": "Antonio Porcel",
+      "id": 438,
+      "wiki": "José_Antonio_Porcel",
+      "color": ""
+    },
+    {
+      "fname": "Carlos Ricardo Fox",
+      "id": 439,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Melchor Alonso y Manrique",
+      "id": 440,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Francisco Pérez Sedano",
+      "id": 441,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Miguel Antonio García Nava",
+      "id": 442,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Miguel de Manuel",
+      "id": 443,
+      "wiki": "Miguel_de_Manuel",
+      "color": ""
+    },
+    {
+      "fname": "Francolín de Solares Jove",
+      "id": 444,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Cayetano Sixto",
+      "id": 445,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ministerios de Estado y Marina",
+      "id": 446,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Monje del monasterio de la Estrella",
+      "id": 447,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Mr. Bellanger",
+      "id": 448,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "N. Silva",
+      "id": 449,
+      "wiki": "",
+      "color": ""
     }
   ],
   "links": [
@@ -3165,6 +3327,12 @@
       "mood": ""
     },
     {
+      "source": 47,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 48,
       "value": 5,
@@ -3555,6 +3723,12 @@
       "mood": ""
     },
     {
+      "source": 89,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 90,
       "value": 3,
@@ -3618,6 +3792,12 @@
       "source": 1,
       "target": 96,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 96,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -3777,6 +3957,12 @@
       "mood": ""
     },
     {
+      "source": 115,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 116,
       "value": 2,
@@ -3888,6 +4074,12 @@
       "source": 1,
       "target": 127,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 127,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -4491,6 +4683,12 @@
       "mood": ""
     },
     {
+      "source": 204,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 205,
       "value": 1,
@@ -4689,6 +4887,12 @@
       "mood": ""
     },
     {
+      "source": 231,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 232,
       "value": 1,
@@ -4703,6 +4907,12 @@
     {
       "source": 1,
       "target": 234,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 234,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -4833,6 +5043,12 @@
       "mood": ""
     },
     {
+      "source": 253,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 254,
       "value": 1,
@@ -4871,6 +5087,12 @@
     {
       "source": 1,
       "target": 260,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 260,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -4965,6 +5187,12 @@
       "mood": ""
     },
     {
+      "source": 271,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 272,
       "value": 1,
@@ -4979,7 +5207,7 @@
     {
       "source": 273,
       "target": 1,
-      "value": 3,
+      "value": 1,
       "mood": ""
     },
     {
@@ -5211,6 +5439,12 @@
       "mood": ""
     },
     {
+      "source": 304,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 305,
       "value": 1,
@@ -5255,6 +5489,12 @@
     {
       "source": 1,
       "target": 311,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 311,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -5932,6 +6172,168 @@
     },
     {
       "source": 422,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 423,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 424,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 425,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 426,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 427,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 428,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 429,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 430,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 431,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 432,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 433,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 434,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 435,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 436,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 437,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 438,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 439,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 440,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 441,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 442,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 443,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 444,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 445,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 446,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 447,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 448,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 449,
       "target": 1,
       "value": 1,
       "mood": ""
