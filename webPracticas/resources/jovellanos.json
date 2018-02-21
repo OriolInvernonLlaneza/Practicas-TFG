@@ -2843,6 +2843,138 @@
       "id": 449,
       "wiki": "",
       "color": ""
+    },
+    {
+      "fname": "Natilo",
+      "id": 450,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Nicolás de Llano Ponte y Ventura González de Cienfuegos",
+      "id": 451,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Pablo Antonio de Ondarza",
+      "id": 452,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Pedro Canel Acevedo",
+      "id": 453,
+      "wiki": "Pedro_Canel_Acevedo",
+      "color": ""
+    },
+    {
+      "fname": "Francisco García de la Cruz y Obregón",
+      "id": 454,
+      "wiki": "Francisco_García_de_la_Cruz_y_Obregón",
+      "color": ""
+    },
+    {
+      "fname": "Pedro Figuerola",
+      "id": 455,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Gaspar Leal",
+      "id": 456,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Genaro Figueroa",
+      "id": 457,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Gonzalo O'Farril y José de Mazarredo y Salazar",
+      "id": 458,
+      "wiki": "",
+      "color": "green"
+    },
+    {
+      "fname": "Cifré",
+      "id": 459,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Pedro Zuláibar",
+      "id": 460,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Gregorio Menéndez Valdés",
+      "id": 461,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Priora del convento de agustinas de Gijón",
+      "id": 462,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ignacio Armorira",
+      "id": 463,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Claudio de Juglart",
+      "id": 464,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ignacio de Asso",
+      "id": 465,
+      "wiki": "Jordán_de_Asso",
+      "color": ""
+    },
+    {
+      "fname": "Ignacio Rodríguez",
+      "id": 466,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ramón González Villarmil",
+      "id": 467,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Irlandés",
+      "id": 468,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ramón Varela",
+      "id": 469,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ramona Carreño y Cañedo",
+      "id": 470,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Isabel Parreño",
+      "id": 471,
+      "wiki": "",
+      "color": ""
     }
   ],
   "links": [
@@ -3561,6 +3693,12 @@
       "mood": ""
     },
     {
+      "source": 71,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 72,
       "value": 3,
@@ -3891,6 +4029,12 @@
       "mood": ""
     },
     {
+      "source": 107,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 108,
       "value": 2,
@@ -4139,6 +4283,12 @@
     {
       "source": 1,
       "target": 134,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 134,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -5127,6 +5277,12 @@
       "mood": ""
     },
     {
+      "source": 264,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 265,
       "value": 1,
@@ -5265,8 +5421,20 @@
       "mood": ""
     },
     {
+      "source": 280,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 281,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 281,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -5415,6 +5583,12 @@
       "mood": ""
     },
     {
+      "source": 301,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 302,
       "value": 1,
@@ -5457,8 +5631,20 @@
       "mood": ""
     },
     {
+      "source": 306,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 307,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 307,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -5535,6 +5721,12 @@
       "mood": ""
     },
     {
+      "source": 316,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 317,
       "value": 1,
@@ -5573,6 +5765,12 @@
     {
       "source": 1,
       "target": 323,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 323,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -5663,7 +5861,7 @@
     {
       "source": 337,
       "target": 1,
-      "value": 2,
+      "value": 1,
       "mood": ""
     },
     {
@@ -6334,6 +6532,138 @@
     },
     {
       "source": 449,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 450,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 451,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 452,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 453,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 454,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 455,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 456,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 457,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 458,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 459,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 460,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 461,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 462,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 463,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 464,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 465,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 466,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 467,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 468,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 469,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 470,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 471,
       "target": 1,
       "value": 1,
       "mood": ""
