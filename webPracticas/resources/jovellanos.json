@@ -415,7 +415,7 @@
     },
     {
       "id": 60,
-      "name": "J. Más",
+      "name": "J. Mas",
       "fname": "Jerónimo Mas",
       "wiki": "",
       "color": "green"
@@ -2975,6 +2975,114 @@
       "id": 471,
       "wiki": "",
       "color": ""
+    },
+    {
+      "fname": "Rodrigo de Llano Ponte",
+      "id": 472,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Roque Domingo de la Figuera",
+      "id": 473,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Rosalía Bermúdez",
+      "id": 474,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Isla",
+      "id": 475,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Rubín",
+      "id": 476,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Jaime Robatel",
+      "id": 477,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Segismundo Planas",
+      "id": 478,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Sor Isabel María Rogliani",
+      "id": 479,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Tomás García Tamargo",
+      "id": 480,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Tomás González Carvajal",
+      "id": 481,
+      "wiki": "Tomás_González_Carvajal",
+      "color": ""
+    },
+    {
+      "fname": "Conde de Montijo",
+      "id": 482,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Un joven",
+      "id": 483,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Joaquín Alonso de Viado y Castro",
+      "id": 484,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Ventura de Arquellada",
+      "id": 485,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Vicente Joaquín Nogueras",
+      "id": 486,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Vicente Pedrosa Rubio",
+      "id": 487,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Victorio de Navia (Virrey de Valencia)",
+      "id": 488,
+      "wiki": "",
+      "color": ""
+    },
+    {
+      "fname": "Zacarías Velázquez",
+      "id": 489,
+      "wiki": "Zacarías_González_Velázquez",
+      "color": ""
     }
   ],
   "links": [
@@ -3090,6 +3198,12 @@
       "source": 1,
       "target": 12,
       "value": 16,
+      "mood": ""
+    },
+    {
+      "source": 12,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -3285,6 +3399,12 @@
       "mood": ""
     },
     {
+      "source": 29,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 30,
       "value": 9,
@@ -3312,6 +3432,12 @@
       "source": 1,
       "target": 32,
       "value": 8,
+      "mood": ""
+    },
+    {
+      "source": 32,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -3378,6 +3504,12 @@
       "source": 1,
       "target": 39,
       "value": 6,
+      "mood": ""
+    },
+    {
+      "source": 39,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -3591,6 +3723,12 @@
       "mood": ""
     },
     {
+      "source": 60,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 61,
       "value": 4,
@@ -3735,6 +3873,12 @@
       "mood": ""
     },
     {
+      "source": 75,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 76,
       "value": 3,
@@ -3780,6 +3924,12 @@
       "source": 1,
       "target": 80,
       "value": 3,
+      "mood": ""
+    },
+    {
+      "source": 80,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -4248,6 +4398,12 @@
       "source": 1,
       "target": 130,
       "value": 2,
+      "mood": ""
+    },
+    {
+      "source": 130,
+      "target": 1,
+      "value": 1,
       "mood": ""
     },
     {
@@ -5811,6 +5967,12 @@
       "mood": ""
     },
     {
+      "source": 329,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
       "source": 1,
       "target": 330,
       "value": 1,
@@ -5897,6 +6059,12 @@
     {
       "source": 1,
       "target": 343,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 343,
+      "target": 1,
       "value": 1,
       "mood": ""
     },
@@ -6664,6 +6832,114 @@
     },
     {
       "source": 471,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 472,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 473,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 474,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 475,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 476,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 477,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 478,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 479,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 480,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 481,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 482,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 483,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 484,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 485,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 486,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 487,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 488,
+      "target": 1,
+      "value": 1,
+      "mood": ""
+    },
+    {
+      "source": 489,
       "target": 1,
       "value": 1,
       "mood": ""
