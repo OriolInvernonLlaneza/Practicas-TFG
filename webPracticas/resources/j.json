@@ -23,6 +23,28 @@
         "mood": "Amistad"
       },
       {
+        "source": "aa", 
+        "target": "Godoy", 
+        "origin": "Gijón",
+        "destination": "Madrid",
+        "orLong": -5.6773233,
+        "orLat": 43.5293101,
+        "deLong": -3.70325,
+        "deLat": 40.4167, 
+        "mood": "Amistad"
+      },
+      {
+        "source": "aaaa", 
+        "target": "Godoy", 
+        "origin": "Gijón",
+        "destination": "Oviedo",
+        "orLong": -5.6773233,
+        "orLat": 43.5293101,
+        "deLong": -5.8733862,
+        "deLat": 43.3579649, 
+        "mood": "Amistad"
+      },
+      {
         "source": "Jovellanos",
         "target": "Bonaparte", 
         "origin": "Gijón",

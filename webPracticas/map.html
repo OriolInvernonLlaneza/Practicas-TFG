@@ -42,7 +42,6 @@
 <body>
     <script src="//d3js.org/d3.v4.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-    <script src="js/d3-tip.js"></script>
     <p id="demo"></p>
     <script>
         var width = 960,
@@ -133,13 +132,15 @@
 
                 // Compute the distinct nodes from the links.
                 links.forEach(function (link) {
-                    link.source = nodes[link.source] || (nodes[link.source] = {
-                        name: link.source,
+                    /*link.source = nodes[link.source] ||*/ (nodes[link.source] = {
+                        name: link.origin,
+                        author: link.source,
                         long: link.orLong,
                         lat: link.orLat
                     });
-                    link.target = nodes[link.target] || (nodes[link.target] = {
-                        name: link.target,
+                    /*link.target = nodes[link.target] || */(nodes[link.target] = {
+                        name: link.destination,
+                        target: link.target,
                         long: link.deLong,
                         lat: link.deLat
                     });
@@ -159,8 +160,8 @@
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
-                    div.html("Origen: " + d.source.name + " (" + d.origin + ")<br/>"
-                        + "Destino: " + d.target.name + " (" + d.destination + ")")
+                    div.html("Origen: " + d.source + " (" + d.origin + ")<br/>"
+                        + "Destino: " + d.target + " (" + d.destination + ")")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 }
@@ -175,9 +176,9 @@
                 link = gDraw.selectAll(".link").data(links).enter()
                     .append("path")
                     .attr("source", function (d) {
-                        return d.source.name;
+                        return d.source;
                     }).attr("target", function (d) {
-                        return d.target.name;
+                        return d.target;
                     }).attr("class", "link")
                     .attr("fill-opacity", 0)
                     .attr("stroke-width", 1)
