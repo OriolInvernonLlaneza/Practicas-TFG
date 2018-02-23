@@ -155,11 +155,12 @@ function createGraph(ngraph) {
         }).attr("class", "link")
         .attr("fill-opacity", 0)
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
+        .attr("stroke", function(d) { return fill(d.value); })
         .on("mouseover", function (d, i) {
-            _d3.select(this).style("stroke", "cyan");
+            _d3.select(this).style("stroke", "red");
             showArrow(d, i);
         }).on("mouseout", function (d, i) {
-            _d3.select(this).style("stroke", "#999");
+            _d3.select(this).style("stroke", function(d) { return fill(d.value); });
             hideArrow(d, i);
         });
 
