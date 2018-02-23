@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Gijón",
+      "long": -5.6773233,
+      "lat": 43.5293101
+    },
+    {
+      "id": 2,
+      "name": "Madrid",
+      "long": -3.70325,
+      "lat": 40.4167
+    },
+    {
+      "id": 3,
+      "name": "Oviedo",
+      "long": -5.8733862,
+      "lat": 43.3579649
+    },
+    {
+      "id": 4,
+      "name": "Burdeos",
+      "long": -0.5805000,
+      "lat": 44.8404400
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "destination": 2,
+      "author": "Jovellanos",
+      "correspondent": "Godoy",
+      "mood": "Amistad"
+    },
+    {
+      "source": 2,
+      "destination": 1,
+      "author": "Godoy",
+      "correspondent": "Jovellanos",
+      "mood": "Amistad"
+    },
+    {
+      "source": 1,
+      "destination": 2,
+      "author": "aa",
+      "correspondent": "Godoy",
+      "mood": "Amistad"
+    },
+    {
+      "source": 1,
+      "destination": 3,
+      "author": "aaaa",
+      "correspondent": "Godoy",
+      "mood": "Amistad"
+    },
+    {
+      "source": 1,
+      "destination": 4,
+      "author": "Jovellanos",
+      "correspondent": "Bonaparte",
+      "mood": "Amistad"
+    }
+  ]
+}

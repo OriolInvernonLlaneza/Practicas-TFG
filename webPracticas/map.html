@@ -126,29 +126,36 @@
                 .enter().append("path")
                 .attr("d", path);
 
-            d3.json("resources/j.json", function (error, json) { //load data json
-                var nodes = {};
+            d3.json("resources/j.1.json", function (error, json) { //load data json
+                var nodes = json.nodes;
                 var links = json.links;
 
                 // Compute the distinct nodes from the links.
-                links.forEach(function (link) {
-                    /*link.source = nodes[link.source] ||*/ (nodes[link.source] = {
+                /*links.forEach(function (link) {
+                    link.source = nodes[link.source] || (nodes[link.source] = {
                         name: link.origin,
                         author: link.source,
                         long: link.orLong,
                         lat: link.orLat
                     });
-                    /*link.target = nodes[link.target] || */(nodes[link.target] = {
+                    link.target = nodes[link.target] || (nodes[link.target] = {
                         name: link.destination,
                         target: link.target,
                         long: link.deLong,
                         lat: link.deLat
                     });
+                });*/
+
+                links.forEach(function (link) {
+                    link.source = nodes[link.source-1];
+                    link.destination = nodes[link.destination-1];
                 });
 
                 function arc(d) {
-                    let coordDe = projection([d.deLong, d.deLat]),
-                        coordOr = projection([d.orLong, d.orLat]);
+                    /*let coordDe = projection([d.deLong, d.deLat]),
+                        coordOr = projection([d.orLong, d.orLat]);*/
+                    let coordDe = projection([d.destination.long, d.destination.lat]),
+                        coordOr = projection([d.source.long, d.source.lat]);
                     let dx = coordDe[0] - coordOr[0],
                         dy = coordDe[1] - coordOr[1],
                         dr = Math.sqrt(dx * dx + dy * dy);
@@ -160,8 +167,8 @@
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
-                    div.html("Origen: " + d.source + " (" + d.origin + ")<br/>"
-                        + "Destino: " + d.target + " (" + d.destination + ")")
+                    div.html("Origen: " + d.author + " (" + d.source.name + ")<br/>"
+                        + "Destino: " + d.correspondent + " (" + d.destination.name + ")")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
                 }
@@ -178,12 +185,13 @@
                     .attr("source", function (d) {
                         return d.source;
                     }).attr("target", function (d) {
-                        return d.target;
+                        return d.destination;
                     }).attr("class", "link")
                     .attr("fill-opacity", 0)
                     .attr("stroke-width", 1)
                     .attr("stroke", "cyan")
                     .attr("marker-end", "url(#arrow)")
+                    .attr("padding", 10)
                     .attr("d", function (d) { return arc(d); })
                     .on("mouseover", function (d, i) {
                         d3.select(this).style("stroke", "red");
@@ -221,7 +229,7 @@
                     .style("pointer-events", "none")
                     .attr("class", "edgelabel")
                     .attr("id", function (d, i) { return "edgelabel" + i; })
-                    .style("fill", "#000")
+                    .style("fill", "#fff")
                     .style("font-family", "Arial")
                     .style("font-size", 12);
 
