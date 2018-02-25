@@ -1,6 +1,19 @@
+/*map*/
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 150px;
+    height: 28px;
+    padding: 2px;
+    font: 11px arial;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
 /*graph*/
 .link {
-    /*stroke: #999;*/
     stroke-opacity: 0.6;
 }
 

@@ -7,12 +7,12 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"> </script>
   <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
   <script src="js/brush-lite.js"></script>
   <script src="js/graph.js"></script>
   <script src="js/wiki.js"></script>
   <script src="js/changeCSS.js"></script>
-  <!--<script src="js/map.js"></script>-->
-  
+  <script src="js/map.js"></script>
   <title>Red Social Jovellanos</title>
 </head>
 
@@ -49,9 +49,9 @@
 
     <h2 id="redes">Redes</h2>
     <div class="tab" style="margin-left:10%; margin-right:10%">
-      <button class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
+      <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
       <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
-      <button id="tabC" class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
+      <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
     </div>
     <div id="graph" style="margin-left: 10%; ">
       <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
@@ -63,16 +63,14 @@
         <h3> Mínimo nº de cartas: 0
           <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h3>
       </form>
-      <svg class="framed" id="d3" width="1080" height="500"></svg>
+      <svg class="framed" id="d3" width="1080" height="500" onLoad="document.getElementById('tabC').click()"></svg>
       <div id="wiki"></div>
     </div>
-    <script>document.getElementById("tabC").click();</script>
 
     <h2 id="mapas">Mapas</h2>
-    <div class="tab" style="margin-left:10%; margin-right:10%">
-      <button class="tablinks">Cartas completas</button>
+    <div style="margin-left: 10%;">
+      <svg class="framed" id="map" width="1080" height="500" onLoad="createMap()"></svg>
     </div>
-    <div id="map" style="margin-left: 10%;"></div>
 
     <h2 id="about">Acerca De</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
@@ -83,7 +81,7 @@
     </p>
   </div>
   <footer>
-    <a href="#" onclick="changeCSS('css/style1.css', 0);">STYLE 1</a> 
+    <a href="#" onclick="changeCSS('css/style1.css', 0);">STYLE 1</a>
     <a href="#" onclick="changeCSS('css/style2.css', 0);">STYLE 2</a>
   </footer>
 </body>
