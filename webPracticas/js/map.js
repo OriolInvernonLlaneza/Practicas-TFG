@@ -57,7 +57,6 @@ function createMap() {
     let sTable = d3.select("body").append("div") // div for tooltip
         .attr("class", "scroll")
         .style("opacity", 0);
-    sTable.html("<table style='width:100%'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>");
 
     d3.json("resources/world-50m.json", function (error, world) { //load map
 
@@ -138,20 +137,22 @@ function createMap() {
             }
 
             function showTable(d) {
+                sTable.html("");
                 sTable.transition()
                     .duration(200)
                     .style("opacity", .9);
+                sTable.html("<table style='width:100%'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>");
                 for (let i = 0; i < accLinks.length; i++) {
                     let l = mLinks[i];
                     if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
-                        sTable.html(function (n, currentContent) {
-                            return currentContent + "<tr><td>" + d.author +
-                                "</td><td>" + d.correspondent +
-                                "</td><td>" + d.mood + "</td></tr>";
+                        sTable.html(function (n) {
+                            return this.innerHTML + "<tr><td>" + l.author +"</td>"
+                                +"<td>" + l.correspondent + "</td>"
+                                +"<td>" + l.mood + "</td></tr>";
                         });
                     }
                 }
-                sTable.on("focusout", hidePop(sTable));
+                //sTable.on("focusout", hidePop(sTable));
             }
 
             //add curved links, stroke <= number of letters
@@ -197,7 +198,9 @@ function createMap() {
                 }).on("mouseout", function (d) {
                     d3.select(this).style("stroke", color(d.value));
                     hidePop(div);
-                }).on("click", function(d) { showTable(d);});
+                }).on("click", function(d) { 
+                    showTable(d);
+                });
 
             //add nodes
             let mNode = mapDraw.append("g")
