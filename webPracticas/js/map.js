@@ -40,7 +40,7 @@ function createMap() {
     let mZoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/_d3/_d3-zoom
         .on("zoom", mZoomed); // add listener
 
-    mapMain.call(mZoom);
+    mapMain.call(mZoom).on("dblclick.zoom", null);
 
     let projection = d3.geoEquirectangular() //d3 projection type
         .center([8, 48]) //center around GER
@@ -50,9 +50,14 @@ function createMap() {
 
     let graticule = d3.geoGraticule();
 
-    let div = d3.select("body").append("div")
+    let div = d3.select("body").append("div") // div for tooltip
         .attr("class", "tooltip")
         .style("opacity", 0);
+
+    let sTable = d3.select("body").append("div") // div for tooltip
+        .attr("class", "scroll")
+        .style("opacity", 0);
+    sTable.html("<table style='width:100%'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>");
 
     d3.json("resources/world-50m.json", function (error, world) { //load map
 
@@ -81,13 +86,14 @@ function createMap() {
             let mNodes = json.nodes;
             let mLinks = json.links;
 
-            mLinks.forEach(function (l) {
+            mLinks.forEach(l => {
                 l.source = mNodes[l.source - 1];
                 l.destination = mNodes[l.destination - 1];
             });
 
             let accLinks = [];
-            mLinks.forEach(function (l) {
+
+            mLinks.forEach(l => {
                 let isNew = true;
                 for (i = 0; i < accLinks.length; i++) {
                     let aux = accLinks[i];
@@ -125,56 +131,73 @@ function createMap() {
                     .style("top", (d3.event.pageY - 28) + "px")
             }
 
-            function popOff() {
-                div.transition()
+            function hidePop(element) {
+                element.transition()
                     .duration(500)
                     .style("opacity", 0);
+            }
+
+            function showTable(d) {
+                sTable.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                for (let i = 0; i < accLinks.length; i++) {
+                    let l = mLinks[i];
+                    if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
+                        sTable.html(function (n, currentContent) {
+                            return currentContent + "<tr><td>" + d.author +
+                                "</td><td>" + d.correspondent +
+                                "</td><td>" + d.mood + "</td></tr>";
+                        });
+                    }
+                }
+                sTable.on("focusout", hidePop(sTable));
             }
 
             //add curved links, stroke <= number of letters
             /*let link = mapDraw.selectAll(".link").data(mLinks).enter()
                 .append("path")
-                .attr("source", function (d) {
+                .attr("source", function(d) {
                     return d.source;
-                }).attr("target", function (d) {
+                }).attr("target", function(d) {
                     return d.destination;
                 }).attr("class", "link")
                 .attr("fill-opacity", 0)
                 .attr("stroke-width", 1)
                 .attr("stroke", "cyan")
                 .attr("marker-end", "url(#mArrow)")
-                .attr("d", function (d) { return arc(d); })
+                .attr("d", function(d) { return arc(d); })
                 .on("mouseover", function (d, i) {
                     d3.select(this).style("stroke", "red");
                     popUp(d);
                 }).on("mouseout", function (d, i) {
                     d3.select(this).style("stroke", "cyan");
-                    popOff();
+                    hidePop(element);
                 });*/
 
             let link = mapDraw.selectAll(".link").data(accLinks).enter()
                 .append("path")
-                .attr("source", function (d) {
+                .attr("source", function(d) {
                     return d.source;
-                }).attr("target", function (d) {
+                }).attr("target", function(d) {
                     return d.destination;
                 }).attr("class", "link")
                 .attr("fill-opacity", 0)
-                .attr("stroke-width", function (d) {
+                .attr("stroke-width", function(d) {
                     return Math.sqrt(d.value);
                 })
-                .attr("stroke", function (d) {
+                .attr("stroke", function(d) {
                     return color(d.value);
                 })
                 .attr("marker-end", "url(#mArrow)")
-                .attr("d", function (d) { return arc(d); })
-                .on("mouseover", function (d, i) {
+                .attr("d", function(d) { return arc(d); })
+                .on("mouseover", function (d) {
                     d3.select(this).style("stroke", "red");
                     popUp(d);
-                }).on("mouseout", function (d, i) {
+                }).on("mouseout", function (d) {
                     d3.select(this).style("stroke", color(d.value));
-                    popOff();
-                });
+                    hidePop(div);
+                }).on("click", function(d) { showTable(d);});
 
             //add nodes
             let mNode = mapDraw.append("g")
@@ -183,18 +206,18 @@ function createMap() {
                 .attr("class", "node")
                 .enter().append("circle")
                 .attr("r", 1)
-                .attr("cx", function (d) {
+                .attr("cx", function(d) {
                     let aux = [d.long, d.lat];
                     return projection(aux)[0];
                 })
-                .attr("cy", function (d) {
+                .attr("cy", function(d) {
                     let aux = [d.long, d.lat];
                     return projection(aux)[1];
                 })
                 .attr("fill", "GoldenRod");
 
             // tooltip titles
-            mNode.append("title").text(function (d) { return d.name; });
+            mNode.append("title").text(function(d) { return d.name; });
 
             // path label
             let mapLabels = mapDraw.selectAll(".mlabel")
@@ -214,7 +237,7 @@ function createMap() {
                 .style("text-anchor", "middle")
                 .style("pointer-events", "none")
                 .attr("startOffset", "50%")
-                .text(function (d) { return d.mood; });
+                .text(function(d) { return d.mood; });
         });
     });
 }

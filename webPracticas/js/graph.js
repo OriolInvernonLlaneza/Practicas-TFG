@@ -1,23 +1,23 @@
-var linkV;
-var edgepath;
-var node;
-var edgelabels;
-var label;
-var svg;
-var graph;
-var simulation;
-var graphOG;
+let linkV;
+let edgepath;
+let node;
+let edgelabels;
+let label;
+let svg;
+let graph;
+let simulation;
+let graphOG;
 
 function createGraph(ngraph) {
 
-    var brush;
-    var brushMode = false;
-    var brushing = false;
-    var shiftKey;
+    let brush;
+    let brushMode = false;
+    let brushing = false;
+    let shiftKey;
 
     // jquery search and autocomplete
-    var optArray = [];
-    for (var i = 0; i < ngraph.nodes.length - 1; i++) {
+    let optArray = [];
+    for (let i = 0; i < ngraph.nodes.length - 1; i++) {
         optArray.push(ngraph.nodes[i].fname); //all node names
     }
     optArray = optArray.sort();
@@ -28,27 +28,27 @@ function createGraph(ngraph) {
     });
 
     // take size from svg
-    var width = +svg.attr("width"),
+    let width = +svg.attr("width"),
         height = +svg.attr("height");
 
     // color scheme
-    var fill = d3.scaleOrdinal(d3.schemeCategory20);
+    let fill = d3.scaleOrdinal(d3.schemeCategory20);
 
     // remove any previous graphs
     svg.selectAll(".g-main").remove();
 
     // create main frame
-    var gMain = svg.append("g")
+    let gMain = svg.append("g")
         .classed("g-main", true);
 
     // append white rect to frame
-    var rect = gMain.append("rect")
+    let rect = gMain.append("rect")
         .attr("width", width)
         .attr("height", height)
         .style("fill", "white");
 
     // append draw    
-    var gDraw = gMain.append("g");
+    let gDraw = gMain.append("g");
 
     // force functions
     function dragstarted(d) {
@@ -98,7 +98,7 @@ function createGraph(ngraph) {
         gDraw.attr("transform", d3.event.transform); // transforms drawing with zoom event
     }
 
-    var zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/d3/d3-zoom
+    let zoom = d3.zoom() // Creates new zoom behavior (obj and func) https://github.com/d3/d3-zoom
         .on("zoom", zoomed); // add listener
 
     gMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
@@ -111,8 +111,8 @@ function createGraph(ngraph) {
 
     // the brush needs to go before the nodes so that it doesn"t
     // get called when the mouse is over a node
-    var gBrushHolder = gDraw.append("g");
-    var gBrush = null;
+    let gBrushHolder = gDraw.append("g");
+    let gBrush = null;
 
     //define arrows
     gDraw.append("defs").append("marker")
@@ -130,14 +130,14 @@ function createGraph(ngraph) {
         .style("stroke-width", 0);
 
     function showArrow(d, i) {
-        var path = d3.select("#edgepath" + i);
+        let path = d3.select("#edgepath" + i);
         if (d.target.id === 1) { //get target === Jovellanos
             path.style("visibility", "visible");
         }
     }
 
     function hideArrow(d, i) {
-        var path = d3.select("#edgepath" + i);
+        let path = d3.select("#edgepath" + i);
         if (d.target.id === 1) { //get target === Jovellanos
             path.style("visibility", "hidden");
         }
@@ -254,7 +254,7 @@ function createGraph(ngraph) {
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     function linkArc(d) {
-        var dx = d.target.x - d.source.x,
+        let dx = d.target.x - d.source.x,
             dy = d.target.y - d.source.y,
             dr = Math.sqrt(dx * dx + dy * dy);
         return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " +
@@ -276,10 +276,10 @@ function createGraph(ngraph) {
 
         edgelabels.attr("transform", function (d) {
             if (d.target.x < d.source.x) { // rotate text 
-                var bbox = this.getBBox(); // get svg bounding box
+                let bbox = this.getBBox(); // get svg bounding box
 
-                var rx = bbox.x + bbox.width / 2;
-                var ry = bbox.y + bbox.height / 2;
+                let rx = bbox.x + bbox.width / 2;
+                let ry = bbox.y + bbox.height / 2;
                 return "rotate(180 " + rx + " " + ry + ")";
             }
             else {
@@ -318,7 +318,7 @@ function createGraph(ngraph) {
         if (!d3.event.sourceEvent) { return; }
         if (!d3.event.selection) { return; }
 
-        var extent = d3.event.selection; // brushable area
+        let extent = d3.event.selection; // brushable area
 
         node.classed("selected", function (d) { // node class selected if inside extent or prev selected.
             return d.selected = d.previouslySelected ^ // XOR
@@ -381,11 +381,11 @@ function createGraph(ngraph) {
     d3.select("body").on("keyup", keyup); // event handler that ends the brushing
 
     //Toggle stores whether the highlighting is on
-    var toggle = false;
+    let toggle = false;
 
     //Create an array logging what is connected to what
-    var linkedByIndex = {};
-    for (var j = 0; j < ngraph.nodes.length; j++) {
+    let linkedByIndex = {};
+    for (let j = 0; j < ngraph.nodes.length; j++) {
         linkedByIndex[j + "," + j] = 1; // nodes are connected to themselves
     }
 
@@ -401,7 +401,7 @@ function createGraph(ngraph) {
     function connectedNodes() {
         if (!toggle) {
             //Reduce the opacity of all the non-neighbours
-            var d = d3.select(this).node().__data__;
+            let d = d3.select(this).node().__data__;
 
             node.style("opacity", function (o) {
                 return isNeighbouring(d, o) | isNeighbouring(o, d) ? 1 : 0.1;
@@ -437,9 +437,9 @@ function createGraph(ngraph) {
 //search function
 function searchNode() {
     //find the node
-    var selectedVal = document.getElementById("search").value;
+    let selectedVal = document.getElementById("search").value;
     if (selectedVal !== "" && selectedVal !== "none") {
-        var selected = node.filter(function (d, i) {
+        let selected = node.filter(function (d, i) {
             return d.fname !== selectedVal;
         });
         //Reduce the opacity of the non searched
@@ -464,7 +464,7 @@ function restart() {
 //adjust threshold
 function threshold(thresh) {
     graph.links.splice(0, graph.links.length);
-    for (var i = 0; i < graphOG.links.length; i++) {
+    for (let i = 0; i < graphOG.links.length; i++) {
         if (graphOG.links[i].value > thresh) {
             graph.links.push(graphOG.links[i]);
         }
@@ -474,7 +474,7 @@ function threshold(thresh) {
 
 function changeTab(evt) {
     svg = d3.select("#d3");
-    // Declare all variables
+    // Declare all letiables
     let i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
