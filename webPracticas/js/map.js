@@ -141,17 +141,16 @@ function createMap() {
                 sTable.transition()
                     .duration(200)
                     .style("opacity", .9);
-                sTable.html("<table style='width:100%'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>");
+                let html = "<table id='sTable'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>";
                 for (let i = 0; i < accLinks.length; i++) {
                     let l = mLinks[i];
                     if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
-                        sTable.html(function (n) {
-                            return this.innerHTML + "<tr><td>" + l.author +"</td>"
-                                +"<td>" + l.correspondent + "</td>"
-                                +"<td>" + l.mood + "</td></tr>";
-                        });
+                        html += "<tr><td>" + l.author + "</td>"
+                            + "<td>" + l.correspondent + "</td>"
+                            + "<td>" + l.mood + "</td></tr>";
                     }
                 }
+                sTable.html(html);
                 //sTable.on("focusout", hidePop(sTable));
             }
 
@@ -178,27 +177,27 @@ function createMap() {
 
             let link = mapDraw.selectAll(".link").data(accLinks).enter()
                 .append("path")
-                .attr("source", function(d) {
+                .attr("source", function (d) {
                     return d.source;
-                }).attr("target", function(d) {
+                }).attr("target", function (d) {
                     return d.destination;
                 }).attr("class", "link")
                 .attr("fill-opacity", 0)
-                .attr("stroke-width", function(d) {
+                .attr("stroke-width", function (d) {
                     return Math.sqrt(d.value);
                 })
-                .attr("stroke", function(d) {
+                .attr("stroke", function (d) {
                     return color(d.value);
                 })
                 .attr("marker-end", "url(#mArrow)")
-                .attr("d", function(d) { return arc(d); })
+                .attr("d", function (d) { return arc(d); })
                 .on("mouseover", function (d) {
                     d3.select(this).style("stroke", "red");
                     popUp(d);
                 }).on("mouseout", function (d) {
                     d3.select(this).style("stroke", color(d.value));
                     hidePop(div);
-                }).on("click", function(d) { 
+                }).on("click", function (d) {
                     showTable(d);
                 });
 
@@ -209,18 +208,18 @@ function createMap() {
                 .attr("class", "node")
                 .enter().append("circle")
                 .attr("r", 1)
-                .attr("cx", function(d) {
+                .attr("cx", function (d) {
                     let aux = [d.long, d.lat];
                     return projection(aux)[0];
                 })
-                .attr("cy", function(d) {
+                .attr("cy", function (d) {
                     let aux = [d.long, d.lat];
                     return projection(aux)[1];
                 })
                 .attr("fill", "GoldenRod");
 
             // tooltip titles
-            mNode.append("title").text(function(d) { return d.name; });
+            mNode.append("title").text(function (d) { return d.name; });
 
             // path label
             let mapLabels = mapDraw.selectAll(".mlabel")
@@ -240,7 +239,7 @@ function createMap() {
                 .style("text-anchor", "middle")
                 .style("pointer-events", "none")
                 .attr("startOffset", "50%")
-                .text(function(d) { return d.mood; });
+                .text(function (d) { return d.mood; });
         });
     });
 }
