@@ -15,6 +15,9 @@ function createMap() {
     // append draw    
     let mapDraw = mapMain.append("g");
 
+    //color scheme
+    var color = d3.scaleOrdinal(d3.schemeCategory20);
+
     //define arrows
     mapDraw.append("defs").append("marker")
         .attr("id", "mArrow")
@@ -83,6 +86,23 @@ function createMap() {
                 l.destination = mNodes[l.destination - 1];
             });
 
+            let accLinks = [];
+            mLinks.forEach(function (l) {
+                let isNew = true;
+                for (i = 0; i < accLinks.length; i++) {
+                    let aux = accLinks[i];
+                    if (aux.destination.name === l.destination.name && aux.source.name === l.source.name) {
+                        aux.value++;
+                        isNew = false;
+                    }
+                }
+
+                if (isNew) {
+                    let newLink = { source: l.source, destination: l.destination, value: 1 };
+                    accLinks.push(newLink);
+                }
+            });
+
             function arc(d) {
                 let coordDe = projection([d.destination.long, d.destination.lat]),
                     coordOr = projection([d.source.long, d.source.lat]);
@@ -97,10 +117,12 @@ function createMap() {
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
-                div.html("Origen: " + d.author + " (" + d.source.name + ")<br/>"
-                    + "Destino: " + d.correspondent + " (" + d.destination.name + ")")
+                /*div.html("Origen: " + d.author + "<br/>Destino: " + d.correspondent)
                     .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .style("top", (d3.event.pageY - 28) + "px");*/
+                div.html("Cartas: " + d.value)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px")
             }
 
             function popOff() {
@@ -110,7 +132,7 @@ function createMap() {
             }
 
             //add curved links, stroke <= number of letters
-            link = mapDraw.selectAll(".link").data(mLinks).enter()
+            /*let link = mapDraw.selectAll(".link").data(mLinks).enter()
                 .append("path")
                 .attr("source", function (d) {
                     return d.source;
@@ -128,10 +150,34 @@ function createMap() {
                 }).on("mouseout", function (d, i) {
                     d3.select(this).style("stroke", "cyan");
                     popOff();
+                });*/
+
+            let link = mapDraw.selectAll(".link").data(accLinks).enter()
+                .append("path")
+                .attr("source", function (d) {
+                    return d.source;
+                }).attr("target", function (d) {
+                    return d.destination;
+                }).attr("class", "link")
+                .attr("fill-opacity", 0)
+                .attr("stroke-width", function (d) {
+                    return Math.sqrt(d.value);
+                })
+                .attr("stroke", function (d) {
+                    return color(d.value);
+                })
+                .attr("marker-end", "url(#mArrow)")
+                .attr("d", function (d) { return arc(d); })
+                .on("mouseover", function (d, i) {
+                    d3.select(this).style("stroke", "red");
+                    popUp(d);
+                }).on("mouseout", function (d, i) {
+                    d3.select(this).style("stroke", color(d.value));
+                    popOff();
                 });
 
             //add nodes
-            mNode = mapDraw.append("g")
+            let mNode = mapDraw.append("g")
                 .selectAll(".node")
                 .data(d3.values(mNodes))
                 .attr("class", "node")
@@ -151,7 +197,7 @@ function createMap() {
             mNode.append("title").text(function (d) { return d.name; });
 
             // path label
-            mapLabels = mapDraw.selectAll(".mlabel")
+            let mapLabels = mapDraw.selectAll(".mlabel")
                 .data(mLinks)
                 .enter()
                 .append("text")
