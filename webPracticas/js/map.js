@@ -55,7 +55,7 @@ function createMap() {
         .style("opacity", 0);
 
     let sTable = d3.select("body").append("div") // div for tooltip
-        .attr("class", "scroll")
+        .attr("id", "scroll")
         .style("opacity", 0);
 
     d3.json("resources/world-50m.json", function (error, world) { //load map
@@ -150,8 +150,9 @@ function createMap() {
                             + "<td>" + l.mood + "</td></tr>";
                     }
                 }
+                html += "</table><button id='closeTable'>Cerrar</button>";
                 sTable.html(html);
-                //sTable.on("focusout", hidePop(sTable));
+                d3.select("#closeTable").on("click", function(){hidePop(sTable)});
             }
 
             //add curved links, stroke <= number of letters

@@ -12,6 +12,25 @@ div.tooltip {
     pointer-events: none;
 }
 
+#scroll
+{
+    width: 250px;
+    height: 250px;
+    overflow: auto;
+}
+
+table
+{
+    border: 1px solid black;
+}
+
+td
+{
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+}
+
 /*graph*/
 .link {
     stroke-opacity: 0.6;
