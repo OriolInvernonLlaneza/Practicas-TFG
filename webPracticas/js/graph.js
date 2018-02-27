@@ -457,7 +457,7 @@ function searchNode() {
 //Restart the visualisation after any node and link changes
 function restart() {
     simulation.stop();
-    d3.selectAll("svg > *").remove();
+    d3.selectAll("#d3 > *").remove();
     createGraph(graph);
 }
 
@@ -491,6 +491,7 @@ function changeTab(evt) {
 
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
+    document.getElementById("slider").value = 0;
 }
 
 function addGraph(resource, evt) {
