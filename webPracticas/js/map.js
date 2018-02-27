@@ -118,36 +118,39 @@ function createMap() {
                     coordDe[0] + "," + coordDe[1];
             }
 
-            function popUp(d) {
-                div.transition()
+            function showPop(element) {
+                element.transition()
                     .duration(200)
                     .style("opacity", .9);
-                /*div.html("Origen: " + d.author + "<br/>Destino: " + d.correspondent)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");*/
-                div.html("Cartas: " + d.value)
+            }
+
+            //Tooltip with number of cards
+            function popUp(d) {
+                showPop(div);
+                div.html(d.value)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px")
             }
 
+            //hide elements with transition
             function hidePop(element) {
                 element.transition()
                     .duration(500)
                     .style("opacity", 0);
             }
 
+            //Create and show the table for the selected link
             function showTable(d) {
                 sTable.html("");
-                sTable.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                let html = "<table id='sTable'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th></tr>";
+                showPop(sTable);
+                let html = "<table id='sTable'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th><th></th></tr>";
                 for (let i = 0; i < accLinks.length; i++) {
                     let l = mLinks[i];
                     if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
                         html += "<tr><td>" + l.author + "</td>"
                             + "<td>" + l.correspondent + "</td>"
-                            + "<td>" + l.mood + "</td></tr>";
+                            + "<td>" + l.mood + "</td>" 
+                            + "<td><a target='_blank' href='"+ l.link +"'>Enlace </a></td></tr>";
                     }
                 }
                 html += "</table><button id='closeTable'>Cerrar</button>";
@@ -155,27 +158,7 @@ function createMap() {
                 d3.select("#closeTable").on("click", function(){hidePop(sTable)});
             }
 
-            //add curved links, stroke <= number of letters
-            /*let link = mapDraw.selectAll(".link").data(mLinks).enter()
-                .append("path")
-                .attr("source", function(d) {
-                    return d.source;
-                }).attr("target", function(d) {
-                    return d.destination;
-                }).attr("class", "link")
-                .attr("fill-opacity", 0)
-                .attr("stroke-width", 1)
-                .attr("stroke", "cyan")
-                .attr("marker-end", "url(#mArrow)")
-                .attr("d", function(d) { return arc(d); })
-                .on("mouseover", function (d, i) {
-                    d3.select(this).style("stroke", "red");
-                    popUp(d);
-                }).on("mouseout", function (d, i) {
-                    d3.select(this).style("stroke", "cyan");
-                    hidePop(element);
-                });*/
-
+            //Links. Stroke <= number of letters between two nodes.
             let link = mapDraw.selectAll(".link").data(accLinks).enter()
                 .append("path")
                 .attr("source", function (d) {

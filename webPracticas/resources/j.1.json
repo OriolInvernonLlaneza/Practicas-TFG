@@ -31,35 +31,40 @@
       "destination": 2,
       "author": "Jovellanos",
       "correspondent": "Godoy",
-      "mood": "Amistad"
+      "mood": "Amistad",
+      "link": "https://www.google.com"
     },
     {
       "source": 2,
       "destination": 1,
       "author": "Godoy",
       "correspondent": "Jovellanos",
-      "mood": "Amistad"
+      "mood": "Amistad",
+      "link": "https://www.google.com"
     },
     {
       "source": 1,
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad"
+      "mood": "Amistad",
+      "link": "https://www.google.com"
     },
     {
       "source": 1,
       "destination": 3,
       "author": "aaaa",
       "correspondent": "Godoy",
-      "mood": "Amistad"
+      "mood": "Amistad",
+      "link": "https://www.google.com"
     },
     {
       "source": 1,
       "destination": 4,
       "author": "Jovellanos",
       "correspondent": "Bonaparte",
-      "mood": "Amistad"
+      "mood": "Amistad",
+      "link": "https://www.google.com"
     }
   ]
 }
