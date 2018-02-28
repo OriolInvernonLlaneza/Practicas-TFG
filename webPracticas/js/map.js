@@ -142,18 +142,18 @@ function createMap() {
             function showTable(d) {
                 sTable.html("");
                 showPop(sTable);
-                let html = "<table id='sTable'><thead id='fixedH'><tr><th>Autor</th><th>Destinatario</th>" 
-                    + "<th>Tema</th><th></th></tr></thead><tbody id='scContent'>";
+                let html = "<div id='sc'><table id='sTable'><thead><tr><th>Autor</th><th>Destinatario</th>" 
+                    + "<th>Tema</th><th></th></tr></thead><tbody>";
                 for (let i = 0; i < mLinks.length; i++) {
                     let l = mLinks[i];
                     if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
                         html += "<tr><td>" + l.author + "</td>"
                             + "<td>" + l.correspondent + "</td>"
                             + "<td>" + l.mood + "</td>"
-                            + "<td><a target='_blank' href='" + l.link + "'>Enlace </a></td></tr>";
+                            + "<td><a target='_blank' href='" + l.link + "'>Leer</a></td></tr>";
                     }
                 }
-                html += "</tbody></table><button id='closeTable'>Cerrar</button>";
+                html += "</tbody></table></div><button id='closeTable'>Cerrar</button>";
                 sTable.html(html)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");

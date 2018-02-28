@@ -12,29 +12,19 @@ div.tooltip {
     pointer-events: none;
 }
 
-#scroll
+#sc
 {
-    position: absolute;
-    text-align: center;
-    width: 250px;
+    width: 275px;
     height: 150px;
     overflow: auto;
 }
 
-#fixedH tr {
-	position: relative;
-}
-
-#scContent {
-	display: block;
-	height: 262px;
-	overflow: auto;
-}
-
-#fixedH {
-	display: table;
-	overflow: auto;
-	width: 100%
+#scroll
+{
+    position: absolute;
+    text-align: center;
+    width: 275px;
+    height: 160px;
 }
 
 table
