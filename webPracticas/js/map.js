@@ -119,6 +119,7 @@ function createMap() {
             }
 
             function showPop(element) {
+                element.style("visibility", "visible");
                 element.transition()
                     .duration(200)
                     .style("opacity", .9);
@@ -134,28 +135,29 @@ function createMap() {
 
             //hide elements with transition
             function hidePop(element) {
-                element.transition()
-                    .duration(500)
-                    .style("opacity", 0);
+                element.style("visibility", "hidden");
             }
-
+            
             //Create and show the table for the selected link
             function showTable(d) {
                 sTable.html("");
                 showPop(sTable);
-                let html = "<table id='sTable'><tr><th>Autor</th><th>Destinatario</th><th>Tema</th><th></th></tr>";
-                for (let i = 0; i < accLinks.length; i++) {
+                let html = "<table id='sTable'><thead id='fixedH'><tr><th>Autor</th><th>Destinatario</th>" 
+                    + "<th>Tema</th><th></th></tr></thead><tbody id='scContent'>";
+                for (let i = 0; i < mLinks.length; i++) {
                     let l = mLinks[i];
                     if (l.source.name === d.source.name && d.destination.name === l.destination.name) {
                         html += "<tr><td>" + l.author + "</td>"
                             + "<td>" + l.correspondent + "</td>"
-                            + "<td>" + l.mood + "</td>" 
-                            + "<td><a target='_blank' href='"+ l.link +"'>Enlace </a></td></tr>";
+                            + "<td>" + l.mood + "</td>"
+                            + "<td><a target='_blank' href='" + l.link + "'>Enlace </a></td></tr>";
                     }
                 }
-                html += "</table><button id='closeTable'>Cerrar</button>";
-                sTable.html(html);
-                d3.select("#closeTable").on("click", function(){hidePop(sTable)});
+                html += "</tbody></table><button id='closeTable'>Cerrar</button>";
+                sTable.html(html)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+                d3.select("#closeTable").on("click", function () { hidePop(sTable) });
             }
 
             //Links. Stroke <= number of letters between two nodes.
