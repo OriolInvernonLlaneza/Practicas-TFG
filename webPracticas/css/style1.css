@@ -14,7 +14,7 @@ div.tooltip {
 
 #sc
 {
-    width: 275px;
+    width: 280px;
     height: 150px;
     overflow: auto;
 }
@@ -23,8 +23,13 @@ div.tooltip {
 {
     position: absolute;
     text-align: center;
-    width: 275px;
+    width: 280px;
     height: 160px;
+}
+
+#closeTable
+{
+    float: left;
 }
 
 table
@@ -88,44 +93,11 @@ header h1 {
     text-align: center;
 }
 
-h2 {
-    margin-left: 10%
-}
-
 /*parr*/
 p {
-    margin-right: 20%;
-    margin-left: 20%;
+    margin-right: 10%;
+    margin-left: 10%;
 }
-
-/*Top nav*/
-ul.topnav {
-    z-index: 500;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 10%;
-    width: 100%;
-}
-
-ul.topnav li {float: left;}
-
-ul.topnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-ul.topnav li a:hover:not(.active) {background-color: #111;}
-
-ul.topnav li a.active {background-color: #4CAF50;}
-
-ul.topnav li.right {float: right;}
 
 /* Style the tab */
 .tab {

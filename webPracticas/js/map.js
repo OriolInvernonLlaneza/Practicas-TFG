@@ -137,12 +137,13 @@ function createMap() {
             function hidePop(element) {
                 element.style("visibility", "hidden");
             }
-            
+
             //Create and show the table for the selected link
             function showTable(d) {
                 sTable.html("");
                 showPop(sTable);
-                let html = "<div id='sc'><table id='sTable'><thead><tr><th>Autor</th><th>Destinatario</th>" 
+                let html = "<button id='closeTable' class='btn btn-danger'>X</button>"
+                    +"<div id='sc'><table id='sTable'><thead><tr><th>Autor</th><th>Destinatario</th>"
                     + "<th>Tema</th><th></th></tr></thead><tbody>";
                 for (let i = 0; i < mLinks.length; i++) {
                     let l = mLinks[i];
@@ -153,11 +154,11 @@ function createMap() {
                             + "<td><a target='_blank' href='" + l.link + "'>Leer</a></td></tr>";
                     }
                 }
-                html += "</tbody></table></div><button id='closeTable'>Cerrar</button>";
+                html += "</tbody></table></div>";
                 sTable.html(html)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
-                d3.select("#closeTable").on("click", function () { hidePop(sTable) });
+                d3.select("#closeTable").on("click", function () { hidePop(sTable); });
             }
 
             //Links. Stroke <= number of letters between two nodes.
