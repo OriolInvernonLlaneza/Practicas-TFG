@@ -29,8 +29,8 @@ function createGraph(ngraph) {
     });
 
     svg
-        .attr('width', svg.node().parentNode.clientWidth)
-        .attr('height', 500);
+        .attr("width", svg.node().parentNode.clientWidth)
+        .attr("height", 500);
 
     // take size from svg
     let width = +svg.attr("width"),

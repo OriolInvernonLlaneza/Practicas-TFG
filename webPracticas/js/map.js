@@ -94,9 +94,9 @@ function createMap() {
 
             let accLinks = [];
 
-            mLinks.forEach(l => {
+            mLinks.forEach((l) => {
                 let isNew = true;
-                for (i = 0; i < accLinks.length; i++) {
+                for (let i = 0; i < accLinks.length; i++) {
                     let aux = accLinks[i];
                     if (aux.destination.name === l.destination.name && aux.source.name === l.source.name) {
                         aux.value++;
@@ -121,7 +121,7 @@ function createMap() {
             }
 
             function showPop(element) {
-                element.style("display", "block")//.style("visibility", "visible");
+                element.style("display", "block");//.style("visibility", "visible");
                 element.transition()
                     .duration(200)
                     .style("opacity", .9);
@@ -132,7 +132,7 @@ function createMap() {
                 showPop(div);
                 div.html(d.value)
                     .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 100) + "px")
+                    .style("top", (d3.event.pageY - 100) + "px");
             }
 
             //hide elements with transition
