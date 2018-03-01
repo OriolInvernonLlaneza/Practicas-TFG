@@ -58,53 +58,57 @@
   </nav>
 
   <main role="main" class="container">
-  <div class="starter-template" style="margin-top:8%;">
-    <h2>Introducción</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit mauris eget justo vestibulum, ac condimentum
-      tellus viverra. Mauris iaculis diam ultrices leo dapibus, ac facilisis ex aliquet. Proin eu leo arcu. Etiam maximus
-      pulvinar feugiat. In tincidunt semper mauris fermentum venenatis. Vivamus libero tortor, euismod in mauris eu, ultricies
-      maximus leo. Proin scelerisque nibh eget laoreet dignissim. Donec ultrices semper ultricies. Nunc pellentesque, ipsum
-      in facilisis tincidunt, turpis felis accumsan lectus, vel efficitur sem ante vitae turpis. Nam a tellus bibendum, venenatis
-      ante ac, ultricies felis.
-    </p>
+    <div class="starter-template" style="margin-top:8%;">
+      <h2>Introducción</h2>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit mauris eget justo vestibulum, ac condimentum
+        tellus viverra. Mauris iaculis diam ultrices leo dapibus, ac facilisis ex aliquet. Proin eu leo arcu. Etiam maximus
+        pulvinar feugiat. In tincidunt semper mauris fermentum venenatis. Vivamus libero tortor, euismod in mauris eu, ultricies
+        maximus leo. Proin scelerisque nibh eget laoreet dignissim. Donec ultrices semper ultricies. Nunc pellentesque, ipsum
+        in facilisis tincidunt, turpis felis accumsan lectus, vel efficitur sem ante vitae turpis. Nam a tellus bibendum,
+        venenatis ante ac, ultricies felis.
+      </p>
 
-    <h2 id="redes">Redes</h2>
-    <div class="tab">
-      <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
-      <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
-      <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
-    </div>
-    <div id="graph">
-      <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
-      <div class="ui-widget">
-        <input id="search">
-        <button type="button" onclick="searchNode()">Search</button>
+      <h2 id="redes">Redes</h2>
+      <div class="tab">
+        <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
+        <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
+        <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
       </div>
-      <form>
-        <h3> Mínimo nº de cartas: 0
-          <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h3>
-      </form>
-      <svg class="framed" id="d3" width="1080" height="500" onLoad="document.getElementById('tabC').click()"></svg>
-      <div id="wiki"></div>
-    </div>
+      <div id="graph">
+        <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
+        <div class="ui-widget">
+          <div class="input-group mb-3">
+            <input id="search" type="text" class="form-control" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="searchNode()">Buscar</button>
+            </div>
+          </div>
+        </div>
+        <form>
+          <h4> Mínimo nº de cartas: 0
+            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h4>
+        </form>
+        <svg class="framed" id="d3" width="1080" height="500" onLoad="document.getElementById('tabC').click()"></svg>
+        <div id="wiki"></div>
+      </div>
 
-    <h2 id="mapa">Mapas</h2>
-    <div>
-      <svg class="framed" id="map" width="1080" height="500" onLoad="createMap()"></svg>
-    </div>
+      <h2 id="mapa">Mapas</h2>
+      <div>
+        <svg class="framed" id="map" width="1080" height="500" onLoad="createMap()"></svg>
+      </div>
 
-    <h2 id="about">Acerca de</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
-      odio. Fusce in ipsum magna. Nulla lorem dui, auctor eget tellus non, semper ornare odio. Quisque bibendum et eros sed
-      vestibulum. Curabitur maximus ligula at pretium blandit. Maecenas pulvinar ullamcorper tortor, sit amet interdum ligula
-      pretium non. Cras condimentum sapien enim, eget vestibulum tortor tempor nec. Morbi volutpat est eu enim fringilla
-      lobortis. Nulla ultrices vel nisl sed hendrerit.
-    </p>
-  </div>
-  <footer>
-    <a href="#" onclick="changeCSS('css/style1.css', 1);">STYLE 1</a>
-    <a href="#" onclick="changeCSS('css/style2.css', 1);">STYLE 2</a>
-  </footer>
+      <h2 id="about">Acerca de</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
+        odio. Fusce in ipsum magna. Nulla lorem dui, auctor eget tellus non, semper ornare odio. Quisque bibendum et eros
+        sed vestibulum. Curabitur maximus ligula at pretium blandit. Maecenas pulvinar ullamcorper tortor, sit amet interdum
+        ligula pretium non. Cras condimentum sapien enim, eget vestibulum tortor tempor nec. Morbi volutpat est eu enim fringilla
+        lobortis. Nulla ultrices vel nisl sed hendrerit.
+      </p>
+    </div>
+    <footer>
+      <a href="#" onclick="changeCSS('css/style1.css', 1);">STYLE 1</a>
+      <a href="#" onclick="changeCSS('css/style2.css', 1);">STYLE 2</a>
+    </footer>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
