@@ -115,6 +115,7 @@ div.tooltip {
 /* basic html*/
 body {
     margin: 0;
+    position: relative;
 }
 
 /*parr*/
@@ -149,4 +150,10 @@ p {
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #ccc;
+}
+
+/*nav*/
+.dropdown-item:hover, .nav-link:hover
+{
+    color: #fff;
 }
