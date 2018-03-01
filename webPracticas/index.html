@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style1.css" media="screen" />
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"> </script>
@@ -26,8 +28,8 @@
 <body data-spy="scroll" data-target="#spyNav">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="spyNav">
     <a class="navbar-brand" href="">Correspondencia Jovellanos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" 
-      aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
+      aria-label="Toggle navigation">
     </button>
 
     <div class="collapse navbar-collapse" id="navbar">
@@ -36,8 +38,7 @@
           <a class="nav-link" href="#intro">Introducción</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Visualizaciones</a>
+          <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visualizaciones</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="#redes">Redes</a>
             <a class="dropdown-item" href="#mapa">Mapa</a>
@@ -66,21 +67,52 @@
         <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
         <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
         <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
+        <button id="helpButton" data-toggle="modal" data-target="#help">Instrucciones</button>
       </div>
-      <div id="graph">
-        <form>
-          <h4> Mínimo nº de cartas: 0
-            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h4>
-        </form>
-        <div class="ui-widget">
-          <div class="input-group mb-3">
-            <input id="search" type="text" class="form-control" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" onclick="searchNode()">Buscar</button>
+      <!-- Modal -->
+      <div class="modal fade" id="help" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Instrucciones</h5>
+              <button type="button" class="close" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+              <p>
+                <b>Búsqueda:</b> Para buscar una persona utilice la barra situada debajo.</p>
+              <p>
+                <b>Filtrar:</b> Para filtrar por el número de cartas utilice el deslizador situado justo debajo.</p>
+              <p>
+                <b>Selección simple:</b> Para seleccionar un nodo haga click sobre él. Mantenga pulsado para arrastrarlo.</p>
+              <p>
+                <b>Selección múltiple:</b> Para seleccionar varios nodos mantenga pulsado
+                <em>Shift</em> y haga click varios nodos o arrastre el ratón sobre ellos.</p>
+              <p>
+                <b>Resaltar:</b> Para ocultar todos los nodos menos el seleccionado y sus vecinos haga doble click sobre un
+                nodo. Para volver a la normalidad repita la operación en cualquier nodo.</p>
+              <p>
+                <b>Deselección:</b> Para deseleccionar haga click en cualquier parte libre de nodos.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
         </div>
-        <svg class="framed" id="d3" width="1080" height="500" onLoad="document.getElementById('tabC').click()"></svg>
+      </div>
+      <div id="graph" class="framed">
+        <form style="float: right">
+          <h5> Mínimo nº de cartas: 0
+            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h5>
+        </form>
+        <div class="ui-widget" style="float:left; width:50%;">
+          <div class="input-group mb-3">
+            <input id="search" type="text" class="form-control" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-search btn-outline-secondary" type="button" onclick="searchNode()">Buscar</button>
+            </div>
+          </div>
+        </div>
+        <svg id="d3" onLoad="document.getElementById('tabC').click()"></svg>
         <div id="wiki"></div>
       </div>
 
@@ -90,18 +122,64 @@
       </div>
 
       <h2 id="about">Acerca de</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam enim urna, maximus vel risus et, fringilla ullamcorper
-        odio. Fusce in ipsum magna. Nulla lorem dui, auctor eget tellus non, semper ornare odio. Quisque bibendum et eros
-        sed vestibulum. Curabitur maximus ligula at pretium blandit. Maecenas pulvinar ullamcorper tortor, sit amet interdum
-        ligula pretium non. Cras condimentum sapien enim, eget vestibulum tortor tempor nec. Morbi volutpat est eu enim fringilla
-        lobortis. Nulla ultrices vel nisl sed hendrerit.
+      <p>
+        Este proyecto ha sido desarrollado por
+        <a target="_blank" href="https://github.com/OriolInvernonLlaneza">
+          Oriol Invernón Llaneza</a> para el grupo de investigación UNIMODE en el contexto de la asignatura de prácticas
+        de empresa.
+      </p>
+      <p>
+        Los diferentes grafos han sido desarrollados con la versión 4.0 de
+        <a target="_blank" href="https://d3js.org/">D3.js</a>, una librería de visualización de datos para JavaScript. Para dibujar el mapa se ha utilizado el
+        <a target="_blank" href="https://github.com/topojson/topojson">TopoJson</a>
+        <em>world-50m.json</em>. Los datos relativos a las cartas también se han almacenado en diferentes archivos JSON. Para
+        el estilo de la página y sus coonentes se ha utilizado la famosa librempría
+        <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>, también en su versión 4.0.
+      </p>
+      <p>
+        El proyecto completo está disponible en
+        <a target="_blank" href="https://github.com/OriolInvernonLlaneza/Practicas-TFG">GitHub</a>.
       </p>
     </div>
-    <footer>
-      <a href="#" onclick="changeCSS('css/style1.css', 1);">STYLE 1</a>
-      <a href="#" onclick="changeCSS('css/style2.css', 1);">STYLE 2</a>
-    </footer>
   </main>
+  <footer class="footer-distributed">
+    <div class="footer-left">
+      <img src="css/uniovi.png" height="77.5" width="110" />
+      <p class="footer-links">
+        <a href="#" onclick="changeCSS('css/style1.css', 1);">STYLE 1</a> -
+        <a href="#" onclick="changeCSS('css/style2.css', 1);">STYLE 2</a>
+      </p>
+    </div>
+    <div class="footer-center">
+      <div>
+        <i class="fa fa-envelope"></i>
+        <p>
+          <a href="mailto:uo245303@uniovi.es">uo245303@uniovi.es</a>
+        </p>
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p>
+            <span>Calle Valdés Salas, 11</span> Oviedo, Asturias</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-right">
+      <p class="footer-company-about">
+        <span>Comparte:</span>
+      </p>
+      <div class="footer-icons">
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=localhost%3A8000/">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Visualizaci%C3%B3n%20de%20la%20correspondencia%20de%20Jovellanos%3A%20http%3A//localhost%3A8000/">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a target="_blank" href="https://github.com/OriolInvernonLlaneza/Practicas-TFG">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"

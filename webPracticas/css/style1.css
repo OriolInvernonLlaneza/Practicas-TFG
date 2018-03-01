@@ -24,7 +24,7 @@ div.tooltip {
     position: absolute;
     text-align: center;
     width: 310px;
-    height: 160px;
+    height: 155px;
 }
 
 #closeTable
@@ -42,18 +42,11 @@ div.tooltip {
 }
 
 .framed {
-    border: 1px solid black;
+    border: 1px solid #ccc;
 }
 
 #d3 svg {
-    border: 1px solid;
-    font: 13px sans-serif;
     text-anchor: end;
-}
-
-#d3 .node {
-  stroke: #fff;
-  stroke-width: 1.5px;
 }
 
 .node .selected {
@@ -150,6 +143,11 @@ p {
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #ccc;
+}
+
+#helpButton
+{
+    float: right;
 }
 
 /*nav*/

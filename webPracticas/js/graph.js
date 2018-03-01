@@ -7,6 +7,7 @@ let svg;
 let graph;
 let simulation;
 let graphOG;
+let restarted;
 
 function createGraph(ngraph) {
 
@@ -26,6 +27,10 @@ function createGraph(ngraph) {
             source: optArray
         });
     });
+
+    svg
+        .attr('width', svg.node().parentNode.clientWidth)
+        .attr('height', 500);
 
     // take size from svg
     let width = +svg.attr("width"),
@@ -154,12 +159,12 @@ function createGraph(ngraph) {
         }).attr("class", "link")
         .attr("fill-opacity", 0)
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
-        .attr("stroke", function(d) { return fill(d.value); })
+        .attr("stroke", function (d) { return fill(d.value); })
         .on("mouseover", function (d, i) {
             d3.select(this).style("stroke", "red");
             showArrow(d, i);
         }).on("mouseout", function (d, i) {
-            d3.select(this).style("stroke", function(d) { return fill(d.value); });
+            d3.select(this).style("stroke", function (d) { return fill(d.value); });
             hideArrow(d, i);
         });
 
@@ -250,7 +255,7 @@ function createGraph(ngraph) {
     simulation = d3.forceSimulation() // create and start simulation
         .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
         .force("charge", d3.forceManyBody())
-        .force("collide", d3.forceCollide().radius(20).iterations(8))
+        .force("collide", d3.forceCollide().radius(18).iterations(5))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
     function linkArc(d) {
@@ -431,6 +436,12 @@ function createGraph(ngraph) {
     }
     node.on("dblclick", connectedNodes); // dblclick listener (neigh)
 
+    if(!restarted) { 
+        while (simulation.alpha() > 0.1) { 
+            simulation.tick(); 
+        }
+    }
+    restarted = false;
     return ngraph;
 }
 
@@ -458,6 +469,7 @@ function searchNode() {
 function restart() {
     simulation.stop();
     d3.selectAll("#d3 > *").remove();
+    restarted = true;
     createGraph(graph);
 }
 

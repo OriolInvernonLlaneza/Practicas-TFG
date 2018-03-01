@@ -52,11 +52,13 @@ function createMap() {
 
     let div = d3.select("body").append("div") // div for tooltip
         .attr("class", "tooltip")
-        .style("opacity", 0);
+        .style("opacity", 0)
+        .style("display", "none");
 
     let sTable = d3.select("body").append("div") // div for tooltip
         .attr("id", "scroll")
-        .style("opacity", 0);
+        .style("opacity", 0)
+        .style("display", "none");
 
     d3.json("resources/world-50m.json", function (error, world) { //load map
 
@@ -119,7 +121,7 @@ function createMap() {
             }
 
             function showPop(element) {
-                element.style("visibility", "visible");
+                element.style("display", "block")//.style("visibility", "visible");
                 element.transition()
                     .duration(200)
                     .style("opacity", .9);
@@ -130,19 +132,19 @@ function createMap() {
                 showPop(div);
                 div.html(d.value)
                     .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px")
+                    .style("top", (d3.event.pageY - 100) + "px")
             }
 
             //hide elements with transition
             function hidePop(element) {
-                element.style("visibility", "hidden");
+                element.style("display", "none");//.style("visibility", "hidden");
             }
 
             //Create and show the table for the selected link
             function showTable(d) {
                 sTable.html("");
                 showPop(sTable);
-                let html = "<button id='closeTable' class='btn btn-danger'>X</button><div id='sc' class='table-responsive'>"
+                let html = "<button id='closeTable' class='btn btn-danger btn-sm'>x</button><div id='sc' class='table-responsive'>"
                     + "<table class='table table-responsive table-dark table-striped table-bordered table-sm'"
                     + "><thead><tr><th>Autor</th><th>Destinatario</th>"
                     + "<th>Tema</th><th></th></tr></thead><tbody>";
@@ -158,7 +160,7 @@ function createMap() {
                 html += "</tbody></table></div>";
                 sTable.html(html)
                     .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .style("top", (d3.event.pageY - 100) + "px");
                 d3.select("#closeTable").on("click", function () { hidePop(sTable); });
             }
 
