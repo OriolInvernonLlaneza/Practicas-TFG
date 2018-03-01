@@ -75,7 +75,10 @@
         <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
       </div>
       <div id="graph">
-        <figcaption>Instrucciones: Haz zoom con la rueda del ratón y selecciona varios nodos manteniendo Shift. </figcaption>
+        <form>
+          <h4> Mínimo nº de cartas: 0
+            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h4>
+        </form>
         <div class="ui-widget">
           <div class="input-group mb-3">
             <input id="search" type="text" class="form-control" aria-describedby="basic-addon2">
@@ -84,10 +87,6 @@
             </div>
           </div>
         </div>
-        <form>
-          <h4> Mínimo nº de cartas: 0
-            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h4>
-        </form>
         <svg class="framed" id="d3" width="1080" height="500" onLoad="document.getElementById('tabC').click()"></svg>
         <div id="wiki"></div>
       </div>

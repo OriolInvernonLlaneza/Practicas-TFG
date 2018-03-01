@@ -50,7 +50,7 @@ wikiImage = function (data) {
   }
 
   if (imageURL != null) {
-    $("#wiki").append("<div><img src='" + imageURL + "'/>");
+    $("#wiki").append("<div><img class='img-thumbnail float-left' src='" + imageURL + "'/>");
   }
   if (content != null) {
     $("#wiki").append("<p>" + content + "</p>");

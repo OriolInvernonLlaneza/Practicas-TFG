@@ -142,8 +142,9 @@ function createMap() {
             function showTable(d) {
                 sTable.html("");
                 showPop(sTable);
-                let html = "<button id='closeTable' class='btn btn-danger'>X</button>"
-                    +"<div id='sc'><table id='sTable'><thead><tr><th>Autor</th><th>Destinatario</th>"
+                let html = "<button id='closeTable' class='btn btn-danger'>X</button><div id='sc' class='table-responsive'>"
+                    + "<table class='table table-responsive table-dark table-striped table-bordered table-sm'"
+                    + "><thead><tr><th>Autor</th><th>Destinatario</th>"
                     + "<th>Tema</th><th></th></tr></thead><tbody>";
                 for (let i = 0; i < mLinks.length; i++) {
                     let l = mLinks[i];
