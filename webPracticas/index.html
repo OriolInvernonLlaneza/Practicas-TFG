@@ -110,7 +110,7 @@
           <h5> Mínimo nº de cartas: 0 <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25" data-slider-step="1" data-slider-value="0"/> 25 </h5>
             <script>$("#slider").bootstrapSlider({
               formatter: function(value) {
-                return 'Current value: ' + value;
+                return value;
               }
             });</script>
         </div>
@@ -141,10 +141,10 @@
       </p>
       <p>
         Los diferentes grafos han sido desarrollados con la versión 4.0 de
-        <a target="_blank" href="https://d3js.org/">D3.js</a>, una librería de visualización de datos para JavaScript. Para dibujar el mapa se ha utilizado el
-        <a target="_blank" href="https://github.com/topojson/topojson">TopoJson</a>
+        <a target="_blank" href="https://d3js.org/">D3.js</a>, una librería de visualización de datos para JavaScript. 
+        Para dibujar el mapa se ha utilizado el <a target="_blank" href="https://github.com/topojson/topojson">TopoJson</a>
         <em>world-50m.json</em>. Los datos relativos a las cartas también se han almacenado en diferentes archivos JSON. Para
-        el estilo de la página y sus coonentes se ha utilizado la famosa librempría
+        el estilo de la página y sus componentes se ha utilizado la famosa librería
         <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>, también en su versión 4.0.
       </p>
       <p>

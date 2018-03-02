@@ -90,7 +90,7 @@ function createMap() {
             let mNodes = json.nodes;
             let mLinks = json.links;
 
-            mLinks.forEach(l => {
+            mLinks.forEach(function(l) {
                 l.source = mNodes[l.source - 1];
                 l.destination = mNodes[l.destination - 1];
             });

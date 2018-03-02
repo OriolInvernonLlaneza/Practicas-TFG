@@ -50,12 +50,9 @@ wikiImage = function (data) {
   }
 
   if (imageURL != null) {
-    $("#wiki").append("<img id='wikiImg' class='img-thumbnail float-left' src='" + imageURL + "'/>");
-    $("#wiki").attr("height", function() {
-      return $("#wikiImg").attr("height");
-    });
+    $("#wiki").append("<img id='wikiImg' class='rounded' src='" + imageURL + "'/>");
   }
   if (content != null) {
-    $("#wiki").append("<p>" + content + "</p>");
+    $("#wiki").append("<p id='wikiP'>" + content + "</p>");
   }
 };

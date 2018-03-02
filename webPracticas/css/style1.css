@@ -119,6 +119,24 @@ h2 {
     margin-top: 5%;
 }
 
+/* wiki */
+#wiki {
+    display: table;
+  }
+  
+#wikiImg {
+    vertical-align: middle;
+    display: table-cell;
+    width: 100px;
+    height: 125px;
+    margin-right: 1em;
+}
+
+#wikiP {
+    vertical-align: middle;
+    display: table-cell;
+}
+
 /*parr*/
 p {
     margin-right: 10%;
