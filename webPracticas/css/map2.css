@@ -1,0 +1,14 @@
+
+.land {
+    fill: #8d8d8d;
+    stroke: #000000;
+}
+
+.boundary {
+    fill: none;
+    stroke: #000000;
+}
+
+#map {
+    background-color: #fce87657;
+}

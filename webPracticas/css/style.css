@@ -119,6 +119,10 @@ h2 {
     margin-top: 5%;
 }
 
+#mapa, #intro {
+    padding-top: 50px;
+}
+
 /* wiki */
 #wiki {
     display: table;
