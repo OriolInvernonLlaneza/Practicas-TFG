@@ -1,6 +1,5 @@
-
 .land {
-    fill: #8d8d8d;
+    fill: #b2e6a8;
     stroke: #000000;
 }
 
@@ -10,5 +9,13 @@
 }
 
 #map {
-    background-color: #fce87657;
+    background-color: #ffffcc;
+}
+
+.mapNodes {
+    fill: #ffee00;
+}
+
+.cirMap {
+    fill: goldenrod;
 }

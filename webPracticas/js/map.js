@@ -196,10 +196,11 @@ function createMap() {
 
             //add nodes
             let mNode = mapDraw.append("g")
-                .selectAll(".node")
+                .selectAll(".mapNode")
                 .data(d3.values(mNodes))
-                .attr("class", "node")
+                .attr("class", "mapNode")
                 .enter().append("circle")
+                .attr("class", "cirMap")
                 .attr("r", 1)
                 .attr("cx", function (d) {
                     let aux = [d.long, d.lat];
@@ -208,8 +209,7 @@ function createMap() {
                 .attr("cy", function (d) {
                     let aux = [d.long, d.lat];
                     return projection(aux)[1];
-                })
-                .attr("fill", "GoldenRod");
+                });
 
             // tooltip titles
             mNode.append("title").text(function (d) { return d.name; });

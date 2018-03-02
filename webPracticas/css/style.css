@@ -119,6 +119,10 @@ h2 {
     margin-top: 5%;
 }
 
+h3 {
+    font-size: 1.25rem;
+}
+
 #mapa, #intro {
     padding-top: 50px;
 }

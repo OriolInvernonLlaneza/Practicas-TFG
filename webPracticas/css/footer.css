@@ -63,7 +63,7 @@
 	width: 35%;
 }
 
-.footer-distributed .footer-center i{
+.footer-distributed .footer-center i, .spIcon{
 	background-color:  #33383b;
 	color: #ffffff;
 	font-size: 25px;
@@ -76,7 +76,7 @@
 	vertical-align: middle;
 }
 
-.footer-distributed .footer-center i.fa-envelope{
+.footer-distributed .footer-center .spIcon{
 	font-size: 17px;
 	line-height: 38px;
 }
@@ -93,6 +93,7 @@
 	font-weight: normal;
 	font-size:14px;
 	line-height:2;
+	color: #ffffff;
 }
 
 .footer-distributed .footer-center p a{
