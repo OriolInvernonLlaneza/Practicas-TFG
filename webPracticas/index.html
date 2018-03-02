@@ -19,6 +19,9 @@
   <script src="js/changeCSS.js"></script>
   <script src="js/map.js"></script>
 
+  <link rel="stylesheet" href="css/bootstrap-slider.css">
+  <script src="js/bootstrap-slider.js"></script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Visualización Correspondencia Jovellanos">
   <meta name="author" content="Oriol Invernón Llaneza">
@@ -69,6 +72,7 @@
         <button class="tablinks" onclick="addGraph('resources/jovellanos.json', event)">Completo</button>
         <button id="helpButton" data-toggle="modal" data-target="#help">Instrucciones</button>
       </div>
+
       <!-- Modal -->
       <div class="modal fade" id="help" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -99,11 +103,17 @@
           </div>
         </div>
       </div>
+
+      <!-- Graph -->
       <div id="graph" class="framed">
-        <form style="float: right">
-          <h5> Mínimo nº de cartas: 0
-            <input type="range" id="slider" name="points" value=0 min="0" max="25" onchange="threshold(this.value)"> 25 </h5>
-        </form>
+        <div style="float: right">
+          <h5> Mínimo nº de cartas: 0 <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25" data-slider-step="1" data-slider-value="0"/> 25 </h5>
+            <script>$("#slider").bootstrapSlider({
+              formatter: function(value) {
+                return 'Current value: ' + value;
+              }
+            });</script>
+        </div>
         <div class="ui-widget" style="float:left; width:50%;">
           <div class="input-group mb-3">
             <input id="search" type="text" class="form-control" aria-describedby="basic-addon2">
@@ -116,9 +126,10 @@
         <div id="wiki"></div>
       </div>
 
-      <h2 id="mapa">Mapa</h2>
+      <!-- Map -->
+      <h2 id="mapa" style="clear:both">Mapa</h2>
       <div>
-        <svg class="framed" id="map" width="1080" height="500" onLoad="createMap()"></svg>
+        <svg class="framed" id="map" onLoad="createMap()"></svg>
       </div>
 
       <h2 id="about">Acerca de</h2>
@@ -142,6 +153,8 @@
       </p>
     </div>
   </main>
+
+  <!-- Footer -->
   <footer class="footer-distributed">
     <div class="footer-left">
       <img src="css/uniovi.png" height="77.5" width="110" />

@@ -33,6 +33,10 @@ div.tooltip {
 }
 
 /*graph*/
+#sli .slider-selection {
+	background: #BABABA;
+}
+
 .link {
     stroke-opacity: 0.6;
 }
@@ -109,6 +113,10 @@ div.tooltip {
 body {
     margin: 0;
     position: relative;
+}
+
+h2 {
+    margin-top: 5%;
 }
 
 /*parr*/

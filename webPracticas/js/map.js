@@ -1,6 +1,9 @@
 function createMap() {
     let map = d3.select("#map");
 
+    map.attr("width", map.node().parentNode.clientWidth)
+       .attr("height", 500);
+
     // take size from map
     let width = map.attr("width"),
         height = map.attr("height");
