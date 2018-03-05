@@ -26,6 +26,28 @@ function searchSomoza(nodeList) {
     });
 }
 
+//Pick color of nodes based on friendship etc
+function colorSelection(d) {
+    if (d.id == 1) {
+        return "pink";
+    }
+
+    let paisano = (d.paisano == "True");
+    let amigo = (d.amigo == "True");
+
+    if (paisano && amigo) {
+        return "cyan";
+    } else {
+        if (paisano) {
+            return "GoldenRod";
+        } else if (amigo) {
+            return "green";
+        } else {
+            return "purple";
+        }
+    }
+}
+
 function somozaGraph(ngraph) {
     //d3.select("#somoza").on("keydown", keydown); // event handler that starts the brushing
     //d3.select("#somoza").on("keyup", keyup); // event handler that ends the brushing
@@ -106,14 +128,14 @@ function somozaGraph(ngraph) {
     somozaMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
 
 
-    ngraph.nodes.unshift({nombre: "Gaspar Melchor", apellidos: "Jovellanos", id: 1});
+    ngraph.nodes.unshift({ nombre: "Gaspar Melchor", apellidos: "Jovellanos", id: 1 });
     searchSomoza(ngraph.nodes);
     let links = [];
     // create links
     if (!("links" in ngraph)) {
-        for(let i = 1; i < ngraph.nodes.length; i++) {
-            ngraph.nodes[i].id = i+1;
-            let link = {source:ngraph.nodes[0], target:ngraph.nodes[i], relation: ngraph.nodes.relationJove};
+        for (let i = 1; i < ngraph.nodes.length; i++) {
+            ngraph.nodes[i].id = i + 1;
+            let link = { source: ngraph.nodes[0], target: ngraph.nodes[i], relation: ngraph.nodes.relationJove };
             links.push(link);
         }
     }
@@ -149,7 +171,7 @@ function somozaGraph(ngraph) {
         .enter().append("circle")
         .attr("r", 5)
         .attr("fill", function (d) {
-            return "GoldenRod";
+            return colorSelection(d);
         })
         .call(d3.drag() // drag functions on node
             .on("start", dragstarted)
