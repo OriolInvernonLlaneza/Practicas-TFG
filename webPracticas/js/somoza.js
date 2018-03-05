@@ -9,7 +9,7 @@ function selectName(n) {
     return n.nombre + " " + n.apellidos;
 }
 
-/*function searchSomoza(nodeList) {
+function searchSomoza(nodeList) {
     // jquery search and autocomplete
     let optArray = [];
     for (let i = 0; i < nodeList.length - 1; i++) {
@@ -20,14 +20,15 @@ function selectName(n) {
     }
     optArray = optArray.sort();
     $(function () {
-        $("#search").autocomplete({
+        $("#searchSom").autocomplete({
             source: optArray
         });
     });
-}*/
+}
 
 function somozaGraph(ngraph) {
-    //searchSomoza(ngraph.nodes);
+    //d3.select("#somoza").on("keydown", keydown); // event handler that starts the brushing
+    //d3.select("#somoza").on("keyup", keyup); // event handler that ends the brushing
 
     somozaSVG = d3.select("#somoza");
 
@@ -55,7 +56,7 @@ function somozaGraph(ngraph) {
     function dragstarted(d) {
         if (!d3.event.active) { somozaSim.alphaTarget(0.3).restart(); }
 
-        if (!d.selected && !shiftKeySom) {
+        if (!d.selected && !shiftKey) {
             // if this node isn"t selected, then we have to unselect every other node
             nodeSom.classed("selected", function (p) {
                 return p.selected = p.previouslySelected = false;
@@ -105,7 +106,8 @@ function somozaGraph(ngraph) {
     somozaMain.call(zoom).on("dblclick.zoom", null); //disable zoom on doubleclick
 
 
-    ngraph.nodes.unshift({nombre:"G.M. Jovellanos", id: 1});
+    ngraph.nodes.unshift({nombre: "Gaspar Melchor", apellidos: "Jovellanos", id: 1});
+    searchSomoza(ngraph.nodes);
     let links = [];
     // create links
     if (!("links" in ngraph)) {
@@ -258,12 +260,12 @@ function somozaGraph(ngraph) {
 }
 
 //search function
-/*function searchNode() {
+function searchNodeSom() {
     //find the node
-    let selectedVal = document.getElementById("search").value;
+    let selectedVal = document.getElementById("searchSom").value;
     if (selectedVal !== "" && selectedVal !== "none") {
         let selected = nodeSom.filter(function (d, i) {
-            return d.fname !== selectedVal;
+            return d.nombre + " " + d.apellidos !== selectedVal;
         });
         //Reduce the opacity of the non searched
         selected.style("opacity", 0);
@@ -272,8 +274,8 @@ function somozaGraph(ngraph) {
             .duration(5000) // restore opacity
             .style("opacity", 1);
     }
-    document.getElementById("search").value = "";
-}*/
+    document.getElementById("searchSom").value = "";
+}
 
 function addSomozaGraph(resource) {
     d3.json(resource, function (error, json) {

@@ -30,7 +30,7 @@
   <title>Correspondencia Jovellanos</title>
 </head>
 
-<body data-spy="scroll" data-target="#spyNav" >
+<body data-spy="scroll" data-target="#spyNav">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="spyNav">
     <a class="navbar-brand" href="">Correspondencia Jovellanos</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
@@ -95,8 +95,8 @@
                 <strong>Selección múltiple:</strong> Para seleccionar varios nodos mantenga pulsado
                 <em>Shift</em> y haga click varios nodos o arrastre el ratón sobre ellos.</p>
               <p>
-                <strong>Resaltar:</strong> Para ocultar todos los nodos menos el seleccionado y sus vecinos haga doble click sobre un
-                nodo. Para volver a la normalidad repita la operación en cualquier nodo.</p>
+                <strong>Resaltar:</strong> Para ocultar todos los nodos menos el seleccionado y sus vecinos haga doble click sobre
+                un nodo. Para volver a la normalidad repita la operación en cualquier nodo.</p>
               <p>
                 <strong>Deselección:</strong> Para deseleccionar haga click en cualquier parte libre de nodos.</p>
             </div>
@@ -110,9 +110,11 @@
       <!-- Graph -->
       <div id="graph" class="framed">
         <div style="float: right">
-          <h3> Mínimo nº de cartas: 0 <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25" data-slider-step="1" data-slider-value="0" title="Deslizador mínimo número de cartas"/> 25 </h3>
-            <script>$("#slider").bootstrapSlider({
-              formatter: function(value) {
+          <h3> Mínimo nº de cartas: 0
+            <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0"
+              data-slider-max="25" data-slider-step="1" data-slider-value="0" title="Deslizador mínimo número de cartas" /> 25 </h3>
+          <script>$("#slider").bootstrapSlider({
+              formatter: function (value) {
                 return value;
               }
             });</script>
@@ -135,9 +137,18 @@
         <svg class="framed" id="map" onLoad="createMap()"></svg>
       </div>
 
+      <!-- Somoza -->
       <h2 id="redSom">Red Social según Somoza</h2>
-      <div>
-        <svg class="framed" id="somoza" onLoad="addSomozaGraph('resources/somoza.json')"></svg>
+      <div class="framed">
+        <div class="ui-widget" style="float:left; width:50%;">
+          <div class="input-group mb-3">
+            <input id="searchSom" type="text" class="form-control" title="Barra de búsqueda Somoza">
+            <div class="input-group-append">
+              <button class="btn btn-search btn-outline-secondary" type="button" onclick="searchNodeSom()">Buscar</button>
+            </div>
+          </div>
+        </div>
+        <svg id="somoza" onLoad="addSomozaGraph('resources/somoza.json')"></svg>
       </div>
 
       <h2 id="about">Acerca de</h2>
@@ -149,8 +160,9 @@
       </p>
       <p>
         Los diferentes grafos han sido desarrollados con la versión 4.0 de
-        <a target="_blank" href="https://d3js.org/">D3.js</a>, una librería de visualización de datos para JavaScript. 
-        Para dibujar el mapa se ha utilizado el <a target="_blank" href="https://github.com/topojson/topojson">TopoJson</a>
+        <a target="_blank" href="https://d3js.org/">D3.js</a>, una librería de visualización de datos para JavaScript. Para dibujar el mapa se ha utilizado el
+        <a target="_blank"
+          href="https://github.com/topojson/topojson">TopoJson</a>
         <em>world-50m.json</em>. Los datos relativos a las cartas también se han almacenado en diferentes archivos JSON. Para
         el estilo de la página y sus componentes se ha utilizado la famosa librería
         <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>, también en su versión 4.0.
@@ -165,7 +177,7 @@
   <!-- Footer -->
   <footer class="footer-distributed">
     <div class="footer-left">
-      <img src="css/uniovi.png" height="77" width="110" alt="Logo UniOvi"/>
+      <img src="css/uniovi.png" height="77" width="110" alt="Logo UniOvi" />
       <p class="footer-links">
         <a href="#map" onclick="changeCSS('css/map1.css', 2);">Mapa 1</a> -
         <a href="#map" onclick="changeCSS('css/map2.css', 2);">Mapa 2</a>
@@ -201,8 +213,8 @@
       </div>
       <p style="padding-top:1em">
         <a href="http://jigsaw.w3.org/css-validator/check/referer">
-          <img style="border:0;width:88px;height:31px"
-            src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="¡CSS Válido!" />
+          <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="¡CSS Válido!"
+          />
         </a>
       </p>
     </div>
