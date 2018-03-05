@@ -28,29 +28,29 @@ function searchSomoza(nodeList) {
 
 //Pick color of nodes based on friendship etc
 function colorSelection(d) {
-    if (d.id == 1) {
+    if (d.id === 1) {
         return "pink";
     }
 
-    let paisano = (d.paisano == "True");
-    let amigo = (d.amigo == "True");
+    let paisano = (d.paisano === "True");
+    let amigo = (d.amigo === "True");
 
     if (paisano && amigo) {
         return "cyan";
     } else {
         if (paisano) {
             return "GoldenRod";
-        } else if (amigo) {
-            return "green";
         } else {
-            return "purple";
+            if (amigo) {
+                return "green";
+            } else {
+                return "purple";
+            }
         }
     }
 }
 
 function somozaGraph(ngraph) {
-    //d3.select("#somoza").on("keydown", keydown); // event handler that starts the brushing
-    //d3.select("#somoza").on("keyup", keyup); // event handler that ends the brushing
 
     somozaSVG = d3.select("#somoza");
 
