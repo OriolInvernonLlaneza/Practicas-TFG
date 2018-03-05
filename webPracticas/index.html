@@ -19,6 +19,7 @@
   <script src="js/wiki.js"></script>
   <script src="js/changeCSS.js"></script>
   <script src="js/map.js"></script>
+  <script src="js/somoza.js"></script>
 
   <link rel="stylesheet" href="css/bootstrap-slider.css">
   <script src="js/bootstrap-slider.js"></script>
@@ -44,8 +45,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visualizaciones</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#redes">Redes</a>
+            <a class="dropdown-item" href="#redes">Redes Correspondencia</a>
             <a class="dropdown-item" href="#mapa">Mapa</a>
+            <a class="dropdown-item" href="#redSom">Red Somoza</a>
           </div>
         </li>
         <li class="nav-item">
@@ -66,7 +68,7 @@
         venenatis ante ac, ultricies felis.
       </p>
 
-      <h2 id="redes">Redes</h2>
+      <h2 id="redes">Redes Correspondencia</h2>
       <div class="tab">
         <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
         <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
@@ -131,6 +133,11 @@
       <h2 id="mapa" style="clear:both">Mapa</h2>
       <div>
         <svg class="framed" id="map" onLoad="createMap()"></svg>
+      </div>
+
+      <h2 id="redSom">Red Social según Somoza</h2>
+      <div>
+        <svg class="framed" id="somoza" onLoad="addSomozaGraph('resources/somoza.json')"></svg>
       </div>
 
       <h2 id="about">Acerca de</h2>
