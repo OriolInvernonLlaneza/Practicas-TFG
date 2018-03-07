@@ -33,7 +33,8 @@
       "name": "Josefa J.",
       "fname": "Josefa Jovellanos",
       "wiki": "Josefa_de_Jovellanos",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 6,
@@ -75,7 +76,8 @@
       "name": "Gertrudis Busto",
       "fname": "María Gertrudis del Busto y Miranda",
       "wiki": "",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 12,
@@ -229,7 +231,8 @@
       "name": "Catalina",
       "fname": "Catalina de Sena",
       "wiki": "",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 34,
@@ -488,7 +491,8 @@
       "name": "Benita Jovellanos",
       "fname": "Benita Jovellanos",
       "wiki": "",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 71,
@@ -600,7 +604,8 @@
       "name": "Salas Veri",
       "fname": "Bárbara Salas de Veri",
       "wiki": "",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 87,
@@ -614,7 +619,8 @@
       "name": "de Eulate",
       "fname": "María Antonia de Eulate",
       "wiki": "",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 89,
@@ -663,7 +669,8 @@
       "name": "Lady Holland",
       "fname": "Lady Holland",
       "wiki": "Elizabeth_Fox_Baroness_Holland",
-      "color": "green"
+      "color": "green",
+      "woman": "true"
     },
     {
       "id": 96,
@@ -1217,7 +1224,8 @@
       "id": 181,
       "fname": "Josefa Jovellanos?",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 182,
@@ -1607,7 +1615,8 @@
       "id": 246,
       "fname": "María del Rosario de Navia Bolaño",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 247,
@@ -1619,19 +1628,22 @@
       "id": 248,
       "fname": "María Josefa de Piles",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 249,
       "fname": "María Teresa de Vallabriga y Rozas",
       "wiki": "María_Teresa_de_Vallabriga",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 250,
       "fname": "Mariana Rábago",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 251,
@@ -1955,7 +1967,8 @@
       "id": 304,
       "fname": "Carlota Joaquina de Borbón",
       "wiki": "Carlota_Joaquina_de_Borbón",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 305,
@@ -2027,7 +2040,8 @@
       "id": 316,
       "fname": "Rita de Barrenechea y Morante",
       "wiki": "Maria_Rita_Barrenetxea",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 317,
@@ -2081,7 +2095,8 @@
       "id": 325,
       "fname": "Simona Tadea Ramírez de Jove",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 326,
@@ -2105,7 +2120,8 @@
       "id": 329,
       "fname": "Sor Manuela Antonia del Espíritu Santo",
       "wiki": "",
-      "color": ""
+      "color": "",
+      "woman": "true"
     },
     {
       "id": 330,
