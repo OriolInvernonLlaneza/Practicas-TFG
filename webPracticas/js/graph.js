@@ -158,12 +158,12 @@ function createGraph(ngraph) {
         }).attr("class", "link")
         .attr("fill-opacity", 0)
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
-        .attr("stroke", function (d) { return fill(d.value); })
+        .attr("stroke", function (d) { return fill(Math.sqrt(d.value)); })
         .on("mouseover", function (d, i) {
             d3.select(this).style("stroke", "red");
             showArrow(d, i);
         }).on("mouseout", function (d, i) {
-            d3.select(this).style("stroke", function (d) { return fill(d.value); });
+            d3.select(this).style("stroke", function (d) { return fill(Math.sqrt(d.value)); });
             hideArrow(d, i);
         });
 
