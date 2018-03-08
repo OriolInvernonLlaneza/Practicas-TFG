@@ -36,7 +36,7 @@ function createGraph(ngraph) {
         height = +svg.attr("height");
 
     // color scheme
-    let fill = d3.scaleOrdinal(d3.schemeCategory20);
+    let fill = d3.scaleOrdinal(d3.schemeCategory20b);
 
     // remove any previous graphs
     svg.selectAll(".g-main").remove();
@@ -435,6 +435,7 @@ function createGraph(ngraph) {
     }
     node.on("dblclick", connectedNodes); // dblclick listener (neigh)
 
+    //waits for graph to stop moving
     if(!restarted) { 
         while (simulation.alpha() > 0.1) { 
             simulation.tick(); 
@@ -474,11 +475,44 @@ function restart() {
 
 //adjust threshold
 function threshold(thresh) {
-    graph.links.splice(0, graph.links.length);
+    graph.links = [];
     for (let i = 0; i < graphOG.links.length; i++) {
         if (graphOG.links[i].value > thresh) {
             graph.links.push(graphOG.links[i]);
         }
+    }
+    restart();
+}
+
+//Checkbox
+let checked = false;
+function checkbox() {
+    graph.nodes = [];
+    graph.links = [];
+    if(checked) {
+        graph = jQuery.extend(true, {}, graphOG);
+        checked = false;
+    } else {
+        graph.nodes.push(graphOG.nodes[0]);   
+        for (let i = 1; i < graphOG.nodes.length; i++) {
+            let aux = jQuery.extend(true, {}, graphOG.nodes[i]);
+            if (aux.hasOwnProperty("woman")) {
+                graph.nodes.push(aux);
+                graph.nodes[graph.nodes.length-1].id = graph.nodes.length;
+                
+                let link = jQuery.extend(true, {},graphOG.links.find(l => l.source===i));
+                let link2 = jQuery.extend(true, {},graphOG.links.find(l => l.target===i));
+                if(link.hasOwnProperty("source")) {
+                    link.source = graph.nodes.length;
+                    graph.links.push(link);
+                } 
+                if(link2.hasOwnProperty("target")) {
+                    link2.target = graph.nodes.length;
+                    graph.links.push(link2);
+                }
+            }
+        }
+        checked = true;
     }
     restart();
 }
@@ -503,6 +537,7 @@ function changeTab(evt) {
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
     document.getElementById("slider").value = 0;
+    document.getElementById("womanCheck").checked = false;
 }
 
 function addGraph(resource, evt) {
