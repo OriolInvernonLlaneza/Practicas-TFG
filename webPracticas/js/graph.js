@@ -475,13 +475,17 @@ function restart() {
 
 //adjust threshold
 function threshold(thresh) {
-    graph.links = [];
-    for (let i = 0; i < graphOG.links.length; i++) {
-        if (graphOG.links[i].value > thresh) {
-            graph.links.push(graphOG.links[i]);
+    if(!checked) {
+        graph.links = [];
+        for (let i = 0; i < graphOG.links.length; i++) {
+            if (graphOG.links[i].value > thresh) {
+                graph.links.push(graphOG.links[i]);
+            }
         }
+        restart();
+    } else {
+        //TODO
     }
-    restart();
 }
 
 //Checkbox
@@ -538,6 +542,7 @@ function changeTab(evt) {
     evt.currentTarget.className += " active";
     document.getElementById("slider").value = 0;
     document.getElementById("womanCheck").checked = false;
+    checked = false;
 }
 
 function addGraph(resource, evt) {
