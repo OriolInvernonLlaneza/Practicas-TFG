@@ -462,7 +462,6 @@ function searchNode() {
             .duration(5000) // restore opacity
             .style("opacity", 1);
     }
-    document.getElementById("search").value = "";
 }
 
 //Restart the visualisation after any node and link changes
@@ -475,50 +474,62 @@ function restart() {
 
 //adjust threshold
 function threshold(thresh) {
+    graph.links = [];
     if(!checked) {
-        graph.links = [];
         for (let i = 0; i < graphOG.links.length; i++) {
             if (graphOG.links[i].value > thresh) {
                 graph.links.push(graphOG.links[i]);
             }
         }
-        restart();
     } else {
-        //TODO
+        for (let i = 0; i < wGraph.links.length; i++) {
+            if (wGraph.links[i].value > thresh) {
+                graph.links.push(wGraph.links[i]);
+            }
+        }
     }
+    restart();
 }
 
 //Checkbox
 let checked = false;
 function checkbox() {
-    graph.nodes = [];
-    graph.links = [];
+    document.getElementById("slider").value = 0;
     if(checked) {
         graph = jQuery.extend(true, {}, graphOG);
         checked = false;
     } else {
-        graph.nodes.push(graphOG.nodes[0]);   
-        for (let i = 1; i < graphOG.nodes.length; i++) {
-            let aux = jQuery.extend(true, {}, graphOG.nodes[i]);
-            if (aux.hasOwnProperty("woman")) {
-                graph.nodes.push(aux);
-                graph.nodes[graph.nodes.length-1].id = graph.nodes.length;
-                
-                let link = jQuery.extend(true, {},graphOG.links.find(l => l.source===i));
-                let link2 = jQuery.extend(true, {},graphOG.links.find(l => l.target===i));
-                if(link.hasOwnProperty("source")) {
-                    link.source = graph.nodes.length;
-                    graph.links.push(link);
-                } 
-                if(link2.hasOwnProperty("target")) {
-                    link2.target = graph.nodes.length;
-                    graph.links.push(link2);
-                }
-            }
-        }
+        graph = jQuery.extend(true, {}, wGraph);
         checked = true;
     }
     restart();
+}
+
+//Prepares a small copy of the graph consisting only of women, there wasn't a copy before but Threshold wouldnt work (js references maaan)
+let wGraph;
+function prepWomen() {
+    wGraph = jQuery.extend(true, {}, graphOG);
+    wGraph.nodes = [];
+    wGraph.links = [];
+    wGraph.nodes.push(graphOG.nodes[0]);   
+    for (let i = 1; i < graphOG.nodes.length; i++) {
+        let aux = jQuery.extend(true, {}, graphOG.nodes[i]);
+        if (aux.hasOwnProperty("woman")) {
+            wGraph.nodes.push(aux);
+            wGraph.nodes[wGraph.nodes.length-1].id = wGraph.nodes.length;
+            
+            let link = jQuery.extend(true, {}, graphOG.links.find(l => l.source===i));
+            let link2 = jQuery.extend(true, {}, graphOG.links.find(l => l.target===i));
+            if(link.hasOwnProperty("source")) {
+                link.source = wGraph.nodes.length;
+                wGraph.links.push(link);
+            } 
+            if(link2.hasOwnProperty("target")) {
+                link2.target = wGraph.nodes.length;
+                wGraph.links.push(link2);
+            }
+        }
+    }
 }
 
 function changeTab(evt) {
@@ -551,6 +562,7 @@ function addGraph(resource, evt) {
         if (!error) {
             graph = json;
             graphOG = JSON.parse(JSON.stringify(graph));
+            prepWomen();
             createGraph(graph);
         }
     });
