@@ -8,6 +8,8 @@ let graph;
 let simulation;
 let graphOG;
 let restarted;
+let wGraph;
+let checked = false;
 
 function createGraph(ngraph) {
 
@@ -492,7 +494,6 @@ function threshold(thresh) {
 }
 
 //Checkbox
-let checked = false;
 function checkbox() {
     document.getElementById("slider").value = 0;
     if(checked) {
@@ -506,7 +507,6 @@ function checkbox() {
 }
 
 //Prepares a small copy of the graph consisting only of women, there wasn't a copy before but Threshold wouldnt work (js references maaan)
-let wGraph;
 function prepWomen() {
     wGraph = jQuery.extend(true, {}, graphOG);
     wGraph.nodes = [];
@@ -518,8 +518,8 @@ function prepWomen() {
             wGraph.nodes.push(aux);
             wGraph.nodes[wGraph.nodes.length-1].id = wGraph.nodes.length;
             
-            let link = jQuery.extend(true, {}, graphOG.links.find(l => l.source===i));
-            let link2 = jQuery.extend(true, {}, graphOG.links.find(l => l.target===i));
+            let link = jQuery.extend(true, {}, graphOG.links.find((l) => l.source===i));
+            let link2 = jQuery.extend(true, {}, graphOG.links.find((l) => l.target===i));
             if(link.hasOwnProperty("source")) {
                 link.source = wGraph.nodes.length;
                 wGraph.links.push(link);
