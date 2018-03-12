@@ -38,7 +38,7 @@ function createGraph(ngraph) {
         height = +svg.attr("height");
 
     // color scheme
-    let fill = d3.scaleOrdinal(d3.schemeCategory20b);
+    let fill = d3.scaleQuantize().domain([1, Math.sqrt(ngraph.links[0].value)]).range(d3.schemeCategory10);
 
     // remove any previous graphs
     svg.selectAll(".g-main").remove();
@@ -480,13 +480,13 @@ function threshold(thresh) {
     if(!checked) {
         for (let i = 0; i < graphOG.links.length; i++) {
             if (graphOG.links[i].value > thresh) {
-                graph.links.push(graphOG.links[i]);
+                graph.links.push(jQuery.extend(true, {},graphOG.links[i]));
             }
         }
     } else {
         for (let i = 0; i < wGraph.links.length; i++) {
             if (wGraph.links[i].value > thresh) {
-                graph.links.push(wGraph.links[i]);
+                graph.links.push(jQuery.extend(true, {},wGraph.links[i]));
             }
         }
     }
