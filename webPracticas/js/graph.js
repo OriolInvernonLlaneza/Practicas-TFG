@@ -480,13 +480,13 @@ function threshold(thresh) {
     if(!checked) {
         for (let i = 0; i < graphOG.links.length; i++) {
             if (graphOG.links[i].value > thresh) {
-                graph.links.push(jQuery.extend(true, {},graphOG.links[i]));
+                graph.links.push({...graphOG.links[i]});
             }
         }
     } else {
         for (let i = 0; i < wGraph.links.length; i++) {
             if (wGraph.links[i].value > thresh) {
-                graph.links.push(jQuery.extend(true, {},wGraph.links[i]));
+                graph.links.push({...wGraph.links[i]});
             }
         }
     }
@@ -497,10 +497,10 @@ function threshold(thresh) {
 function checkbox() {
     document.getElementById("slider").value = 0;
     if(checked) {
-        graph = jQuery.extend(true, {}, graphOG);
+        graph = {... graphOG};
         checked = false;
     } else {
-        graph = jQuery.extend(true, {}, wGraph);
+        graph = {... wGraph};
         checked = true;
     }
     restart();
@@ -508,18 +508,18 @@ function checkbox() {
 
 //Prepares a small copy of the graph consisting only of women, there wasn't a copy before but Threshold wouldnt work (js references maaan)
 function prepWomen() {
-    wGraph = jQuery.extend(true, {}, graphOG);
+    wGraph = {... graphOG};
     wGraph.nodes = [];
     wGraph.links = [];
     wGraph.nodes.push(graphOG.nodes[0]);   
     for (let i = 1; i < graphOG.nodes.length; i++) {
-        let aux = jQuery.extend(true, {}, graphOG.nodes[i]);
+        let aux = {... graphOG.nodes[i]};
         if (aux.hasOwnProperty("woman")) {
             wGraph.nodes.push(aux);
             wGraph.nodes[wGraph.nodes.length-1].id = wGraph.nodes.length;
             
-            let link = jQuery.extend(true, {}, graphOG.links.find((l) => l.source===i));
-            let link2 = jQuery.extend(true, {}, graphOG.links.find((l) => l.target===i));
+            let link = {... graphOG.links.find((l) => l.source===i)};
+            let link2 = {... graphOG.links.find((l) => l.target===i)};
             if(link.hasOwnProperty("source")) {
                 link.source = wGraph.nodes.length;
                 wGraph.links.push(link);
