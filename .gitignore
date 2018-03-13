@@ -22,3 +22,8 @@
 hs_err_pid*
 /.metadata/
 /.metadata/
+
+#R
+.RData
+.Rhistory
+
