@@ -4,7 +4,7 @@ library("SnowballC")
 library("RColorBrewer")
 library("wordcloud")
 
-setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
 ex  <- VCorpus(DirSource(directory = "cartas\\ejemplo", encoding = "UTF-8"), readerControl = list(language="es"))
 summary(ex)  #check what went in
 

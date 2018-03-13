@@ -10,6 +10,12 @@ gaspar
 Melchor
 melchor
 servidor
+Servidor
 usted
 sm
 SM
+señor
+Señor
+blm
+BLM
+
