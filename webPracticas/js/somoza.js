@@ -78,7 +78,7 @@ function somozaGraph(ngraph) {
     function dragstarted(d) {
         if (!d3.event.active) { somozaSim.alphaTarget(0.3).restart(); }
 
-        if (!d.selected && !shiftKey) {
+        if (!d.selected) {
             // if this node isn"t selected, then we have to unselect every other node
             nodeSom.classed("selected", function (p) {
                 return p.selected = p.previouslySelected = false;
