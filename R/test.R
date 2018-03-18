@@ -1,8 +1,10 @@
 library("NLP")
 library("tm") #load text mining library
-library("RColorBrewer")
-library("wordcloud2")
-library("RTextTools")
+library("fastmatch")
+library("XML")
+#library("RColorBrewer")
+#library("wordcloud2")
+#library("RTextTools")
 
 setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
 
@@ -23,7 +25,27 @@ cleanCorpus <- function(corpus){
 
 clean <- cleanCorpus(ex)
 cleanCopy <- clean
-stemmed <- tm_map(clean, stemDocument, "spanish")
+
+source("lematizador.r")
+stemCustom <- function(x) {
+  for(i in 1:length(x)) {
+    l <- unlist(strsplit(x[[i]], " "))
+    for(j in 1:length(l)){
+      aux <- lematizador(l[[j]])
+      #print(aux)
+      if(!is.na(aux)) {
+        l[[j]] <- aux
+      }
+      #print(l[[j]])
+    }
+    #str(l)
+    x[[i]] <- paste(unlist(l), collapse=" ")
+    str(x[[i]])
+  }
+  return(x)
+}
+
+stemmed <- tm_map(clean, content_transformer(stemCustom))
 #stemmedC <- tm_map(stemmed, stemCompletion, dictionary=cleanCopy)
 
 inspect(ex[[1]])

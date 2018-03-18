@@ -9,8 +9,7 @@ Gaspar
 gaspar
 Melchor
 melchor
-servidor
-Servidor
+rendido atento servidor
 usted
 sm
 SM
