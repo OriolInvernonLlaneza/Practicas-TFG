@@ -3,11 +3,15 @@ library("tm") #load text mining library
 library("fastmatch")
 library("XML")
 library("stringr")
+library("cluster")
+library("fpc")
+library("dbscan")
+library("factoextra")
 #library("RColorBrewer")
 #library("wordcloud2")
 #library("RTextTools")
 
-#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
 
 customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
@@ -18,10 +22,10 @@ ex <- VCorpus(VectorSource(csv$TextoCarta[1:50]))
 
 cleanCorpus <- function(corpus){
   corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
-  corpus <- tm_map(corpus, removeNumbers) #números
-  corpus <- tm_map(corpus, removePunctuation) #puntuación
-  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords)) #Borrar palabras vacías.
-  corpus <- tm_map(corpus, stripWhitespace) #espacios en blanco extras
+  corpus <- tm_map(corpus, removeNumbers) #numbers
+  corpus <- tm_map(corpus, removePunctuation) #punt
+  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords)) #stopwords
+  corpus <- tm_map(corpus, stripWhitespace) #extra whitespace
   #corpus <- tm_map(corpus, PlainTextDocument)  # needs to come before stemming
   return(corpus)
 }
@@ -58,5 +62,36 @@ stemmed <- tm_map(stemmed, content_transformer(function(x) iconv(enc2utf8(x), su
 
 inspect(stemmed[[40]])
 
-matrix <- DocumentTermMatrix(stemmed) #matriz
-findFreqTerms(matrix, lowfreq = 30) #buscar términos más comunes en matriz
+dtm <- DocumentTermMatrix(stemmed) #matrix
+findFreqTerms(dtm, lowfreq = 30) #buscar términos más comunes en matriz
+#sparse = removeSparseTerms(dtm, 0.90) #remove low freq words
+
+#k means algorithm 1
+m <- as.matrix(sparse)
+d <- dist(m)
+fviz_nbclust(as.matrix(d), kmeans, method = "wss", k.max = 25) #elbow check
+set.seed(1917)
+kfit <- kmeans(d, 2, nstart=100)
+plot(prcomp(d)$x, col=kfit$cl)
+#clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
+
+#k means algorithm 2
+tfxidf <- weightTfIdf(dtm, normalize = TRUE) #norm true for eucli
+m2 <- as.matrix(tfxidf)
+rownames(m2) <- 1:nrow(m2)
+
+m_norm <- norm_eucl(m2)
+fviz_nbclust(as.matrix(m_norm), kmeans, method = "wss", k.max = 25) #elbow check
+set.seed(1917)
+cl <- kmeans(m_norm, 6)
+### show clusters using the first 2 principal components
+plot(prcomp(m_norm)$x, col=cl$cl)
+
+#hierarchical agnes
+h1 <- agnes(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
+h2 <- diana(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
+pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
+pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
+
+#density
+
