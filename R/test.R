@@ -67,7 +67,7 @@ findFreqTerms(dtm, lowfreq = 30) #buscar términos más comunes en matriz
 #sparse = removeSparseTerms(dtm, 0.90) #remove low freq words
 
 #k means algorithm 1
-m <- as.matrix(sparse)
+m <- as.matrix(dtm)
 d <- dist(m)
 fviz_nbclust(as.matrix(d), kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
@@ -77,13 +77,11 @@ plot(prcomp(d)$x, col=kfit$cl)
 
 #k means algorithm 2
 tfxidf <- weightTfIdf(dtm, normalize = TRUE) #norm true for eucli
-m2 <- as.matrix(tfxidf)
+m_norm <- as.matrix(tfxidf)
 rownames(m2) <- 1:nrow(m2)
-
-m_norm <- norm_eucl(m2)
 fviz_nbclust(as.matrix(m_norm), kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
-cl <- kmeans(m_norm, 6)
+cl <- kmeans(m_norm, 5)
 ### show clusters using the first 2 principal components
 plot(prcomp(m_norm)$x, col=cl$cl)
 
