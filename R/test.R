@@ -18,7 +18,7 @@ customStopwords <- as.vector(customStopwords$WORDS)
 
 #ex  <- VCorpus(DirSource(directory = "cartas\\ejemplo", encoding = "UTF-8"), readerControl = list(language="es"))
 csv <- read.csv("cartas\\CorrespondenciaJove.csv", sep =";", header = TRUE, encoding = "UTF-8")
-ex <- VCorpus(VectorSource(csv$TextoCarta[1:50]))
+ex <- VCorpus(VectorSource(csv$TextoCarta[1:35]))
 
 cleanCorpus <- function(corpus){
   corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
@@ -50,6 +50,7 @@ stemCustom <- function(x) {
     }
     #str(l)
     x[[i]] <- paste(unlist(l), collapse=" ")
+    #x[[i]] <- iconv(paste(unlist(l), collapse=" "), from = "UTF8", to = "UTF8")
     #str(x[[i]])
   }
   return(x)
@@ -58,12 +59,12 @@ stemCustom <- function(x) {
 stemmed <- tm_map(clean, content_transformer(stemCustom))
 inspect(stemmed[[1]])
 
-stemmed <- tm_map(stemmed, content_transformer(function(x) iconv(enc2utf8(x), sub = "byte")))
-
-inspect(stemmed[[40]])
+#stemmed <- tm_map(stemmed, content_transformer(function(x) iconv(enc2utf8(x), sub = "byte")))
+#inspect(stemmed[[40]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
-findFreqTerms(dtm, lowfreq = 30) #buscar términos más comunes en matriz
+#inspect(dtm)
+findFreqTerms(dtm, lowfreq = 10) #buscar términos más comunes en matriz
 #sparse = removeSparseTerms(dtm, 0.90) #remove low freq words
 
 #k means algorithm 1
@@ -92,4 +93,12 @@ pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
 #density
-
+db <- dbscan(as.matrix(dtm), 5, 5)
+fviz_cluster(db, data = as.matrix(dtm), stand = FALSE,
+             ellipse = FALSE, show.clust.cent = FALSE,
+             geom = "point",palette = "jco", ggtheme = theme_classic())
+tfxidf <- weightTfIdf(dtm, normalize = TRUE)
+db <- dbscan(as.matrix(tfxidf), 5, 2)
+fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
+             ellipse = FALSE, show.clust.cent = FALSE,
+             geom = "point",palette = "jco", ggtheme = theme_classic())
