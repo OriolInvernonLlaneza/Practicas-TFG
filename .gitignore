@@ -27,3 +27,5 @@ hs_err_pid*
 .RData
 .Rhistory
 
+R/dtm.csv
+R/words.txt

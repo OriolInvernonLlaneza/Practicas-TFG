@@ -11,8 +11,8 @@ library("factoextra")
 #library("wordcloud2")
 #library("RTextTools")
 
-#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
-setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
+setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+#setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
 
 customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
@@ -25,7 +25,7 @@ cleanCorpus <- function(corpus){
   corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
   corpus <- tm_map(corpus, removeNumbers) #numbers
   corpus <- tm_map(corpus, removePunctuation) #punt
-  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿«»!?]", "", n)})) #¡
+  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'´'«»]", "", n)}))
   corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords)) #stopwords
   corpus <- tm_map(corpus, stripWhitespace) #extra whitespace
   #corpus <- tm_map(corpus, PlainTextDocument)  # needs to come before stemming
@@ -66,8 +66,15 @@ inspect(stemmed[[1]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
 #inspect(dtm)
+write.csv(as.matrix(dtm), 'dtm.csv')
+#word list
+words <- dtm$dimnames$Terms
+words <- words[order(words)]
+write.table(words,"words.txt",sep="\t",row.names=FALSE)
+
 findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
 sparse = removeSparseTerms(dtm, 0.95) #remove low freq words
+mOG <- as.matrix(dtm)
 m <- as.matrix(sparse)
 
 #k means algorithm 1
@@ -106,6 +113,12 @@ pltree(h111, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
 #density
+kNNdistplot(mOG, k = 3)
+abline(h = 25, lty = 2)
+db <- dbscan(m, 25, 3)
+fviz_cluster(db, data = mOG, stand = FALSE,
+             ellipse = TRUE, show.clust.cent = FALSE,
+             geom = "point",palette = "jco", ggtheme = theme_classic())
 kNNdistplot(m, k = 3)
 abline(h = 25, lty = 2)
 db <- dbscan(m, 25, 3)
