@@ -19,14 +19,14 @@ customStopwords <- as.vector(customStopwords$WORDS)
 
 #ex  <- VCorpus(DirSource(directory = "cartas\\ejemplo", encoding = "UTF-8"), readerControl = list(language="es"))
 csv <- read.csv("cartas\\CorrespondenciaJove.csv", sep =";", header = TRUE, encoding = "UTF-8")
-ex <- VCorpus(VectorSource(csv$TextoCarta[1:206]))
+ex <- VCorpus(VectorSource(csv$TextoCarta[203:203]))
 
 cleanCorpus <- function(corpus){
-  corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
+  #corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
   corpus <- tm_map(corpus, removeNumbers) #numbers
   corpus <- tm_map(corpus, removePunctuation) #punt
-  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'´'«»]", "", n)}))
-  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords)) #stopwords
+  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'«»]", "", n)}))
+  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords, "all")) #stopwords
   corpus <- tm_map(corpus, stripWhitespace) #extra whitespace
   #corpus <- tm_map(corpus, PlainTextDocument)  # needs to come before stemming
   return(corpus)

@@ -22,6 +22,7 @@ tan
 bm
 BM
 B M
+affmo
 si
 a
 actualmente
