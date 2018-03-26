@@ -11,7 +11,8 @@ library("factoextra")
 #library("wordcloud2")
 #library("RTextTools")
 
-setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
 
 customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
@@ -73,8 +74,9 @@ m <- as.matrix(sparse)
 d <- dist(m)
 fviz_nbclust(as.matrix(d), kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
-kfit <- kmeans(d, 17, nstart=100)
+kfit <- kmeans(d, 3, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
+fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
 
 #k means algorithm 2
@@ -104,12 +106,16 @@ pltree(h111, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
 #density
-db <- dbscan(m, 3, 3)
+kNNdistplot(m, k = 3)
+abline(h = 25, lty = 2)
+db <- dbscan(m, 25, 3)
 fviz_cluster(db, data = m, stand = FALSE,
-             ellipse = FALSE, show.clust.cent = FALSE,
+             ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 tfxidf <- weightTfIdf(dtm, normalize = TRUE)
-db <- dbscan(as.matrix(tfxidf), 2, 2)
+kNNdistplot(tfxidf, k = 3)
+abline(h = 1.4, lty = 2)
+db <- dbscan(as.matrix(tfxidf), 1.4, 3)
 fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
              ellipse = FALSE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
