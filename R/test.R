@@ -31,7 +31,7 @@ cleanCorpus <- function(corpus){
   corpus <- tm_map(corpus, removeNumbers) #numbers
   corpus <- tm_map(corpus, removePunctuation) #punt
   corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'«»]", "", n)}))
-  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords, "all")) #stopwords
+  corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords, "al")) #stopwords
   corpus <- tm_map(corpus, stripWhitespace) #extra whitespace
   #corpus <- tm_map(corpus, PlainTextDocument)  # needs to come before stemming
   return(corpus)
@@ -192,12 +192,14 @@ ggplot(results_df, aes(x = k, y = perplexity)) +
 
 #Topic modeling
 #Set parameters for Gibbs sampling
-thin <- 500
+burnin <- 4000
+iter <- 1500
+thin <- 50
 seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
 #Number of topics
-k <- 15
+k <- 30
 ldaOut <-LDA(dtm, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
