@@ -12,6 +12,7 @@ library("topicmodels")
 library("doParallel")
 library("ggplot2")
 library("scales")
+library("tidytext")
 #library("RColorBrewer")
 #library("wordcloud2")
 #library("RTextTools")
@@ -78,7 +79,7 @@ words <- words[order(words)]
 write.table(words,"words.txt",sep="\t",row.names=FALSE)
 
 findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
-sparse = removeSparseTerms(dtm, 0.95) #remove low freq words
+sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
 mOG <- as.matrix(dtm)
 m <- as.matrix(sparse)
 
@@ -148,14 +149,14 @@ clusterEvalQ(cluster, {
   library(topicmodels)
 })
 
-full_data <- dtm
+full_data <- sparse
 n <- nrow(full_data)
 burnin <- 4000
 iter <- 1500
 keep <- 50
 folds <- 5
 splitfolds <- sample(1:folds, n, replace = TRUE)
-candidate_k <- c(3, 5, 7, 10, 15, 20, 25, 30, 40, 50, 75, 100, 200, 300) # candidates for how many topics
+candidate_k <- c(5, 7, 10, 15, 20, 23, 25, 30, 40, 50, 75, 100, 200, 300) # candidates for how many topics
 
 # export all the needed R objects to the parallel sessions
 clusterExport(cluster, c("full_data", "burnin", "iter", "keep", "splitfolds", "folds", "candidate_k"))
@@ -199,18 +200,18 @@ seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
 #Number of topics
-k <- 30
-ldaOut <-LDA(dtm, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+k <- 20
+ldaOut <-LDA(m, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
-write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbs",k,"DocsToTopics.csv"))
+write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbsSparse99",k,"DocsToTopics.csv"))
 #top 10 terms in each topic
 ldaOut.terms <- as.matrix(terms(ldaOut,10))
-write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbs",k,"TopicsToTerms.csv"))
+write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbsSparse99",k,"TopicsToTerms.csv"))
 #probabilities associated with each topic assignment
 topicProbabilities <- as.data.frame(ldaOut@gamma)
-write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbs",k,"TopicProbabilities.csv"))
+write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbsSparse99",k,"TopicProbabilities.csv"))
 #Find relative importance of top 2 topics
 topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
       sort(topicProbabilities[x,])[k]/sort(topicProbabilities[x,])[k-1]})
@@ -218,6 +219,38 @@ topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
 topic2ToTopic3 <- lapply(1:nrow(dtm),function(x) {
         sort(topicProbabilities[x,])[k-1]/sort(topicProbabilities[x,])[k-2]})
 #write to file
-write.csv(topic1ToTopic2,file=paste("TopicModel/LDAGibbs",k,"Topic1ToTopic2.csv"))
-write.csv(topic2ToTopic3,file=paste("TopicModel/LDAGibbs",k,"Topic2ToTopic3.csv"))
+write.csv(topic1ToTopic2,file=paste("TopicModel/LDAGibbsSparse99",k,"Topic1ToTopic2.csv"))
+write.csv(topic2ToTopic3,file=paste("TopicModel/LDAGibbsSparse99",k,"Topic2ToTopic3.csv"))
 
+jo_topics <- tidy(ldaOut, matrix = "beta")
+library(ggplot2)
+library(dplyr)
+
+ap_top_terms <- jo_topics %>%
+  group_by(topic) %>%
+  top_n(6, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+ap_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+
+#sparcl
+library("sparcl")
+hscA <- HierarchicalSparseCluster(as.matrix(dtm), method = "average", niter=150 ,dissimilarity = "squared.distance")
+hscC <- HierarchicalSparseCluster(as.matrix(dtm), method = "complete", niter=150 ,dissimilarity = "squared.distance")
+hscS <- HierarchicalSparseCluster(as.matrix(dtm), method = "single", niter=150 ,dissimilarity = "squared.distance")
+hscCT <- HierarchicalSparseCluster(as.matrix(dtm), method = "centroid", niter=150 ,dissimilarity = "squared.distance")
+plot(hscA)
+plot(hscC)
+plot(hscS)
+plot(hscCT)
+y <- numeric(205)
+ColorDendrogram(hscA,y=y,main="Average",branchlength=3)
+ColorDendrogram(hscC,y=y,main="Complete",branchlength=3)
+ColorDendrogram(hscS,y=y,main="Single",branchlength=3)
+ColorDendrogram(hscCT,y=y,main="Centroid",branchlength=3)

@@ -3,6 +3,8 @@ vsi
 VSI
 vs
 VS
+don
+amigo
 Jovellanos
 jovellanos
 Gaspar
@@ -23,6 +25,8 @@ bm
 BM
 B M
 affmo
+academ
+
 si
 a
 actualmente
