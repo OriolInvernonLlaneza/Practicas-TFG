@@ -91,6 +91,8 @@ kfit <- kmeans(d, 3, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
 fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
+kfitm <- kmeans(m, 4, nstart=100)
+fviz_cluster(kfitm, m, ellipse = FALSE, geom = "point")
 
 #k means algorithm 2
 tfxidf <- weightTfIdf(sparse, normalize = TRUE) #norm true for eucli
@@ -199,8 +201,9 @@ thin <- 50
 seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
+set.seed(10)
 #Number of topics
-k <- 20
+k <- 7
 ldaOut <-LDA(m, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
@@ -241,16 +244,13 @@ ap_top_terms %>%
 
 #sparcl
 library("sparcl")
-hscA <- HierarchicalSparseCluster(as.matrix(dtm), method = "average", niter=150 ,dissimilarity = "squared.distance")
-hscC <- HierarchicalSparseCluster(as.matrix(dtm), method = "complete", niter=150 ,dissimilarity = "squared.distance")
-hscS <- HierarchicalSparseCluster(as.matrix(dtm), method = "single", niter=150 ,dissimilarity = "squared.distance")
-hscCT <- HierarchicalSparseCluster(as.matrix(dtm), method = "centroid", niter=150 ,dissimilarity = "squared.distance")
+hscA <- HierarchicalSparseCluster(as.matrix(dtm), method = "average", niter=15 ,dissimilarity = "squared.distance")
+hscC <- HierarchicalSparseCluster(as.matrix(dtm), method = "complete", niter=15 ,dissimilarity = "squared.distance")
+hscS <- HierarchicalSparseCluster(as.matrix(dtm), method = "single", niter=15 ,dissimilarity = "squared.distance")
+hscCT <- HierarchicalSparseCluster(as.matrix(dtm), method = "centroid", niter=15 ,dissimilarity = "squared.distance")
+ksc <- KMeansSparseCluster(m, K=5, wbounds = NULL, nstart = 20, silent =
+                      FALSE, maxiter=6, centers=NULL)
 plot(hscA)
 plot(hscC)
 plot(hscS)
 plot(hscCT)
-y <- numeric(205)
-ColorDendrogram(hscA,y=y,main="Average",branchlength=3)
-ColorDendrogram(hscC,y=y,main="Complete",branchlength=3)
-ColorDendrogram(hscS,y=y,main="Single",branchlength=3)
-ColorDendrogram(hscCT,y=y,main="Centroid",branchlength=3)
