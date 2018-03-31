@@ -134,23 +134,25 @@ lematizadorGRAMPAL <- function(word) {
   }
   
   lematiza <- function( frase ){
-    ## Borrowed from
-    ## http://www.datanalytics.com/blog/2011/12/13/un-lematizador-para-el-espanol-con-r-¿cutre-¿mejorable/
-    palabra <- gsub( " ", "+", frase )
-    base.url <- paste(
-                      "http://cartago.lllf.uam.es/grampal/grampal.cgi?m=etiqueta&e=",
-                      palabra, sep = "" )
-    tmp <- readLines( base.url, encoding = 'utf8' )
-    tmp <- iconv( tmp, "utf-8" )
-    tmp <- gsub( "&nbsp;", " ", tmp )
-    tmp <- readHTMLTable( tmp )
-    tmp <- as.character( tmp[[1]]$V3 )
-    tmp <- do.call( rbind, strsplit( tmp, " " ) )[,4]
-    tmp
-  }
+	  palabra <- gsub( " ", "+", frase )
+	  base.url <- paste("http://cartago.lllf.uam.es/grampal/grampal.cgi?m=analiza&e=")
+	  csrf <- readLines( base.url, encoding = 'utf8' )[[59]]
+	  csrf <- iconv( csrf, "utf-8" )
+	  csrf <- strsplit(csrf, "\"")[[1]][[6]] #get csrf code
+	  csrf <- paste(csrf, "&e=", sep="")
+	  csrf <- paste(csrf, palabra, sep="")
+	  
+	  word.url <- paste(
+		"http://cartago.lllf.uam.es/grampal/grampal.cgi?m=analiza&csrf=",
+		csrf, sep = "")
+	  tmp <- readLines( word.url, encoding = 'utf8' )[[79]]
+	  tmp <- iconv( tmp, "utf-8" )
+	  tmp <- strsplit(strsplit(tmp, ">")[[1]][[3]], " ")[[1]][[2]]
+	  tmp
+	}
   
   canonical <- lematiza(word)
   canonical <- tolower(cambiaracentos(canonical))
-  if( canonical == tolower("UNKN")) canonical <- NA
+  if( canonical == "-") canonical <- NA
   canonical
 }

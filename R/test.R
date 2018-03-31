@@ -42,6 +42,34 @@ clean <- cleanCorpus(ex)
 cleanCopy <- clean
 
 source("lematizador.r")
+lematizadorGPAL <- function( palabra ){
+  if(palabra == "") {
+    return(NA)
+  }
+  base.url <- paste("http://cartago.lllf.uam.es/grampal/grampal.cgi?m=analiza&e=")
+  csrf <- readLines( base.url, encoding = 'utf-8' )[[59]]
+  csrf <- iconv( csrf, "utf-8" )
+  csrf <- strsplit(csrf, "\"")[[1]][[6]] #get csrf code
+  csrf <- paste(csrf, "&e=", sep="")
+  csrf <- paste(csrf, palabra, sep="")
+  
+  word.url <- paste(
+    "http://cartago.lllf.uam.es/grampal/grampal.cgi?m=analiza&csrf=",
+    csrf, sep = "")
+  tmp <- readLines( word.url, encoding = 'utf-8' )
+
+  if(length(tmp) < 79) { return(NA) }
+  tmp <- iconv( tmp[[79]], "utf-8" )
+
+  aux <- strsplit(tmp, ">")
+  print(aux)
+  if(length(aux[[1]]) < 3) { return(NA) }
+  tmp <- strsplit(aux[[1]][[3]], " ")[[1]][[2]]
+  
+  if(tmp == "-") { return(NA) }
+  return(tolower(tmp))
+}
+
 stemCustom <- function(x) {
   if(x=="") {
     return()
@@ -53,12 +81,17 @@ stemCustom <- function(x) {
       #print(aux)
       if(!is.na(aux)) {
         l[[j]] <- aux
+      } else {
+        #print(l[[j]])
+        aux <- lematizadorGPAL(l[[j]])
+        if(!is.na(aux)) {
+          l[[j]] <- aux
+        }
       }
       #print(l[[j]])
     }
     #str(l)
     x[[i]] <- paste(unlist(l), collapse=" ")
-    #x[[i]] <- iconv(paste(unlist(l), collapse=" "), from = "UTF8", to = "UTF8")
     #str(x[[i]])
   }
   return(x)
