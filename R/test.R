@@ -62,12 +62,466 @@ lematizadorGPAL <- function( palabra ){
   tmp <- iconv( tmp[[79]], "utf-8" )
 
   aux <- strsplit(tmp, ">")
-  print(aux)
+
   if(length(aux[[1]]) < 3) { return(NA) }
   tmp <- strsplit(aux[[1]][[3]], " ")[[1]][[2]]
   
   if(tmp == "-") { return(NA) }
   return(tolower(tmp))
+}
+
+checkWeirdWords <- function(w) {
+  if(grepl("sierpe", w)) {
+    return("sierpe")
+  } else if(grepl("siervec", w)) {
+    return("siervo")
+  } else if(grepl("abunda", w)) {
+    return("abundar")
+  } else if(grepl("acepta", w)) {
+    return("aceptar")
+  } else if(grepl("acomodá", w)) {
+    return("acomodar")
+  } else if(grepl("acompañá", w)) {
+    return("acompañar")
+  } else if(grepl("acordán", w)) {
+    return("acordar")
+  } else if(grepl("admira", w)) {
+    return("admirar")
+  } else if(grepl("adónd", w)) {
+    return("adonde")
+  } else if(grepl("advertí", w)) {
+    return("advertir")
+  } else if(grepl("advirt", w)) {
+    return("advertir")
+  } else if(grepl("afeitad", w)) {
+    return("afeitar")
+  } else if(grepl("agravá", w)) {
+    return("agraviar")
+  } else if(grepl("agudí", w)) {
+    return("agudo")
+  } else if(grepl("ahorro", w)) {
+    return("ahorrar")
+  } else if(grepl("alternán", w)) {
+    return("alternar")
+  } else if(grepl("altí", w)) {
+    return("alto")
+  } else if(grepl("amabi", w)) {
+    return("amable")
+  } else if(grepl("anchuroso", w)) {
+    return("ancho")
+  } else if(grepl("animali", w)) {
+    return("animal")
+  } else if(grepl("anuncián", w)) {
+    return("anunciar")
+  } else if(grepl("añadién", w)) {
+    return("añadir")
+  } else if(grepl("aparente", w)) {
+    return("aparentar")
+  } else if(grepl("apasionadí", w)) {
+    return("apasionar")
+  } else if(grepl("apologi", w)) {
+    return("apología")
+  } else if(grepl("apoyán", w)) {
+    return("apoyar")
+  } else if(grepl("arábi", w)) {
+    return("árabe")
+  } else if(grepl("argensolas", w)) {
+    return("argensola")
+  } else if(grepl("armonio", w)) {
+    return("armonía")
+  } else if(grepl("aseguradí", w) || grepl("asegurá", w) || grepl("asegú", w)) {
+    return("asegurar")
+  } else if(grepl("atribuyén", w)) {
+    return("atribuir")
+  } else if(grepl("avergonc", w) || grepl("avergüen", w)) {
+    return("avergonzar")
+  } else if(grepl("avisán", w)) {
+    return("avisar")
+  } else if(grepl("begona", w)) {
+    return("begoña")
+  } else if(grepl("bellí", w)) {
+    return("bello")
+  } else if(grepl("beneficio", w)) {
+    return("beneficiar")
+  } else if(grepl("benigni", w)) {
+    return("benigno")
+  } else if(grepl("breví", w)) {
+    return("breve")
+  } else if(grepl("caí", w)) {
+    return("caer")
+  } else if(grepl("calculi", w)) {
+    return("calcular")
+  } else if(grepl("cancionci", w)) {
+    return("canción")
+  } else if(grepl("canonj", w)) {
+    return("canónigo")
+  } else if(grepl("cantarí", w) || grepl("cantor", w)) {
+    return("cantar")
+  } else if(grepl("cargán", w)) {
+    return("cargar")
+  } else if(grepl("carí", w)) {
+    return("caro")
+  } else if(grepl("casi", w)) {
+    return("casa")
+  } else if(grepl("certí", w)) {
+    return("cierto")
+  } else if(grepl("cesaci", w) || grepl("cesió", w)) {
+    return("cesar")
+  } else if(grepl("coleg", w)) {
+    return("colegio")
+  } else if(grepl("colmadi", w)) {
+    return("colmar")
+  } else if(grepl("colocán", w)) {
+    return("colocar")
+  } else if(grepl("compara", w)) {
+    return("comparar")
+  } else if(grepl("comprometién", w)) {
+    return("comprometer")
+  } else if(grepl("comunicá", w)) {
+    return("comunicar")
+  } else if(grepl("comuní", w)) {
+    return("común")
+  } else if(grepl("concedié", w)) {
+    return("conceder")
+  } else if(grepl("concu", w)) {
+    return("concurrir")
+  } else if(grepl("conduc", w)) {
+    return("conducir")
+  } else if(grepl("confes", w)) {
+    return("confesar")
+  } else if(grepl("confié", w)) {
+    return("confiar")
+  } else if(grepl("confu", w)) {
+    return("confundir")
+  } else if(grepl("conos", w) || grepl("conóz", w)) {
+    return("conocer")
+  } else if(grepl("conserva", w)) {
+    return("conservar")
+  } else if(grepl("considera", w)) {
+    return("considerar")
+  } else if(grepl("consola", w)) {
+    return("consolar")
+  } else if(grepl("contentí", w)) {
+    return("contento")
+  } else if(grepl("continu", w)) {
+    return("continuar")
+  } else if(grepl("conveni", w)) {
+    return("convenir")
+  } else if(grepl("convinié", w)) {
+    return("convenir")
+  } else if(grepl("cordialí", w)) {
+    return("cordial")
+  } else if(grepl("cortit", w)) {
+    return("corto")
+  } else if(grepl("costosí", w)) {
+    return("costoso")
+  } else if(grepl("coteján", w)) {
+    return("cotejar")
+  } else if(grepl("crecidí", w)) {
+    return("crecer")
+  } else if(grepl("cuarti", w)) {
+    return("cuarto")
+  } else if(grepl("cuidán", w) || grepl("cuíd", w)) {
+    return("cuidar")
+  } else if(grepl("culebri", w)) {
+    return("culebra")
+  } else if(grepl("dándo", w) || grepl("dárm", w)) {
+    return("dar")
+  } else if(grepl("debér", w)) {
+    return("deber")
+  } else if(grepl("debil", w)) {
+    return("débil")
+  } else if(grepl("defecti", w)) {
+    return("defecto")
+  } else if(grepl("definié", w)) {
+    return("definir")
+  } else if(grepl("deján", w)) {
+    return("dejar")
+  } else if(grepl("dejé", w)) {
+    return("dejar")
+  } else if(grepl("delicad", w)) {
+    return("delicado")
+  } else if(grepl("desconsoladí", w)) {
+    return("desconsolar")
+  } else if(grepl("desengañé", w)) {
+    return("desengañar")
+  } else if(grepl("díce", w) || grepl("dicié", w) || grepl("díg", w) || grepl("digá", w) || grepl("díj", w) || grepl("diré", w)) {
+    return("decir")
+  } else if(grepl("dificulto", w)) {
+    return("difícil")
+  } else if(grepl("difusí", w)) {
+    return("difuso")
+  } else if(grepl("dilatadí", w)) {
+    return("dilatar")
+  } else if(grepl("dirigié", w)) {
+    return("dirigir")
+  } else if(grepl("disimú", w)) {
+    return("disimular")
+  } else if(grepl("diviér", w)) {
+    return("divertir")
+  } else if(grepl("doctí", w)) {
+    return("docto")
+  } else if(grepl("dulcí", w)) {
+    return("dulce")
+  } else if(grepl("edifi", w)) {
+    return("edificar")
+  } else if(grepl("eficací", w)) {
+    return("eficaz")
+  } else if(grepl("ejecut", w)) {
+    return("ejecutar")
+  } else if(grepl("eleván", w)) {
+    return("elevar")
+  } else if(grepl("eligié", w)) {
+    return("elegir")
+  } else if(grepl("elocuentí", w)) {
+    return("elocuente")
+  } else if(grepl("encarg", w)) {
+    return("encargar")
+  } else if(grepl("enmohecié", w)) {
+    return("enmohecer")
+  } else if(grepl("enredadí", w)) {
+    return("enredar")
+  } else if(grepl("enriquecié", w)) {
+    return("enriquecer")
+  } else if(grepl("enterán", w)) {
+    return("entender")
+  } else if(grepl("enviá", w)) {
+    return("enviar")
+  } else if(grepl("erarios", w)) {
+    return("erario")
+  } else if(grepl("escribié", w)) {
+    return("escribir")
+  } else if(grepl("escritorc", w)) {
+    return("escritor")
+  } else if(grepl("escrupu", w)) {
+    return("escrúpulo")
+  } else if(grepl("especialí", w)) {
+    return("especial")
+  } else if(grepl("estudi", w)) {
+    return("estudiar")
+  } else if(grepl("extractá", w)) {
+    return("extractar")
+  } else if(grepl("faltá", w)) {
+    return("faltar")
+  } else if(grepl("felicí", w)) {
+    return("feliz")
+  } else if(grepl("fidelí", w)) {
+    return("fiel")
+  } else if(grepl("finí", w)) {
+    return("fino")
+  } else if(grepl("fór", w)) {
+    return("formar")
+  } else if(grepl("fuegovs", w)) {
+    return("fuego")
+  } else if(grepl("fundadí", w)) {
+    return("fundar")
+  } else if(grepl("geronimianos", w)) {
+    return("geronimiano")
+  } else if(grepl("graciosí", w)) {
+    return("gracioso")
+  } else if(grepl("grandís", w)) {
+    return("grande")
+  } else if(grepl("gratí", w)) {
+    return("grato")
+  } else if(grepl("graví", w)) {
+    return("grave")
+  } else if(grepl("gustosí", w)) {
+    return("gustoso")
+  } else if(grepl("habér", w) || grepl("habié", w) || grepl("hubié", w)) {
+    return("haber")
+  } else if(grepl("habilí", w)) {
+    return("hábil")
+  } else if(grepl("habl", w)) {
+    return("hablar")
+  } else if(grepl("hacié", w) || grepl("hicié", w)) {
+    return("hacer")
+  } else if(grepl("hallá", w)) {
+    return("hallar")
+  } else if(grepl("hermosí", w)) {
+    return("hermoso")
+  } else if(grepl("humildí", w)) {
+    return("humilde")
+  } else if(grepl("hydr", w)) {
+    return("hydro")
+  } else if(grepl("incluyén", w)) {
+    return("incluir")
+  } else if(grepl("individ", w)) {
+    return("individual")
+  } else if(grepl("industri", w)) {
+    return("industrial")
+  } else if(grepl("infantic", w)) {
+    return("infantico")
+  } else if(grepl("instruyé", w)) {
+    return("instruir")
+  } else if(grepl("intitulá", w)) {
+    return("intitular")
+  } else if(grepl("juiciosí", w)) {
+    return("juicioso")
+  } else if(grepl("leér", w) || grepl("leí", w)) {
+    return("leer")
+  } else if(grepl("lejí", w)) {
+    return("lejos")
+  } else if(grepl("lespagne", w)) {
+    return("españa")
+  } else if(grepl("libri", w)) {
+    return("libro")
+  } else if(grepl("liber", w)) {
+    return("libertad")
+  } else if(grepl("liger", w)) {
+    return("ligero")
+  } else if(grepl("llám", w)) {
+    return("llamar")
+  } else if(grepl("llevá", w)) {
+    return("llevar")
+  } else if(grepl("lugarc", w)) {
+    return("lugar")
+  } else if(grepl("mali", w) || grepl("malí", w)) {
+    return("malo")
+  } else if(grepl("mandó", w)) {
+    return("mandar")
+  } else if(grepl("manifestá", w)) {
+    return("manifestar")
+  } else if(grepl("manté", w)) {
+    return("mantener")
+  } else if(grepl("molestí", w)) {
+    return("molesto")
+  } else if(grepl("muchí", w)) {
+    return("mucho")
+  } else if(grepl("negán", w)) {
+    return("negar")
+  } else if(grepl("nombrán", w)) {
+    return("nombrar")
+  } else if(grepl("notán", w)) {
+    return("notar")
+  } else if(grepl("obligá", w)) {
+    return("obligar")
+  } else if(grepl("ocupadí", w)) {
+    return("ocupado")
+  } else if(grepl("ofrec", w)) {
+    return("ofrecer")
+  } else if(grepl("olvidá", w)) {
+    return("olvidar")
+  } else if(grepl("oponé", w)) {
+    return("oponer")
+  } else if(grepl("oportuní", w)) {
+    return("oportuno")
+  } else if(grepl("otorgá", w)) {
+    return("otorgar")
+  } else if(grepl("paré", w) || grepl("parec", w)) {
+    return("parecer")
+  } else if(grepl("pedaci", w)) {
+    return("pedazo")
+  } else if(grepl("pensionc", w)) {
+    return("pensión")
+  } else if(grepl("permitié", w)) {
+    return("permitir")
+  } else if(grepl("perniciosí", w)) {
+    return("pernicioso")
+  } else if(grepl("pesadí", w)) {
+    return("pesado")
+  } else if(grepl("pidié", w)) {
+    return("pedir")
+  } else if(grepl("pobrec", w)) {
+    return("pobre")
+  } else if(grepl("podér", w)) {
+    return("poder")
+  } else if(grepl("poé", w) || grepl("poet", w)) {
+    return("poesía")
+  } else if(grepl("ponié", w)) {
+    return("poner")
+  } else if(grepl("poquí", w)) {
+    return("poco")
+  } else if(grepl("preciosí", w)) {
+    return("precioso")
+  } else if(grepl("precipitadí", w)) {
+    return("precipitar")
+  } else if(grepl("pregunté", w)) {
+    return("preguntar")
+  } else if(grepl("previnié", w)) {
+    return("prevenir")
+  } else if(grepl("proponí", w)) {
+    return("proponer")
+  } else if(grepl("publicá", w)) {
+    return("publicar")
+  } else if(grepl("puertec", w)) {
+    return("puerto")
+  } else if(grepl("purí", w)) {
+    return("puro")
+  } else if(grepl("quéd", w) || grepl("quedó", w)) {
+    return("quedar")
+  } else if(grepl("quej", w)) {
+    return("quejar")
+  } else if(grepl("recomendá", w)) {
+    return("recomendar")
+  } else if(grepl("refirié", w)) {
+    return("referir")
+  } else if(grepl("regaladí", w)) {
+    return("regalar")
+  } else if(grepl("releván", w)) {
+    return("relevar")
+  } else if(grepl("remit", w)) {
+    return("remitir")
+  } else if(grepl("reparil", w)) {
+    return("reparar")
+  } else if(grepl("repetidí", w) || grepl("repitié", w)) {
+    return("repetir")
+  } else if(grepl("reservadí", w) || grepl("resérvo", w)) {
+    return("reservar")
+  } else if(grepl("retocán", w)) {
+    return("retocar")
+  } else if(grepl("reverendí", w)) {
+    return("reverendo")
+  } else if(grepl("robustí", w)) {
+    return("robusto")
+  } else if(grepl("sacár", w)) {
+    return("sacar")
+  } else if(grepl("saladí", w)) {
+    return("sal")
+  } else if(grepl("santí", w)) {
+    return("santo")
+  } else if(grepl("séame", w)) {
+    return("ser")
+  } else if(grepl("singularí", w)) {
+    return("singular")
+  } else if(grepl("subír", w)) {
+    return("subir")
+  } else if(grepl("suplicán", w)) {
+    return("suplicar")
+  } else if(grepl("suponién", w)) {
+    return("suponer")
+  } else if(grepl("tantí", w)) {
+    return("tanto")
+  } else if(grepl("temié", w)) {
+    return("temer")
+  } else if(grepl("tenién", w)) {
+    return("tener")
+  } else if(grepl("tomán", w)) {
+    return("tomar")
+  } else if(grepl("traduccionc", w) || grepl("traducié", w)) {
+    return("traducir")
+  } else if(grepl("traí", w)) {
+    return("traer")
+  } else if(grepl("tratá", w)) {
+    return("tratar")
+  } else if(grepl("tristí", w)) {
+    return("triste")
+  } else if(grepl("utilí", w)) {
+    return("útil")
+  } else if(grepl("valié", w)) {
+    return("valer")
+  } else if(grepl("véase", w) || grepl("verá", w)) {
+    return("ver")
+  } else if(grepl("verificán", w)) {
+    return("verificar")
+  } else if(grepl("verisimilitud", w)) {
+    return("verosimilitud")
+  } else if(grepl("viví", w)) {
+    return("vivir")
+  } else if(grepl("zarzueli", w)) {
+    return("zarzuela")
+  } else {
+    return(w)
+  }
 }
 
 stemCustom <- function(x) {
@@ -86,6 +540,8 @@ stemCustom <- function(x) {
         aux <- lematizadorGPAL(l[[j]])
         if(!is.na(aux)) {
           l[[j]] <- aux
+        } else {
+          l[[j]] <- checkWeirdWords(l[[j]])
         }
       }
       #print(l[[j]])
@@ -124,8 +580,8 @@ kfit <- kmeans(d, 3, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
 fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
-kfitm <- kmeans(m, 4, nstart=100)
-fviz_cluster(kfitm, m, ellipse = FALSE, geom = "point")
+kfitm <- kmeans(mOG, 4, nstart=100)
+fviz_cluster(kfitm, mOG, ellipse = FALSE, geom = "point")
 
 #k means algorithm 2
 tfxidf <- weightTfIdf(sparse, normalize = TRUE) #norm true for eucli
@@ -143,8 +599,8 @@ h2 <- diana(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
 pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
-h11 <- agnes(m, stand = FALSE)
-h22 <- diana(m, stand = FALSE)
+h11 <- agnes(mOG, stand = FALSE)
+h22 <- diana(mOG, stand = FALSE)
 pltree(h11, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h22, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
@@ -167,10 +623,10 @@ fviz_cluster(db, data = m, stand = FALSE,
              ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 tfxidf <- weightTfIdf(dtm, normalize = TRUE)
-kNNdistplot(tfxidf, k = 3)
+kNNdistplot(dtm, k = 3)
 abline(h = 1.4, lty = 2)
-db <- dbscan(as.matrix(tfxidf), 1.4, 3)
-fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
+db <- dbscan(dtm, 1.4, 3)
+fviz_cluster(db, data = as.matrix(dtm), stand = FALSE,
              ellipse = FALSE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 
@@ -237,7 +693,7 @@ best <- TRUE
 set.seed(10)
 #Number of topics
 k <- 7
-ldaOut <-LDA(m, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut <-LDA(as.matrix(dtm), k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
