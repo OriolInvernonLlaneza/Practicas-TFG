@@ -576,11 +576,11 @@ m <- as.matrix(sparse)
 d <- dist(m)
 fviz_nbclust(as.matrix(d), kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
-kfit <- kmeans(d, 3, nstart=100)
+kfit <- kmeans(d, 4, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
 fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
-kfitm <- kmeans(mOG, 4, nstart=100)
+kfitm <- kmeans(mOG, 7, nstart=100)
 fviz_cluster(kfitm, mOG, ellipse = FALSE, geom = "point")
 
 #k means algorithm 2
@@ -611,8 +611,8 @@ pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
 #density
 kNNdistplot(mOG, k = 3)
-abline(h = 25, lty = 2)
-db <- dbscan(m, 25, 3)
+abline(h = 30, lty = 2)
+db <- dbscan(mOG, 35, 3)
 fviz_cluster(db, data = mOG, stand = FALSE,
              ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
@@ -623,12 +623,18 @@ fviz_cluster(db, data = m, stand = FALSE,
              ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 tfxidf <- weightTfIdf(dtm, normalize = TRUE)
-kNNdistplot(dtm, k = 3)
+kNNdistplot(tfxidf, k = 20)
 abline(h = 1.4, lty = 2)
-db <- dbscan(dtm, 1.4, 3)
-fviz_cluster(db, data = as.matrix(dtm), stand = FALSE,
+db <- dbscan(tfxidf, 1.4, 20)
+fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
              ellipse = FALSE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
+
+#hdbscann
+hdb <- hdbscan(mOG, 3)
+plot(mOG, col=hdb$cluster+1L, cex = .5)
+plot(hdb)
+plot(hdb$hc, main="HDBSCAN* Hierarchy")
 
 #----------------5-fold cross-validation, different numbers of topics----------------
 # set up a cluster for parallel processing
@@ -640,14 +646,14 @@ clusterEvalQ(cluster, {
   library(topicmodels)
 })
 
-full_data <- sparse
+full_data <- dtm
 n <- nrow(full_data)
 burnin <- 4000
 iter <- 1500
 keep <- 50
 folds <- 5
 splitfolds <- sample(1:folds, n, replace = TRUE)
-candidate_k <- c(5, 7, 10, 15, 20, 23, 25, 30, 40, 50, 75, 100, 200, 300) # candidates for how many topics
+candidate_k <- c(3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 23, 25, 30) # candidates for how many topics
 
 # export all the needed R objects to the parallel sessions
 clusterExport(cluster, c("full_data", "burnin", "iter", "keep", "splitfolds", "folds", "candidate_k"))
@@ -690,10 +696,9 @@ thin <- 50
 seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
-set.seed(10)
 #Number of topics
 k <- 7
-ldaOut <-LDA(as.matrix(dtm), k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut <-LDA(mOG, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
