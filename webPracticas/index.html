@@ -23,6 +23,8 @@
 
   <link rel="stylesheet" href="css/bootstrap-slider.css">
   <script src="js/bootstrap-slider.js"></script>
+  <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Visualización Correspondencia Jovellanos">
@@ -128,16 +130,33 @@
             </div>
           </div>
         </div>
-        <div style="float: right">
+        <div style="float: left">
           <h3>Min
             <img src="css/scheme.png" alt="Escala colores"></img> Max</h3>
         </div>
-        <div class="custom-control custom-checkbox" style="float: left">
-          <input class="custom-control-input" type="checkbox" value="" id="womanCheck" onclick="checkbox()">
-          <label class="custom-control-label" for="womanCheck">
-            Solo mujeres
-          </label>
-        </div>
+        <span class="multiselect-native-select" style="float: right">
+          <select id="dropFilters" multiple="multiple">
+            <option class="checks" id="womanCheck" value="1">Mujeres</option>
+            <option class="checks" value="2">Tema 2</option>
+            <option class="checks" value="3">Tema 3</option>
+            <option class="checks" value="4">Tema 4</option>
+            <option class="checks" value="5">Tema 5</option>
+            <option class="checks" value="6">Tema 6</option>
+          </select>
+        </span>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $("#dropFilters").multiselect({
+              nonSelectedText: "Filtros tema",
+              numberDisplayed: 2,
+              nSelectedText: "Seleccionados",
+              allSelectedText: "Todos",
+              onChange: function (element, checked) {
+                checkbox(element["0"].id, checked);
+              }
+            });
+          });
+        </script>
         <svg id="d3" onLoad="document.getElementById('tabC').click()"></svg>
         <div id="wiki"></div>
       </div>

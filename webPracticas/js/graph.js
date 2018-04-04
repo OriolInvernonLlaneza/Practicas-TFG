@@ -9,7 +9,6 @@ let simulation;
 let graphOG;
 let restarted;
 let wGraph;
-let checked = false;
 
 function createGraph(ngraph) {
 
@@ -477,7 +476,7 @@ function restart() {
 //adjust threshold
 function threshold(thresh) {
     graph.links = [];
-    if(!checked) {
+    if($("#dropFilters").val() == null || !$("#dropFilters").val().includes("1")) {
         for (let i = 0; i < graphOG.links.length; i++) {
             if (graphOG.links[i].value > thresh) {
                 graph.links.push({...graphOG.links[i]});
@@ -494,16 +493,20 @@ function threshold(thresh) {
 }
 
 //Checkbox
-function checkbox() {
+function checkbox(id, check) {
     document.getElementById("slider").value = 0;
-    if(checked) {
-        graph = {... graphOG};
-        checked = false;
-    } else {
-        graph = {... wGraph};
-        checked = true;
+    switch(id) {
+        case "womanCheck":
+            if(!check) {
+                graph = {... graphOG};
+            } else {
+                graph = {... wGraph};
+            }
+            restart();
+            break;
+        default:
+            break;
     }
-    restart();
 }
 
 //Prepares a small copy of the graph consisting only of women, there wasn't a copy before but Threshold wouldnt work (js references maaan)
@@ -549,11 +552,15 @@ function changeTab(evt) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
+    // Get all elements with class="option" and remove the class "checked"
+    checks = document.getElementsByClassName("checks");
+    for (i = 0; i < tablinks.length; i++) {
+        checks[i].checked = false;
+    }
+
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
     document.getElementById("slider").value = 0;
-    document.getElementById("womanCheck").checked = false;
-    checked = false;
 }
 
 function addGraph(resource, evt) {
