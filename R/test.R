@@ -697,7 +697,7 @@ seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
 #Number of topics
-k <- 7
+k <- 10
 ldaOut <-LDA(mOG, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
@@ -725,7 +725,7 @@ library(dplyr)
 
 ap_top_terms <- jo_topics %>%
   group_by(topic) %>%
-  top_n(6, beta) %>%
+  top_n(10, beta) %>%
   ungroup() %>%
   arrange(topic, -beta)
 
