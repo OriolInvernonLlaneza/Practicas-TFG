@@ -136,12 +136,7 @@
         </div>
         <span class="multiselect-native-select" style="float: right">
           <select id="dropFilters" multiple="multiple">
-            <option class="checks" id="womanCheck" value="1">Mujeres</option>
-            <option class="checks" value="2">Tema 2</option>
-            <option class="checks" value="3">Tema 3</option>
-            <option class="checks" value="4">Tema 4</option>
-            <option class="checks" value="5">Tema 5</option>
-            <option class="checks" value="6">Tema 6</option>
+            <option class="checks" id="womanCheck" value="womanCheck">Mujeres</option>
           </select>
         </span>
         <script type="text/javascript">
@@ -152,8 +147,16 @@
               nSelectedText: "Seleccionados",
               allSelectedText: "Todos",
               onChange: function (element, checked) {
-                checkbox(element["0"].id, checked);
+                checkbox(element["0"].value, checked);
               }
+            });
+          });
+          $(document).ready(function () {
+            d3.json("resources/topics.json", function (error, json) {
+              for(let i = 0; i < json.length; i++) {
+                $("#dropFilters").append("<option class='checks' value="+ json[i].name +">" + json[i].name + "</option>");
+              }
+              $("#dropFilters").multiselect("rebuild");
             });
           });
         </script>

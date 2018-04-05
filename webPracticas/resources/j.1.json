@@ -31,7 +31,7 @@
       "destination": 2,
       "author": "Jovellanos",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -39,7 +39,7 @@
       "destination": 1,
       "author": "Godoy",
       "correspondent": "Jovellanos",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -47,7 +47,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -55,7 +55,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -63,7 +63,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -71,7 +71,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -79,7 +79,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -87,7 +87,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -95,7 +95,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -103,7 +103,7 @@
       "destination": 2,
       "author": "aa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -111,7 +111,7 @@
       "destination": 3,
       "author": "aaaa",
       "correspondent": "Godoy",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     },
     {
@@ -119,7 +119,7 @@
       "destination": 4,
       "author": "Jovellanos",
       "correspondent": "Bonaparte",
-      "mood": "Amistad",
+      "topics": "Amistad",
       "link": "https://www.google.com"
     }
   ]

@@ -30,7 +30,7 @@ function createGraph(ngraph) {
     });
 
     svg.attr("width", svg.node().parentNode.clientWidth)
-       .attr("height", 500);
+        .attr("height", 500);
 
     // take size from svg
     let width = +svg.attr("width"),
@@ -437,9 +437,9 @@ function createGraph(ngraph) {
     node.on("dblclick", connectedNodes); // dblclick listener (neigh)
 
     //waits for graph to stop moving
-    if(!restarted) { 
-        while (simulation.alpha() > 0.1) { 
-            simulation.tick(); 
+    if (!restarted) {
+        while (simulation.alpha() > 0.1) {
+            simulation.tick();
         }
     }
     restarted = false;
@@ -473,61 +473,76 @@ function restart() {
     createGraph(graph);
 }
 
+function linksByValue(thresh, links) {
+    for (let i = 0; i < links.length; i++) {
+        if (links[i].value > thresh) {
+            graph.links.push({ ...links[i] });
+        }
+    }
+}
+
 //adjust threshold
 function threshold(thresh) {
     graph.links = [];
-    if($("#dropFilters").val() == null || !$("#dropFilters").val().includes("1")) {
-        for (let i = 0; i < graphOG.links.length; i++) {
-            if (graphOG.links[i].value > thresh) {
-                graph.links.push({...graphOG.links[i]});
+    if ($("#dropFilters").val() === null || !$("#dropFilters").val().includes("womanCheck")) {
+        linksByValue(thresh, graphOG.links);
+    } else {
+        linksByValue(thresh, wGraph.links);
+    }
+    restart();
+}
+
+function linksByTopic(topicsSelected, links) {
+    for (let i = 0; i < links.length; i++) {
+        let array = links[i].topics.split(",");
+        for(let j = 0; j < array.length; j++) {
+            if (topicsSelected.includes(array[j])) {
+                graph.links.push({ ...links[i] });
             }
         }
+    }
+}
+
+//Checkbox
+function checkbox(value, check) {
+    document.getElementById("slider").value = 0;
+    if (value === "womanCheck") {
+        if (!check) {
+            graph = { ...graphOG };
+        } else {
+            graph = { ...wGraph };
+        }
     } else {
-        for (let i = 0; i < wGraph.links.length; i++) {
-            if (wGraph.links[i].value > thresh) {
-                graph.links.push({...wGraph.links[i]});
-            }
+        graph.links = [];
+        let topicsSelected = $("#dropFilters").val();
+        if (!topicsSelected.includes("womanCheck")) {
+            linksByTopic(topicsSelected, graphOG.links);
+        } else {
+            linksByTopic(topicsSelected, wGraph.links);
         }
     }
     restart();
 }
 
-//Checkbox
-function checkbox(id, check) {
-    document.getElementById("slider").value = 0;
-    switch(id) {
-        case "womanCheck":
-            if(!check) {
-                graph = {... graphOG};
-            } else {
-                graph = {... wGraph};
-            }
-            restart();
-            break;
-        default:
-            break;
-    }
-}
-
 //Prepares a small copy of the graph consisting only of women, there wasn't a copy before but Threshold wouldnt work (js references maaan)
 function prepWomen() {
-    wGraph = {... graphOG};
+    wGraph = { ...graphOG };
     wGraph.nodes = [];
     wGraph.links = [];
-    wGraph.nodes.push(graphOG.nodes[0]);   
+    wGraph.nodes.push(graphOG.nodes[0]);
     for (let i = 1; i < graphOG.nodes.length; i++) {
-        let aux = {... graphOG.nodes[i]};
+        let aux = { ...graphOG.nodes[i] };
         if (aux.hasOwnProperty("woman")) {
             wGraph.nodes.push(aux);
-            wGraph.nodes[wGraph.nodes.length-1].id = wGraph.nodes.length;
-            
-            let link = {... graphOG.links.find((l) => l.source===i)};
-            let link2 = {... graphOG.links.find((l) => l.target===i)};
-            if(link.hasOwnProperty("source")) {
+            wGraph.nodes[wGraph.nodes.length - 1].id = wGraph.nodes.length;
+
+            let link = { ...graphOG.links.find((l) => l.source === i+1) };
+            let link2 = { ...graphOG.links.find((l) => l.target === i+1) };
+            if (link.hasOwnProperty("source")) {
                 link.source = wGraph.nodes.length;
                 wGraph.links.push(link);
-            } 
-            if(link2.hasOwnProperty("target")) {
+            }
+            if (link2.hasOwnProperty("target")) {
                 link2.target = wGraph.nodes.length;
                 wGraph.links.push(link2);
             }
@@ -553,10 +568,7 @@ function changeTab(evt) {
     }
 
     // Get all elements with class="option" and remove the class "checked"
-    checks = document.getElementsByClassName("checks");
-    for (i = 0; i < tablinks.length; i++) {
-        checks[i].checked = false;
-    }
+    //$("#dropFilters").val() = undefined;
 
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
