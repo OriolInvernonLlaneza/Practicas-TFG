@@ -12,6 +12,11 @@ let wGraph;
 
 function createGraph(ngraph) {
 
+    if(ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
+        alert("No hay resultados con los filtros actuales");
+        return;
+    }
+
     let brush;
     let brushMode = false;
     let brushing = false;
@@ -493,11 +498,15 @@ function threshold(thresh) {
 }
 
 function linksByTopic(topicsSelected, links) {
-    for (let i = 0; i < links.length; i++) {
-        let array = links[i].topics.split(",");
-        for(let j = 0; j < array.length; j++) {
-            if (topicsSelected.includes(array[j])) {
-                graph.links.push({ ...links[i] });
+    if (topicsSelected.length === 1 && topicsSelected.includes("womanCheck")) {
+        graph = { ...wGraph };
+    } else {
+        for (let i = 0; i < links.length; i++) {
+            let array = links[i].topics.split(",");
+            for (let j = 0; j < array.length; j++) {
+                if (topicsSelected.includes(array[j])) {
+                    graph.links.push({ ...links[i] });
+                }
             }
         }
     }
@@ -512,6 +521,8 @@ function checkbox(value, check) {
         } else {
             graph = { ...wGraph };
         }
+    } else if (check === false && $("#dropFilters").val() === null) {
+        graph = { ...graphOG };
     } else {
         graph.links = [];
         let topicsSelected = $("#dropFilters").val();
@@ -536,8 +547,8 @@ function prepWomen() {
             wGraph.nodes.push(aux);
             wGraph.nodes[wGraph.nodes.length - 1].id = wGraph.nodes.length;
 
-            let link = { ...graphOG.links.find((l) => l.source === i+1) };
-            let link2 = { ...graphOG.links.find((l) => l.target === i+1) };
+            let link = { ...graphOG.links.find((l) => l.source === i + 1) };
+            let link2 = { ...graphOG.links.find((l) => l.target === i + 1) };
             if (link.hasOwnProperty("source")) {
                 link.source = wGraph.nodes.length;
                 wGraph.links.push(link);
