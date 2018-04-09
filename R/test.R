@@ -24,14 +24,14 @@ customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
 
 #ex  <- VCorpus(DirSource(directory = "cartas\\ejemplo", encoding = "UTF-8"), readerControl = list(language="es"))
-csv <- read.csv("cartas\\CorrespondenciaJove.csv", sep =";", header = TRUE, encoding = "UTF-8")
-ex <- VCorpus(VectorSource(csv$TextoCarta[1:205]))
+csv <- read.csv("cartas\\test.csv", sep =";", header = TRUE, encoding = "UTF-8")
+ex <- VCorpus(VectorSource(csv$Textodelacarta))
 
 cleanCorpus <- function(corpus){
   corpus <- tm_map(corpus, content_transformer(tolower)) #a minus
   corpus <- tm_map(corpus, removeNumbers) #numbers
   corpus <- tm_map(corpus, removePunctuation) #punt
-  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'«»]", "", n)}))
+  corpus <- tm_map(corpus, content_transformer(function(n) { n <- gsub("[¡¿'«»ªº°*\"]", "", n)}))
   corpus <- tm_map(corpus, removeWords, c(stopwords("spanish"), customStopwords, "al")) #stopwords
   corpus <- tm_map(corpus, stripWhitespace) #extra whitespace
   #corpus <- tm_map(corpus, PlainTextDocument)  # needs to come before stemming
@@ -560,12 +560,12 @@ inspect(stemmed[[1]])
 #inspect(stemmed[[40]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
-#inspect(dtm)
-write.csv(as.matrix(dtm), 'dtm.csv')
+#inspect(dtm)in
+write.csv(as.matrix(dtm), 'dtmTotal.csv')
 #word list
 words <- dtm$dimnames$Terms
 words <- words[order(words)]
-write.table(words,"words.txt",sep="\t",row.names=FALSE)
+write.table(words,"wordsTotal.txt",sep="\t",row.names=FALSE)
 
 findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
 sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
