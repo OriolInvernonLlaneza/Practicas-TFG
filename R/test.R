@@ -17,14 +17,14 @@ library("tidytext")
 #library("wordcloud2")
 #library("RTextTools")
 
-setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
-#setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
+#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
 
 customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
 
 #ex  <- VCorpus(DirSource(directory = "cartas\\ejemplo", encoding = "UTF-8"), readerControl = list(language="es"))
-csv <- read.csv("cartas\\test.csv", sep =";", header = TRUE, encoding = "UTF-8")
+csv <- read.csv("cartas\\Cartas-full.csv", sep =";", header = TRUE, encoding = "UTF-8")
 ex <- VCorpus(VectorSource(csv$Textodelacarta))
 
 cleanCorpus <- function(corpus){
@@ -561,7 +561,8 @@ inspect(stemmed[[1]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
 #inspect(dtm)in
-write.csv(as.matrix(dtm), 'dtmTotal.csv')
+write.csv(as.matrix(dtm), "dtmTotal.csv")
+save("dtm", file = "dtmFull.RData", list=list("dtm"))
 #word list
 words <- dtm$dimnames$Terms
 words <- words[order(words)]
@@ -571,6 +572,10 @@ findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
 sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
 mOG <- as.matrix(dtm)
 m <- as.matrix(sparse)
+
+dtmCSV <- read.csv("dtmTotal.csv", header = TRUE)
+dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
+dtmF <- load("dtmFull.RData")
 
 #k means algorithm 1
 d <- dist(m)
