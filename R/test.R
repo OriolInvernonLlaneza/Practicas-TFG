@@ -562,7 +562,7 @@ inspect(stemmed[[1]])
 dtm <- DocumentTermMatrix(stemmed) #matrix
 #inspect(dtm)in
 write.csv(as.matrix(dtm), "dtmTotal.csv")
-save("dtm", file = "dtmFull.RData", list=list("dtm"))
+save(dtm, file = "dtmFull.RData")
 #word list
 words <- dtm$dimnames$Terms
 words <- words[order(words)]
@@ -575,18 +575,19 @@ m <- as.matrix(sparse)
 
 dtmCSV <- read.csv("dtmTotal.csv", header = TRUE)
 dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
-dtmF <- load("dtmFull.RData")
+m <- as.matrix(dtmF)
+dtmRd <- load("dtmFull.RData")
 
 #k means algorithm 1
 d <- dist(m)
-fviz_nbclust(as.matrix(d), kmeans, method = "wss", k.max = 25) #elbow check
+fviz_nbclust(m, kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
 kfit <- kmeans(d, 4, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
 fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
-kfitm <- kmeans(mOG, 7, nstart=100)
-fviz_cluster(kfitm, mOG, ellipse = FALSE, geom = "point")
+kfitm <- kmeans(m, 3, nstart=100)
+fviz_cluster(kfitm, m, ellipse = FALSE, geom = "point")
 
 #k means algorithm 2
 tfxidf <- weightTfIdf(sparse, normalize = TRUE) #norm true for eucli
@@ -604,8 +605,8 @@ h2 <- diana(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
 pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
-h11 <- agnes(mOG, stand = FALSE)
-h22 <- diana(mOG, stand = FALSE)
+h11 <- agnes(m, stand = FALSE)
+h22 <- diana(m, stand = FALSE)
 pltree(h11, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h22, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
