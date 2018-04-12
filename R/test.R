@@ -17,8 +17,8 @@ library("tidytext")
 #library("wordcloud2")
 #library("RTextTools")
 
-#setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
-setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
+setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
+#setwd("C:/Users/Becario-2/Desktop/RepoOri1718/practicas/Practicas-TFG/R")
 
 customStopwords <- read.table("stopwordsJovellanos.txt", header = TRUE)
 customStopwords <- as.vector(customStopwords$WORDS)
@@ -573,9 +573,12 @@ sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
 mOG <- as.matrix(dtm)
 m <- as.matrix(sparse)
 
-dtmCSV <- read.csv("dtmTotal.csv", header = TRUE)
-dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
-m <- as.matrix(dtmF)
+dtmCSV <- read.csv("dtm.csv", header = TRUE, check.names=FALSE, row.names = 1)
+dtmCSV <- read.csv("dtmTotal.csv", header = TRUE, check.names=FALSE)
+#dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
+write.csv(dtmCSV, "reee.csv")
+m <- dtmCSV
+m2 <- m[,2:ncol(m)]
 dtmRd <- load("dtmFull.RData")
 
 #k means algorithm 1
@@ -600,8 +603,8 @@ cl <- kmeans(m_norm, 5)
 plot(prcomp(m_norm)$x, col=cl$cl)
 
 #hierarchical
-h1 <- agnes(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
-h2 <- diana(prcomp(m_norm)$x, metric = "euclidean", stand = FALSE)
+h1 <- agnes(m, metric = "euclidean", stand = FALSE)
+h2 <- diana(m, metric = "euclidean", stand = FALSE)
 pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
@@ -616,10 +619,10 @@ pltree(h111, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 
 #density
-kNNdistplot(mOG, k = 3)
+kNNdistplot(m, k = 3)
 abline(h = 30, lty = 2)
-db <- dbscan(mOG, 35, 3)
-fviz_cluster(db, data = mOG, stand = FALSE,
+db <- dbscan(m, 6250, 3)
+fviz_cluster(db, data = m, stand = FALSE,
              ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 kNNdistplot(m, k = 3)
@@ -637,7 +640,7 @@ fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
 
 #hdbscann
-hdb <- hdbscan(mOG, 3)
+hdb <- hdbscan(m, 3)
 plot(mOG, col=hdb$cluster+1L, cex = .5)
 plot(hdb)
 plot(hdb$hc, main="HDBSCAN* Hierarchy")
@@ -703,8 +706,8 @@ seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
 #Number of topics
-k <- 10
-ldaOut <-LDA(mOG, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+k <- 8
+ldaOut <-LDA(m, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
