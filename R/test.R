@@ -561,7 +561,9 @@ inspect(stemmed[[1]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
 #inspect(dtm)in
-write.csv(as.matrix(dtm), "dtmTotal.csv")
+rowTotals <- apply(dtm , 1, sum) #Find the sum of words in each Document
+dtm.new   <- dtm[rowTotals> 0, ] #remove all docs without words
+write.csv(as.matrix(dtm), "dtmFull.csv")
 save(dtm, file = "dtmFull.RData")
 #word list
 words <- dtm$dimnames$Terms
@@ -569,17 +571,17 @@ words <- words[order(words)]
 write.table(words,"wordsTotal.txt",sep="\t",row.names=FALSE)
 
 findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
-sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
-mOG <- as.matrix(dtm)
-m <- as.matrix(sparse)
+#sparse <- removeSparseTerms(dtm, 0.99) #remove low freq words
+#mOG <- as.matrix(dtm.new)
+#m <- as.matrix(sparse)
 
 dtmCSV <- read.csv("dtm.csv", header = TRUE, check.names=FALSE, row.names = 1)
 dtmCSV <- read.csv("dtmTotal.csv", header = TRUE, check.names=FALSE)
 #dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
-write.csv(dtmCSV, "reee.csv")
-m <- dtmCSV
-m2 <- m[,2:ncol(m)]
-dtmRd <- load("dtmFull.RData")
+write.csv(mOG, "reee.csv")
+m <- as.matrix(dtm.new)
+#m2 <- m[,2:ncol(m)]
+#dtmRd <- load("dtmFull.RData")
 
 #k means algorithm 1
 d <- dist(m)
@@ -589,7 +591,7 @@ kfit <- kmeans(d, 4, nstart=100)
 plot(prcomp(d)$x, col=kfit$cl)
 fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
-kfitm <- kmeans(m, 3, nstart=100)
+kfitm <- kmeans(m, 9, nstart=100)
 fviz_cluster(kfitm, m, ellipse = FALSE, geom = "point")
 
 #k means algorithm 2
@@ -621,7 +623,7 @@ pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
 #density
 kNNdistplot(m, k = 3)
 abline(h = 30, lty = 2)
-db <- dbscan(m, 6250, 3)
+db <- dbscan(m, 9, 3)
 fviz_cluster(db, data = m, stand = FALSE,
              ellipse = TRUE, show.clust.cent = FALSE,
              geom = "point",palette = "jco", ggtheme = theme_classic())
@@ -641,7 +643,7 @@ fviz_cluster(db, data = as.matrix(tfxidf), stand = FALSE,
 
 #hdbscann
 hdb <- hdbscan(m, 3)
-plot(mOG, col=hdb$cluster+1L, cex = .5)
+plot(m, col=hdb$cluster+1L, cex = .5)
 plot(hdb)
 plot(hdb$hc, main="HDBSCAN* Hierarchy")
 
@@ -707,17 +709,20 @@ nstart <- 5
 best <- TRUE
 #Number of topics
 k <- 8
-ldaOut <-LDA(m, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut <-LDA(dtm.new, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut5 <-LDA(dtm.new, 5, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut6 <-LDA(dtm.new, 6, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut9 <-LDA(dtm.new, 9, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
-write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbsSparse99",k,"DocsToTopics.csv"))
+write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbs",k,"DocsToTopics.csv"))
 #top 10 terms in each topic
 ldaOut.terms <- as.matrix(terms(ldaOut,10))
-write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbsSparse99",k,"TopicsToTerms.csv"))
+write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbs",k,"TopicsToTerms.csv"))
 #probabilities associated with each topic assignment
 topicProbabilities <- as.data.frame(ldaOut@gamma)
-write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbsSparse99",k,"TopicProbabilities.csv"))
+write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbs",k,"TopicProbabilities.csv"))
 #Find relative importance of top 2 topics
 topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
       sort(topicProbabilities[x,])[k]/sort(topicProbabilities[x,])[k-1]})
@@ -725,8 +730,8 @@ topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
 topic2ToTopic3 <- lapply(1:nrow(dtm),function(x) {
         sort(topicProbabilities[x,])[k-1]/sort(topicProbabilities[x,])[k-2]})
 #write to file
-write.csv(topic1ToTopic2,file=paste("TopicModel/LDAGibbsSparse99",k,"Topic1ToTopic2.csv"))
-write.csv(topic2ToTopic3,file=paste("TopicModel/LDAGibbsSparse99",k,"Topic2ToTopic3.csv"))
+write.csv(topic1ToTopic2,file=paste("TopicModel/LDAGibbs",k,"Topic1ToTopic2.csv"))
+write.csv(topic2ToTopic3,file=paste("TopicModel/LDAGibbs",k,"Topic2ToTopic3.csv"))
 
 jo_topics <- tidy(ldaOut, matrix = "beta")
 library(ggplot2)
