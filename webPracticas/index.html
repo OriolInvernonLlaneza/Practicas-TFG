@@ -61,20 +61,22 @@
   </nav>
 
   <main class="container">
-    <div class="starter-template" style="margin-top:8%;">
+    <div class="starter-template">
       <h2 id="intro">Introducción</h2>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit mauris eget justo vestibulum, ac condimentum
-        tellus viverra. Mauris iaculis diam ultrices leo dapibus, ac facilisis ex aliquet. Proin eu leo arcu. Etiam maximus
-        pulvinar feugiat. In tincidunt semper mauris fermentum venenatis. Vivamus libero tortor, euismod in mauris eu, ultricies
-        maximus leo. Proin scelerisque nibh eget laoreet dignissim. Donec ultrices semper ultricies. Nunc pellentesque, ipsum
-        in facilisis tincidunt, turpis felis accumsan lectus, vel efficitur sem ante vitae turpis. Nam a tellus bibendum,
-        venenatis ante ac, ultricies felis.
+      <a title=" [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Gaspar_Melchor_de_Jovellanos_by_Goya_(1798).jpg">
+        <img style="float: left; margin: 0px 15px 15px 7em;" width="200" height="300" alt="Gaspar Melchor de Jovellanos by Goya (1798)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gaspar_Melchor_de_Jovellanos_by_Goya_%281798%29.jpg/256px-Gaspar_Melchor_de_Jovellanos_by_Goya_%281798%29.jpg">
+      </a>
+      <p class="lead">
+        Este proyecto consta de una serie de visualizaciones en forma de distintos grafos y gráficas que reflejan las relaciones
+        y los temas identificados en la correspondencia de Gaspar Melchor de Jovellanos.
+      </p>
+      <p>
+        El principal motivo para desarrollar este proyecto es transmitir, de forma accesible, la información recogida en la correspondencia
+        de un personaje histórico tan importante para la historia de Asturias como Jovellanos, sin que sea necesario leerse
+        una a una las miles de cartas que la componen.
       </p>
 
-      <h2 id="redes">Redes Correspondencia</h2>
-      <div class="alert alert-info" style="visibility: hidden" id="filterAlert">
-        No hay resultados con los filtros actuales.
-      </div>
+      <h2 id="redes" style="clear:both">Redes Correspondencia</h2>
       <div class="tab">
         <button id="tabC" class="tablinks" onclick="addGraph('resources/enviados.json', event)">Enviadas</button>
         <button class="tablinks" onclick="addGraph('resources/recibidos.json', event)">Recibidas</button>
@@ -156,8 +158,8 @@
           });
           $(document).ready(function () {
             d3.json("resources/topics.json", function (error, json) {
-              for(let i = 0; i < json.length; i++) {
-                $("#dropFilters").append("<option class='checks' value="+ json[i].name +">" + json[i].name + "</option>");
+              for (let i = 0; i < json.length; i++) {
+                $("#dropFilters").append("<option class='checks' value=" + json[i].name + ">" + json[i].name + "</option>");
               }
               $("#dropFilters").multiselect("rebuild");
             });
