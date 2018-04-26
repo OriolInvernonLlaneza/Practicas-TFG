@@ -15,7 +15,7 @@ function createGraph(ngraph) {
     if(ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
         alert("No hay resultados con los filtros actuales");
         return;
-    }
+    } //No nodes due to filters
 
     let brush;
     let brushMode = false;
@@ -35,7 +35,7 @@ function createGraph(ngraph) {
     });
 
     svg.attr("width", svg.node().parentNode.clientWidth)
-        .attr("height", 500);
+        .attr("height", 500); //create svg
 
     // take size from svg
     let width = +svg.attr("width"),
@@ -65,7 +65,7 @@ function createGraph(ngraph) {
         if (!d3.event.active) { simulation.alphaTarget(0.3).restart(); }
 
         if (!d.selected && !shiftKey) {
-            // if this node isn"t selected, then we have to unselect every other node
+            // if node isnt selected -> unselect every other node
             node.classed("selected", function (p) {
                 return p.selected = p.previouslySelected = false;
             });
@@ -141,14 +141,14 @@ function createGraph(ngraph) {
 
     function showArrow(d, i) {
         let path = d3.select("#edgepath" + i);
-        if (d.target.id === 1) { //get target === Jovellanos
+        if (d.target.id === 1) { //Jovellanos is always id 1
             path.style("visibility", "visible");
         }
     }
 
     function hideArrow(d, i) {
         let path = d3.select("#edgepath" + i);
-        if (d.target.id === 1) { //get target === Jovellanos
+        if (d.target.id === 1) { //Jovellanos is always id 1
             path.style("visibility", "hidden");
         }
     }
@@ -255,7 +255,7 @@ function createGraph(ngraph) {
         .style("text-anchor", "middle")
         .style("pointer-events", "none")
         .attr("startOffset", "50%")
-        .text(function (d) { return d.mood; });
+        .text(function (d) { return ""; }); // too many things on screen rn to use this
 
     simulation = d3.forceSimulation() // create and start simulation
         .force("link", d3.forceLink().id(function (d) { return d.id; }).distance(100).strength(0.5))
@@ -263,7 +263,7 @@ function createGraph(ngraph) {
         .force("collide", d3.forceCollide().radius(18).iterations(5))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    function linkArc(d) {
+    function linkArc(d) { //curve links
         let dx = d.target.x - d.source.x,
             dy = d.target.y - d.source.y,
             dr = Math.sqrt(dx * dx + dy * dy);
@@ -410,7 +410,7 @@ function createGraph(ngraph) {
 
     function connectedNodes() {
         if (!toggle) {
-            //Reduce the opacity of all the non-neighbours
+            //Reduce the opacity of every non-neighbour
             let d = d3.select(this).node().__data__;
 
             node.style("opacity", function (o) {
@@ -478,7 +478,7 @@ function restart() {
     createGraph(graph);
 }
 
-function linksByValue(thresh, links) {
+function linksByValue(thresh, links) {//push link by value (n of cards)
     for (let i = 0; i < links.length; i++) {
         if (links[i].value > thresh) {
             graph.links.push({ ...links[i] });
@@ -497,9 +497,9 @@ function threshold(thresh) {
     restart();
 }
 
-function linksByTopic(topicsSelected, links) {
+function linksByTopic(topicsSelected, links) {//filter links by topics selected on filters
     if (topicsSelected.length === 1 && topicsSelected.includes("womanCheck")) {
-        graph = { ...wGraph };
+        graph = { ...wGraph }; //if only woman filter, copy women data
     } else {
         for (let i = 0; i < links.length; i++) {
             let array = links[i].topics.split(",");
@@ -515,14 +515,14 @@ function linksByTopic(topicsSelected, links) {
 //Checkbox
 function checkbox(value, check) {
     document.getElementById("slider").value = 0;
-    if (value === "womanCheck") {
-        if (!check) {
+    if (value === "womanCheck") { 
+        if (!check) {//if woman not checked -> full graph
             graph = { ...graphOG };
-        } else {
+        } else {//if woman checked -> women graph
             graph = { ...wGraph };
         }
     } else if (check === false && $("#dropFilters").val() === null) {
-        graph = { ...graphOG };
+        graph = { ...graphOG }; //none selected
     } else {
         graph.links = [];
         let topicsSelected = $("#dropFilters").val();
