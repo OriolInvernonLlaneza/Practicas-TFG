@@ -561,8 +561,8 @@ inspect(stemmed[[1]])
 
 dtm <- DocumentTermMatrix(stemmed) #matrix
 #inspect(dtm)in
-rowTotals <- apply(dtm , 1, sum) #Find the sum of words in each Document
-dtm.new   <- dtm[rowTotals> 0, ] #remove all docs without words
+rowTotals <- apply(dtmCSV , 1, sum) #Find the sum of words in each Document
+dtmCSV   <- dtmCSV[rowTotals> 0, ] #remove all docs without words
 write.csv(as.matrix(dtm), "dtmFull.csv")
 save(dtm, file = "dtmFull.RData")
 #word list
@@ -575,13 +575,19 @@ findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
 #mOG <- as.matrix(dtm.new)
 #m <- as.matrix(sparse)
 
-dtmCSV <- read.csv("dtm.csv", header = TRUE, check.names=FALSE, row.names = 1)
-dtmCSV <- read.csv("dtmTotal.csv", header = TRUE, check.names=FALSE)
+dtmCSV <- read.csv("dtmFull.csv", header = TRUE, check.names=FALSE, row.names = 1)
+dtmCSV <- read.csv("dtmFull.csv", header = TRUE, check.names=FALSE)
 #dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
 write.csv(mOG, "reee.csv")
 m <- as.matrix(dtm.new)
 #m2 <- m[,2:ncol(m)]
 #dtmRd <- load("dtmFull.RData")
+
+dtmPrueba$hacer <- 0
+dtmPrueba$decir <- 0
+dtmPrueba$poder <- 0
+colTotals <- colSums(dtmPrueba)
+dtmPrueba   <- dtmPrueba[, colTotals > 0]
 
 #k means algorithm 1
 d <- dist(m)
@@ -708,21 +714,21 @@ seed <-list(2003,5,63,100001,765)
 nstart <- 5
 best <- TRUE
 #Number of topics
-k <- 8
-ldaOut <-LDA(dtm.new, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+k <- 7
+ldaOut <-LDA(dtmPrueba, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut5 <-LDA(dtm.new, 5, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut6 <-LDA(dtm.new, 6, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut9 <-LDA(dtm.new, 9, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
-write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbs",k,"DocsToTopics.csv"))
+write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbs",k,"V2DocsToTopics.csv"))
 #top 10 terms in each topic
-ldaOut.terms <- as.matrix(terms(ldaOut,10))
-write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbs",k,"TopicsToTerms.csv"))
+ldaOut.terms <- as.matrix(terms(ldaOut,25))
+write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbs",k,"V2TopicsToTerms.csv"))
 #probabilities associated with each topic assignment
 topicProbabilities <- as.data.frame(ldaOut@gamma)
-write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbs",k,"TopicProbabilities.csv"))
+write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbs",k,"V2TopicProbabilities.csv"))
 #Find relative importance of top 2 topics
 topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
       sort(topicProbabilities[x,])[k]/sort(topicProbabilities[x,])[k-1]})
