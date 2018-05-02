@@ -439,7 +439,7 @@
             includeResetDivider: false,
             resetText: 'Reset',
             templates: {
-                button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> <b class="caret"></b></button>',
+                button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> <strong class="caret"></strong></button>',
                 ul: '<ul class="multiselect-container dropdown-menu"></ul>',
                 filter: '<li class="multiselect-item multiselect-filter"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" /></div></li>',
                 filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>',
@@ -945,24 +945,24 @@
         createOptgroup: function(group) {
             var label = $(group).attr("label");
             var value = $(group).attr("value");
-            var $li = $('<li class="multiselect-item multiselect-group"><a href="javascript:void(0);"><label><b></b></label></a></li>');
+            var $li = $('<li class="multiselect-item multiselect-group"><a href="javascript:void(0);"><label><strong></strong></label></a></li>');
 
             var classes = this.options.optionClass(group);
             $li.addClass(classes);
 
             if (this.options.enableHTML) {
-                $('label b', $li).html(" " + label);
+                $('label strong', $li).html(". " + label);
             }
             else {
-                $('label b', $li).text(" " + label);
+                $('label strong', $li).text(". " + label);
             }
 
             if (this.options.enableCollapsibleOptGroups && this.options.multiple) {
-                $('a', $li).append('<span class="caret-container"><b class="caret"></b></span>');
+                $('a', $li).append('.<span class="caret-container"><strong class="caret"></strong></span>');
             }
 
             if (this.options.enableClickableOptGroups && this.options.multiple) {
-                $('a label', $li).prepend('<input type="checkbox" value="' + value + '"/>');
+                $('a label', $li).prepend('.<input type="checkbox" title="'+ value +'" value="' + value + '"/>');
             }
 
             if ($(group).is(':disabled')) {
@@ -1029,17 +1029,17 @@
                 $('label', $li).addClass("checkbox");
 
                 if (this.options.enableHTML) {
-                    $('label', $li).html(" " + this.options.selectAllText);
+                    $('label', $li).html(". " + this.options.selectAllText);
                 }
                 else {
-                    $('label', $li).text(" " + this.options.selectAllText);
+                    $('label', $li).text(". " + this.options.selectAllText);
                 }
 
                 if (this.options.selectAllName) {
-                    $('label', $li).prepend('<input type="checkbox" name="' + this.options.selectAllName + '" />');
+                    $('label', $li).prepend('.<input type="checkbox" title="'+ this.options.selectAllName +'" name="' + this.options.selectAllName + '" />');
                 }
                 else {
-                    $('label', $li).prepend('<input type="checkbox" />');
+                    $('label', $li).prepend('.<input title="checkbox" type="checkbox" />');
                 }
 
                 var $checkbox = $('input', $li);

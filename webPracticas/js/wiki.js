@@ -50,7 +50,7 @@ wikiImage = function (data) {
   }
 
   if (imageURL != null) {
-    $("#wiki").append("<img id='wikiImg' class='rounded' src='" + imageURL + "'/>");
+    $("#wiki").append("<img id='wikiImg' alt='Imagen del personaje en Wikipedia' class='rounded' src='" + imageURL + "'/>");
   }
   if (content != null) {
     $("#wiki").append("<p id='wikiP'>" + content + "</p>");
