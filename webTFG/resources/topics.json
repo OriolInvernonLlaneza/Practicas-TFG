@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Política"
+    },
+    {
+        "id": 2,
+        "name": "Poesía"
+    },
+    {
+        "id": 3,
+        "name": "Literatura"
+    },
+    {
+        "id": 4,
+        "name": "Historia"
+    },
+    {
+        "id": 5,
+        "name": "Lugares"
+    },
+    {
+        "id": 6,
+        "name": "Perdidas"
+    },
+    {
+        "id": 7,
+        "name": "Sociedad"
+    }
+]
