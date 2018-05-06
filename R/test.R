@@ -639,44 +639,52 @@ avNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean",
                  min.nc = 2, max.nc = 14, method = "average", index = "ball")
 avNC2 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "average", index = "frey")
-avNC3 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "average", index = "gap")
+avNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                 min.nc = 2, max.nc = 14, method = "average", index = "cindex")
 
 siNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "single", index = "silhouette")
 siNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "single", index = "hubert")
+                 min.nc = 2, max.nc = 14, method = "single", index = "pseudot2")
 siNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "single", index = "ball")
 siNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "single", index = "dindex")
+                 min.nc = 2, max.nc = 14, method = "single", index = "frey")
+siNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                 min.nc = 2, max.nc = 14, method = "single", index = "cindex")
 
 comNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "complete", index = "silhouette")
 comNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "complete", index = "hubert")
+                 min.nc = 2, max.nc = 14, method = "complete", index = "pseudot2")
 comC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "complete", index = "ball")
 comC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "complete", index = "dindex")
+                 min.nc = 2, max.nc = 14, method = "complete", index = "frey")
+comC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                 min.nc = 2, max.nc = 14, method = "complete", index = "cindex")
 
-cenNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+cenC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                   min.nc = 2, max.nc = 14, method = "centroid", index = "silhouette")
-cenNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                  min.nc = 2, max.nc = 14, method = "centroid", index = "hubert")
+cenC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                  min.nc = 2, max.nc = 14, method = "centroid", index = "pseudot2")
 cenC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "centroid", index = "ball")
 cenC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "centroid", index = "dindex")
+                 min.nc = 2, max.nc = 14, method = "centroid", index = "frey")
+cenC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                 min.nc = 2, max.nc = 14, method = "centroid", index = "cindex")
 
 warNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                   min.nc = 2, max.nc = 14, method = "ward.D", index = "silhouette")
 warNC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                  min.nc = 2, max.nc = 14, method = "ward.D", index = "hubert")
+                  min.nc = 2, max.nc = 14, method = "ward.D", index = "pseudot2")
 warC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
                  min.nc = 2, max.nc = 14, method = "ward.D", index = "ball")
 warC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
-                 min.nc = 2, max.nc = 14, method = "ward.D", index = "dindex")
+                 min.nc = 2, max.nc = 14, method = "ward.D", index = "frey")
+warC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean", 
+                 min.nc = 2, max.nc = 14, method = "ward.D", index = "cindex")
 
 #k means algorithm 1
 d <- dist(m)
