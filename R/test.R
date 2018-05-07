@@ -14,7 +14,8 @@ library("ggplot2")
 library("scales")
 library("tidytext")
 #library("RColorBrewer")
-#library("wordcloud2")
+library("wordcloud")
+library("wordcloud2")
 #library("RTextTools")
 
 setwd("D:/Users/Oriol/Documents/practicas/proyecto/R")
@@ -579,6 +580,8 @@ findFreqTerms(dtm, lowfreq = 100) #buscar términos más comunes en matriz
 dtmCSV <- read.csv("dtmFull.csv", header = TRUE, check.names=FALSE, row.names = 1)
 #dtmCSV <- read.csv("dtmFull.csv", header = TRUE, check.names=FALSE)
 #dtmF <- as.DocumentTermMatrix(dtmCSV, weighting = weightTf)
+rowTotals <- apply(dtmCSV , 1, sum) #Find the sum of words in each Document
+dtmCSV   <- dtmCSV[rowTotals> 0, ] #remove all docs without words
 write.csv(mOG, "reee.csv")
 m <- as.matrix(dtm.new)
 #m2 <- m[,2:ncol(m)]
@@ -690,9 +693,10 @@ warC1 <- NbClust(data = sparse, diss = NULL, distance = "euclidean",
 d <- dist(m)
 fviz_nbclust(m, kmeans, method = "wss", k.max = 25) #elbow check
 set.seed(1917)
-kfit <- kmeans(d, 4, nstart=100)
-plot(prcomp(d)$x, col=kfit$cl)
-fviz_cluster(kfit, d, ellipse = FALSE, geom = "point")
+kfit <- kmeans(sparse, 3, nstart=100)
+plot(prcomp(sparse)$x, col=kfit$cl)
+fviz_cluster(kfit, sparse, ellipse = FALSE, geom = "point")
+sil.kfit <- silhouette(kfit$cluster, prcomp(sparse)$x)
 #clusplot(m, kfit$cluster, color=T, shade=T, labels=2, lines=0)
 kfitm <- kmeans(m, 9, nstart=100)
 fviz_cluster(kfitm, m, ellipse = FALSE, geom = "point")
@@ -708,23 +712,40 @@ cl <- kmeans(m_norm, 5)
 plot(prcomp(m_norm)$x, col=cl$cl)
 
 #hierarchical
-h1 <- agnes(m, metric = "euclidean", stand = FALSE)
-h2 <- diana(m, metric = "euclidean", stand = FALSE)
+h1 <- agnes(sparse, metric = "euclidean", stand = FALSE)
+h2 <- diana(sparse, metric = "euclidean", stand = FALSE)
+
+pdf("agnes1Aver.pdf", width=60, height=15)
 pltree(h1, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
+dev.off()
+
+pdf("diana1.pdf", width=60, height=15)
 pltree(h2, cex = 0.6, hang = -1, main = "Dendrograma de diana")
+dev.off()
 
-h11 <- agnes(m, stand = FALSE)
-h22 <- diana(m, stand = FALSE)
-pltree(h11, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
-pltree(h22, cex = 0.6, hang = -1, main = "Dendrograma de diana")
+h12 <- agnes(sparse, method = "ward", metric = "euclidean", stand = FALSE)
 
-h111 <- agnes(d, metric = "euclidean", stand = FALSE)
-h222 <- diana(d, metric = "euclidean", stand = FALSE)
-pltree(h111, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
-pltree(h222, cex = 0.6, hang = -1, main = "Dendrograma de diana")
+pdf("agnes2Ward.pdf", width=60, height=15)
+pltree(h12, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
+dev.off()
+
+h13 <- agnes(sparse, method = "single", metric = "euclidean", stand = FALSE)
+
+pdf("agnesSingle.pdf", width=60, height=15)
+pltree(h13, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
+dev.off()
+
+h14 <- agnes(sparse, method = "complete", metric = "euclidean", stand = FALSE)
+
+pdf("agnesComplete.pdf", width=60, height=15)
+pltree(h14, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
+dev.off()
+
+
+##################
 
 #density
-kNNdistplot(m, k = 3)
+kNNdistplot(sparse, k = 10)
 abline(h = 30, lty = 2)
 db <- dbscan(m, 9, 3)
 fviz_cluster(db, data = m, stand = FALSE,
@@ -772,10 +793,7 @@ candidate_k <- c(3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 23, 25, 30) # candidates for h
 # export all the needed R objects to the parallel sessions
 clusterExport(cluster, c("full_data", "burnin", "iter", "keep", "splitfolds", "folds", "candidate_k"))
 
-# we parallelize by the different number of topics.  A processor is allocated a value
-# of k, and does the cross-validation serially.  This is because it is assumed there
-# are more candidate values of k than there are cross-validation folds, hence it
-# will be more efficient to parallelise
+# parallel
 system.time({
   results <- foreach(j = 1:length(candidate_k), .combine = rbind) %dopar%{
     k <- candidate_k[j]
@@ -812,20 +830,20 @@ nstart <- 5
 best <- TRUE
 #Number of topics
 k <- 7
-ldaOut <-LDA(dtmPrueba, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaOut <-LDA(dtmCSV, k, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut5 <-LDA(dtm.new, 5, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut6 <-LDA(dtm.new, 6, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut9 <-LDA(dtm.new, 9, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 #write out results
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
-write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbs",k,"V2DocsToTopics.csv"))
+write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbsSparse",k,"V2DocsToTopics.csv"))
 #top 10 terms in each topic
 ldaOut.terms <- as.matrix(terms(ldaOut,25))
-write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbs",k,"V2TopicsToTerms.csv"))
+write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbsSparse",k,"V2TopicsToTerms.csv"))
 #probabilities associated with each topic assignment
 topicProbabilities <- as.data.frame(ldaOut@gamma)
-write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbs",k,"V2TopicProbabilities.csv"))
+write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbsSparse",k,"V2TopicProbabilities.csv"))
 #Find relative importance of top 2 topics
 topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
       sort(topicProbabilities[x,])[k]/sort(topicProbabilities[x,])[k-1]})
@@ -852,6 +870,28 @@ ap_top_terms %>%
   geom_col(show.legend = FALSE) +
   facet_wrap(~ topic, scales = "free") +
   coord_flip()
+
+#worldclouds
+topic <- 7
+dfTopic <- data.frame(terms = ldaOut@terms, p = exp(ldaOut@beta[topic,]))
+head(dfTopic[order(-dfTopic$p),])
+wordcloud(words = dfTopic$terms,
+          freq = dfTopic$p,
+          max.words = 100,
+          random.order = FALSE,
+          rot.per = 0.35,
+          colors=brewer.pal(8, "Dark2"))
+
+ap_top_terms <- jo_topics %>%
+  group_by(topic) %>%
+  top_n(12, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+ap_top_terms %>%
+  mutate(topic = paste("topic", topic)) %>%
+  acast(term ~ topic, value.var = "beta", fill = 0) %>%
+  comparison.cloud(colors = c("#F8766D", "#00BFC4", "#7a8dba",
+                              "#d78dba", "#bdffba", "#4f87ff", "#f4f49c"), max.words = 100)
 
 #sparcl
 library("sparcl")
