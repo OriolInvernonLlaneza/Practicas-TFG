@@ -728,6 +728,20 @@ h12 <- agnes(sparse, method = "ward", metric = "euclidean", stand = FALSE)
 pdf("agnes2Ward.pdf", width=60, height=15)
 pltree(h12, cex = 0.6, hang = -1, main = "Dendrograma de agnes")
 dev.off()
+ward.cut <- cutree(h12, k=2)
+sil.ward <- silhouette(ward.cut, dist(sparse))
+wsum <- summary(sil.ward)
+wsum$clus.avg.widths
+wsum$clus.sizes
+wsum$avg.width
+
+tdmCSV <- t(dtmCSV)
+tdm <- as.TermDocumentMatrix(tdmCSV, weighting = weightTf)
+tdmSp <- removeSparseTerms(tdm, 0.995)
+library("clValid")
+clres <- clValid(obj = as.matrix(tdm), nClust = 3:9, clMethods = "agnes",
+        validation = "internal",
+        metric = "euclidean", method = "ward")
 
 h13 <- agnes(sparse, method = "single", metric = "euclidean", stand = FALSE)
 
