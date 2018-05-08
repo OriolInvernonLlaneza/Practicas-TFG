@@ -12,7 +12,7 @@ let wGraph;
 
 function createGraph(ngraph) {
 
-    if(ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
+    if (ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
         alert("No hay resultados con los filtros actuales");
         return;
     } //No nodes due to filters
@@ -478,59 +478,67 @@ function restart() {
     createGraph(graph);
 }
 
-function linksByValue(thresh, links) {//push link by value (n of cards)
+function linksByValue(links) {//push link by value (n of cards)
+    graph.links = [];
     for (let i = 0; i < links.length; i++) {
-        if (links[i].value > thresh) {
+        if (links[i].value > currentThreshValue) {
             graph.links.push({ ...links[i] });
         }
     }
 }
 
 //adjust threshold
+let currentThreshValue = 0;
 function threshold(thresh) {
-    graph.links = [];
-    if ($("#dropFilters").val() === null || !$("#dropFilters").val().includes("womanCheck")) {
-        linksByValue(thresh, graphOG.links);
+    currentThreshValue = thresh;
+    if ($("#dropFilters").val() === null) {
+        linksByValue(graphOG.links);
     } else {
-        linksByValue(thresh, wGraph.links);
+        linksByTopic();
     }
     restart();
 }
 
-function linksByTopic(topicsSelected, links) {//filter links by topics selected on filters
+function linksByTopic() {//filter links by topics selected on filters
+    let topicsSelected = $("#dropFilters").val();
     if (topicsSelected.length === 1 && topicsSelected.includes("womanCheck")) {
         graph = { ...wGraph }; //if only woman filter, copy women data
+        linksByValue(wGraph.links);
     } else {
-        for (let i = 0; i < links.length; i++) {
-            let array = links[i].topics.split(",");
-            for (let j = 0; j < array.length; j++) {
-                if (topicsSelected.includes(array[j])) {
-                    graph.links.push({ ...links[i] });
+        graph.links = [];
+        let aux = topicsSelected.includes("womanCheck") ? wGraph.links : graphOG.links;
+
+        for (let i = 0; i < aux.length; i++) {
+            if (aux[i].value > currentThreshValue) {
+                let array = aux[i].topics.split(",");
+                for (let j = 0; j < array.length; j++) {
+                    if (topicsSelected.includes(array[j])) {
+                        graph.links.push({ ...aux[i] });
+                    }
                 }
             }
         }
     }
 }
 
+function resetSlider() {
+    $("#slider").bootstrapSlider("refresh");
+    currentThreshValue = 0;
+}
+
 //Checkbox
 function checkbox(value, check) {
-    document.getElementById("slider").value = 0;
-    if (value === "womanCheck") { 
+    if (value === "womanCheck") {
         if (!check) {//if woman not checked -> full graph
             graph = { ...graphOG };
         } else {//if woman checked -> women graph
             graph = { ...wGraph };
         }
+        resetSlider();
     } else if (check === false && $("#dropFilters").val() === null) {
         graph = { ...graphOG }; //none selected
     } else {
-        graph.links = [];
-        let topicsSelected = $("#dropFilters").val();
-        if (!topicsSelected.includes("womanCheck")) {
-            linksByTopic(topicsSelected, graphOG.links);
-        } else {
-            linksByTopic(topicsSelected, wGraph.links);
-        }
+        linksByTopic();
     }
     restart();
 }
@@ -578,12 +586,10 @@ function changeTab(evt) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Get all elements with class="option" and remove the class "checked"
-    //$("#dropFilters").val() = undefined;
-
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
-    document.getElementById("slider").value = 0;
+    resetSlider();
+    $("#dropFilters").multiselect("deselectAll", false).multiselect("refresh");
 }
 
 function addGraph(resource, evt) {
