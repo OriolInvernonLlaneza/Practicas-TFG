@@ -478,6 +478,7 @@ function restart() {
     createGraph(graph);
 }
 
+let currentThreshValue = 0;
 function linksByValue(links) {//push link by value (n of cards)
     graph.links = [];
     for (let i = 0; i < links.length; i++) {
@@ -485,18 +486,6 @@ function linksByValue(links) {//push link by value (n of cards)
             graph.links.push({ ...links[i] });
         }
     }
-}
-
-//adjust threshold
-let currentThreshValue = 0;
-function threshold(thresh) {
-    currentThreshValue = thresh;
-    if ($("#dropFilters").val() === null) {
-        linksByValue(graphOG.links);
-    } else {
-        linksByTopic();
-    }
-    restart();
 }
 
 function linksByTopic() {//filter links by topics selected on filters
@@ -519,6 +508,17 @@ function linksByTopic() {//filter links by topics selected on filters
             }
         }
     }
+}
+
+//adjust threshold
+function threshold(thresh) {
+    currentThreshValue = thresh;
+    if ($("#dropFilters").val() === null) {
+        linksByValue(graphOG.links);
+    } else {
+        linksByTopic();
+    }
+    restart();
 }
 
 function resetSlider() {
