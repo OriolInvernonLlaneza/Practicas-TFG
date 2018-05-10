@@ -3,10 +3,10 @@ var lastWikiPage;
 var content;
 
 function callWikipediaAPI(wikiPage) {
-  if (wikiPage === lastWikiPage) { // using three equals to avoid errors if json.link is blank
+  if (wikiPage === lastWikiPage) { // using three equals to avoid errors 
     return; // if the selected node is the same as last time -> do nothing
   }
-  if (wikiPage === "") {
+  if (wikiPage === "") { //if json.link is blank
     $("#wiki").empty();
     return;
   }
