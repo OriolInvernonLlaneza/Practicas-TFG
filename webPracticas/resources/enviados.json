@@ -299,9 +299,9 @@
     },
     {
       "id": 43,
-      "name": "Mazargreeno",
-      "fname": "José de Mazargreeno y Salazar",
-      "wiki": "José_de_Mazargreeno_Salazar",
+      "name": "Mazarredo",
+      "fname": "José de Mazarredo y Salazar",
+      "wiki": "José_de_Mazarredo_Salazar",
       "color": "green"
     },
     {
@@ -660,7 +660,7 @@
     {
       "id": 94,
       "name": "Aizpún",
-      "fname": "Manuel de Aizpún y greenín",
+      "fname": "Manuel de Aizpún y Redín",
       "wiki": "",
       "color": "green"
     },
@@ -689,7 +689,7 @@
     {
       "id": 98,
       "name": "Camposagrado",
-      "fname": "Marqués de Camposagrado y Antonio Hegreenia y Velarde",
+      "fname": "Marqués de Camposagrado y Antonio Heredia y Velarde",
       "wiki": "",
       "color": "green"
     },
@@ -898,7 +898,7 @@
     },
     {
       "id": 128,
-      "name": "de Bourgoing",
+      "name": "Bourgoing",
       "fname": "Barón de Bourgoing",
       "wiki": "Jean-François_de_Bourgoing",
       "color": "green"
@@ -1899,7 +1899,7 @@
     },
     {
       "id": 293,
-      "fname": "Antonio de Hegreenia Velarde",
+      "fname": "Antonio de Heredia Velarde",
       "wiki": "",
       "color": ""
     },
@@ -1941,7 +1941,7 @@
     },
     {
       "id": 300,
-      "fname": "Antonio Hegreenia",
+      "fname": "Antonio Heredia",
       "wiki": "",
       "color": ""
     },
@@ -2213,181 +2213,181 @@
       "source": 1,
       "target": 2,
       "value": 166,
-      "topics": "Política,Sociedad"
+      "topics": "Política,Formal,Perdida,Íntimo,Recopilador,Poesía,Guerra"
     },
     {
       "source": 1,
       "target": 3,
       "value": 133,
-      "topics": "Historia"
+      "topics": "Guerra,Poesía,Formal,Íntimo,Política"
     },
     {
       "source": 1,
       "target": 4,
       "value": 48,
-      "topics": "Literatura,Sociedad"
+      "topics": "Política,Íntimo,Política,Formal"
     },
     {
       "source": 1,
       "target": 5,
       "value": 35,
-      "topics": "Poesía, Lugares"
+      "topics": "Íntimo,Perdida,Política"
     },
     {
       "source": 1,
       "target": 6,
       "value": 27,
-      "topics": "Poesía"
+      "topics": "Poesía,Política,Íntimo,Formal,Guerra,Perdida,Recopilador"
     },
     {
       "source": 1,
       "target": 7,
       "value": 26,
-      "topics": "Sociedad,Perdidas"
+      "topics": "Política,Recopilador,Perdida"
     },
     {
       "source": 1,
       "target": 8,
       "value": 23,
-      "topics": "Política"
+      "topics": "Perdida,Poesía,Guerra,Formal"
     },
     {
       "source": 1,
       "target": 9,
       "value": 19,
-      "topics": ""
+      "topics": "Poesía,Íntimo,Guerra"
     },
     {
       "source": 1,
       "target": 10,
       "value": 17,
-      "topics": ""
+      "topics": "Política,Perdida,Íntimo,Guerra"
     },
     {
       "source": 1,
       "target": 11,
       "value": 17,
-      "topics": ""
+      "topics": "Perdida,Íntimo,Formal,Política"
     },
     {
       "source": 1,
       "target": 12,
       "value": 16,
-      "topics": ""
+      "topics": "Guerra,Íntimo,Formal"
     },
     {
       "source": 1,
       "target": 13,
       "value": 16,
-      "topics": ""
+      "topics": "Perdida,Política,Formal,Guerra"
     },
     {
       "source": 1,
       "target": 14,
       "value": 16,
-      "topics": ""
+      "topics": "Recopilador,Perdida"
     },
     {
       "source": 1,
       "target": 15,
       "value": 15,
-      "topics": ""
+      "topics": "Política,Perdida,Formal"
     },
     {
       "source": 1,
       "target": 16,
       "value": 14,
-      "topics": ""
+      "topics": "Perdida,Política,Formal,Íntimo,Recopilador"
     },
     {
       "source": 1,
       "target": 17,
       "value": 13,
-      "topics": ""
+      "topics": "Perdida"
     },
     {
       "source": 1,
       "target": 18,
       "value": 12,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
       "target": 19,
       "value": 12,
-      "topics": ""
+      "topics": "Recopilador,Poesía,Perdida,Íntimo,Política"
     },
     {
       "source": 1,
       "target": 20,
       "value": 11,
-      "topics": ""
+      "topics": "Poesía,Perdida,Recopilador"
     },
     {
       "source": 1,
       "target": 21,
       "value": 11,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 22,
       "value": 11,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 23,
       "value": 10,
-      "topics": ""
+      "topics": "Poesía,Formal,Íntimo,Perdida"
     },
     {
       "source": 1,
       "target": 24,
       "value": 10,
-      "topics": ""
+      "topics": "Perdida,Íntimo"
     },
     {
       "source": 1,
       "target": 25,
       "value": 10,
-      "topics": ""
+      "topics": "Íntimo,Política,Perdida"
     },
     {
       "source": 1,
       "target": 26,
       "value": 10,
-      "topics": ""
+      "topics": "Perdida,Política,Formal,Íntimo"
     },
     {
       "source": 1,
       "target": 27,
       "value": 10,
-      "topics": ""
+      "topics": "Recopilador,Política"
     },
     {
       "source": 1,
       "target": 28,
       "value": 9,
-      "topics": ""
+      "topics": "Recopilador,Poesía"
     },
     {
       "source": 1,
       "target": 29,
       "value": 9,
-      "topics": ""
+      "topics": "Política,Perdida,Íntimo"
     },
     {
       "source": 1,
       "target": 30,
       "value": 9,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 31,
       "value": 9,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
@@ -2399,19 +2399,19 @@
       "source": 1,
       "target": 33,
       "value": 8,
-      "topics": "Poesía"
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 34,
       "value": 8,
-      "topics": ""
+      "topics": "Guerra,Íntimo,Poesía"
     },
     {
       "source": 1,
       "target": 35,
       "value": 7,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
@@ -2423,31 +2423,31 @@
       "source": 1,
       "target": 37,
       "value": 6,
-      "topics": ""
+      "topics": "Perdida,Poesía,Política,Guerra"
     },
     {
       "source": 1,
       "target": 38,
       "value": 6,
-      "topics": ""
+      "topics": "Política,Perdida,Poesía,Formal"
     },
     {
       "source": 1,
       "target": 39,
       "value": 6,
-      "topics": ""
+      "topics": "Íntimo,Perdida"
     },
     {
       "source": 1,
       "target": 40,
       "value": 6,
-      "topics": ""
+      "topics": "Recopilador,Poesía,Íntimo"
     },
     {
       "source": 1,
       "target": 41,
       "value": 6,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
@@ -2459,55 +2459,55 @@
       "source": 1,
       "target": 43,
       "value": 5,
-      "topics": ""
+      "topics": "Perdida,Guerra"
     },
     {
       "source": 1,
       "target": 44,
       "value": 5,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 45,
       "value": 5,
-      "topics": ""
+      "topics": "Política,Perdida,Formal,Recopilador,Íntimo"
     },
     {
       "source": 1,
       "target": 46,
       "value": 5,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 47,
       "value": 5,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 48,
       "value": 5,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 49,
       "value": 5,
-      "topics": ""
+      "topics": "Poesía,Guerra,Formal,Perdida"
     },
     {
       "source": 1,
       "target": 50,
       "value": 5,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 51,
       "value": 5,
-      "topics": ""
+      "topics": "Perdida,Guerra"
     },
     {
       "source": 1,
@@ -2519,31 +2519,31 @@
       "source": 1,
       "target": 53,
       "value": 5,
-      "topics": ""
+      "topics": "Recopilador,Perdida"
     },
     {
       "source": 1,
       "target": 54,
       "value": 4,
-      "topics": ""
+      "topics": "Política,Formal,Perdida"
     },
     {
       "source": 1,
       "target": 55,
       "value": 4,
-      "topics": ""
+      "topics": "Perdida,Poesía,Política"
     },
     {
       "source": 1,
       "target": 56,
       "value": 4,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 57,
       "value": 4,
-      "topics": ""
+      "topics": "Formal,Íntimo"
     },
     {
       "source": 1,
@@ -2555,13 +2555,13 @@
       "source": 1,
       "target": 59,
       "value": 4,
-      "topics": ""
+      "topics": "Política,Íntimo,Perdida,Formal"
     },
     {
       "source": 1,
       "target": 60,
       "value": 4,
-      "topics": ""
+      "topics": "Perdida,Política,Íntimo"
     },
     {
       "source": 1,
@@ -2573,19 +2573,19 @@
       "source": 1,
       "target": 62,
       "value": 4,
-      "topics": ""
+      "topics": "Perdida,Guerra,Recopilador"
     },
     {
       "source": 1,
       "target": 63,
       "value": 4,
-      "topics": ""
+      "topics": "Perdida,Formal,Guerra"
     },
     {
       "source": 1,
       "target": 64,
       "value": 4,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -2597,55 +2597,55 @@
       "source": 1,
       "target": 66,
       "value": 4,
-      "topics": ""
+      "topics": "Íntimo,Formal,Política"
     },
     {
       "source": 1,
       "target": 67,
       "value": 4,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 68,
       "value": 3,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 69,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 70,
       "value": 3,
-      "topics": ""
+      "topics": "Perdida,Formal"
     },
     {
       "source": 1,
       "target": 71,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
       "target": 72,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Íntimo"
     },
     {
       "source": 1,
       "target": 73,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Recopilador,Perdida"
     },
     {
       "source": 1,
       "target": 74,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
@@ -2663,67 +2663,67 @@
       "source": 1,
       "target": 77,
       "value": 3,
-      "topics": ""
+      "topics": "Perdida,Formal"
     },
     {
       "source": 1,
       "target": 78,
       "value": 3,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 79,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 80,
       "value": 3,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 81,
       "value": 3,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 82,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 83,
       "value": 3,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 84,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Recopilador"
     },
     {
       "source": 1,
       "target": 85,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Poesía,Perdida"
     },
     {
       "source": 1,
       "target": 86,
       "value": 3,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 87,
       "value": 3,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
@@ -2741,31 +2741,31 @@
       "source": 1,
       "target": 90,
       "value": 3,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 91,
       "value": 3,
-      "topics": ""
+      "topics": "Perdida,Poesía"
     },
     {
       "source": 1,
       "target": 92,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Poesía,Recopilador,Perdida"
     },
     {
       "source": 1,
       "target": 93,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo,Política"
     },
     {
       "source": 1,
       "target": 94,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -2777,19 +2777,19 @@
       "source": 1,
       "target": 96,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 97,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 98,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -2801,19 +2801,19 @@
       "source": 1,
       "target": 100,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 101,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo,Política"
     },
     {
       "source": 1,
       "target": 102,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Íntimo"
     },
     {
       "source": 1,
@@ -2825,7 +2825,7 @@
       "source": 1,
       "target": 104,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Guerra,Íntimo"
     },
     {
       "source": 1,
@@ -2837,19 +2837,19 @@
       "source": 1,
       "target": 106,
       "value": 2,
-      "topics": ""
+      "topics": "Perdida,Política"
     },
     {
       "source": 1,
       "target": 107,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
       "target": 108,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Íntimo"
     },
     {
       "source": 1,
@@ -2861,79 +2861,79 @@
       "source": 1,
       "target": 110,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo,Política,Perdida,Recopilador"
     },
     {
       "source": 1,
       "target": 111,
       "value": 2,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
       "target": 112,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
       "target": 113,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo,Perdida"
     },
     {
       "source": 1,
       "target": 114,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 115,
       "value": 2,
-      "topics": ""
+      "topics": "Recopilador,Política"
     },
     {
       "source": 1,
       "target": 116,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Guerra"
     },
     {
       "source": 1,
       "target": 117,
       "value": 2,
-      "topics": ""
+      "topics": "Recopilador,Política"
     },
     {
       "source": 1,
       "target": 118,
       "value": 2,
-      "topics": ""
+      "topics": "Poesía,Formal"
     },
     {
       "source": 1,
       "target": 119,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 120,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Guerra"
     },
     {
       "source": 1,
       "target": 121,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 122,
       "value": 2,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -2957,43 +2957,43 @@
       "source": 1,
       "target": 126,
       "value": 2,
-      "topics": ""
+      "topics": "Perdida,Íntimo"
     },
     {
       "source": 1,
       "target": 127,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Perdida,Formal"
     },
     {
       "source": 1,
       "target": 128,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Poesía,Perdida"
     },
     {
       "source": 1,
       "target": 129,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 130,
       "value": 2,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 131,
       "value": 2,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
       "target": 132,
       "value": 2,
-      "topics": ""
+      "topics": "Íntimo,Política"
     },
     {
       "source": 1,
@@ -3005,7 +3005,7 @@
       "source": 1,
       "target": 134,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3023,7 +3023,7 @@
       "source": 1,
       "target": 137,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3041,7 +3041,7 @@
       "source": 1,
       "target": 140,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3053,19 +3053,19 @@
       "source": 1,
       "target": 142,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 143,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 144,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
@@ -3089,13 +3089,13 @@
       "source": 1,
       "target": 148,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 149,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3107,19 +3107,19 @@
       "source": 1,
       "target": 151,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 152,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 153,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
@@ -3131,13 +3131,13 @@
       "source": 1,
       "target": 155,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 156,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3155,19 +3155,19 @@
       "source": 1,
       "target": 159,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 160,
       "value": 1,
-      "topics": ""
+      "topics": "v"
     },
     {
       "source": 1,
       "target": 161,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3179,13 +3179,13 @@
       "source": 1,
       "target": 163,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 164,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3197,13 +3197,13 @@
       "source": 1,
       "target": 166,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 167,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3221,13 +3221,13 @@
       "source": 1,
       "target": 170,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 171,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -3245,19 +3245,19 @@
       "source": 1,
       "target": 174,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 175,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
       "target": 176,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -3269,19 +3269,19 @@
       "source": 1,
       "target": 178,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 179,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 180,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3305,13 +3305,13 @@
       "source": 1,
       "target": 184,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 185,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3323,25 +3323,25 @@
       "source": 1,
       "target": 187,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
       "target": 188,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 189,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 190,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3353,13 +3353,13 @@
       "source": 1,
       "target": 192,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 193,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -3377,7 +3377,7 @@
       "source": 1,
       "target": 196,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3389,13 +3389,13 @@
       "source": 1,
       "target": 198,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía,Política"
     },
     {
       "source": 1,
       "target": 199,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3407,7 +3407,7 @@
       "source": 1,
       "target": 201,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3419,7 +3419,7 @@
       "source": 1,
       "target": 203,
       "value": 1,
-      "topics": ""
+      "topics": "Perdida"
     },
     {
       "source": 1,
@@ -3431,25 +3431,25 @@
       "source": 1,
       "target": 205,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 206,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
       "target": 207,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
       "target": 208,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -3461,49 +3461,49 @@
       "source": 1,
       "target": 210,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 211,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
       "target": 212,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 213,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 214,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
       "target": 215,
       "value": 1,
-      "topics": ""
+      "topics": "Guerra"
     },
     {
       "source": 1,
       "target": 216,
       "value": 1,
-      "topics": ""
+      "topics": "Política,Guerra"
     },
     {
       "source": 1,
       "target": 217,
       "value": 1,
-      "topics": ""
+      "topics": "Perdida"
     },
     {
       "source": 1,
@@ -3515,7 +3515,7 @@
       "source": 1,
       "target": 219,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3527,7 +3527,7 @@
       "source": 1,
       "target": 221,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3545,7 +3545,7 @@
       "source": 1,
       "target": 224,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3557,7 +3557,7 @@
       "source": 1,
       "target": 226,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3581,7 +3581,7 @@
       "source": 1,
       "target": 230,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -3599,19 +3599,19 @@
       "source": 1,
       "target": 233,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 234,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía,Política"
     },
     {
       "source": 1,
       "target": 235,
       "value": 1,
-      "topics": ""
+      "topics": "Política,Perdida"
     },
     {
       "source": 1,
@@ -3623,7 +3623,7 @@
       "source": 1,
       "target": 237,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3659,7 +3659,7 @@
       "source": 1,
       "target": 243,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
@@ -3683,7 +3683,7 @@
       "source": 1,
       "target": 247,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3695,7 +3695,7 @@
       "source": 1,
       "target": 249,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3713,7 +3713,7 @@
       "source": 1,
       "target": 252,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3737,7 +3737,7 @@
       "source": 1,
       "target": 256,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3749,7 +3749,7 @@
       "source": 1,
       "target": 258,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3767,19 +3767,19 @@
       "source": 1,
       "target": 261,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 262,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
       "target": 263,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -3791,13 +3791,13 @@
       "source": 1,
       "target": 265,
       "value": 1,
-      "topics": ""
+      "topics": "Guerra"
     },
     {
       "source": 1,
       "target": 266,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3821,19 +3821,19 @@
       "source": 1,
       "target": 270,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 271,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
       "target": 272,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -3845,25 +3845,25 @@
       "source": 1,
       "target": 274,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 275,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 276,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
       "target": 277,
       "value": 1,
-      "topics": ""
+      "topics": "Política,Formal"
     },
     {
       "source": 1,
@@ -3881,13 +3881,13 @@
       "source": 1,
       "target": 280,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 281,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3911,7 +3911,7 @@
       "source": 1,
       "target": 285,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
@@ -3935,7 +3935,7 @@
       "source": 1,
       "target": 289,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3953,13 +3953,13 @@
       "source": 1,
       "target": 292,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
       "target": 293,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -3989,13 +3989,13 @@
       "source": 1,
       "target": 298,
       "value": 1,
-      "topics": ""
+      "topics": "Formal,Poesía"
     },
     {
       "source": 1,
       "target": 299,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -4025,31 +4025,31 @@
       "source": 1,
       "target": 304,
       "value": 1,
-      "topics": ""
+      "topics": "Guerra,Política"
     },
     {
       "source": 1,
       "target": 305,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 306,
       "value": 1,
-      "topics": ""
+      "topics": "Política,Recopilador"
     },
     {
       "source": 1,
       "target": 307,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía,Íntimo"
     },
     {
       "source": 1,
       "target": 308,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -4061,19 +4061,19 @@
       "source": 1,
       "target": 310,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 311,
       "value": 1,
-      "topics": ""
+      "topics": "Perdida"
     },
     {
       "source": 1,
       "target": 312,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -4085,13 +4085,13 @@
       "source": 1,
       "target": 314,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 315,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
@@ -4109,7 +4109,7 @@
       "source": 1,
       "target": 318,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -4121,31 +4121,31 @@
       "source": 1,
       "target": 320,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 321,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 322,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 323,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 324,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -4163,13 +4163,13 @@
       "source": 1,
       "target": 327,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 328,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
@@ -4181,7 +4181,7 @@
       "source": 1,
       "target": 330,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -4193,13 +4193,13 @@
       "source": 1,
       "target": 332,
       "value": 1,
-      "topics": ""
+      "topics": "Poesía"
     },
     {
       "source": 1,
       "target": 333,
       "value": 1,
-      "topics": ""
+      "topics": "Recopilador"
     },
     {
       "source": 1,
@@ -4217,25 +4217,25 @@
       "source": 1,
       "target": 336,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 337,
       "value": 1,
-      "topics": ""
+      "topics": "Íntimo"
     },
     {
       "source": 1,
       "target": 338,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
       "target": 339,
       "value": 1,
-      "topics": ""
+      "topics": "Formal"
     },
     {
       "source": 1,
@@ -4247,7 +4247,7 @@
       "source": 1,
       "target": 341,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     },
     {
       "source": 1,
@@ -4259,7 +4259,7 @@
       "source": 1,
       "target": 343,
       "value": 1,
-      "topics": ""
+      "topics": "Política"
     }
   ]
 }

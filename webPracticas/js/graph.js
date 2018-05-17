@@ -499,7 +499,11 @@ function linksByTopic() {//filter links by topics selected on filters
 
         for (let i = 0; i < aux.length; i++) {
             if (aux[i].value > currentThreshValue) {
-                let array = aux[i].topics.split(",");
+                let linkTopic = aux[i].topics;
+                if(linkTopic === "") {
+                    linkTopic = "Perdida";
+                }
+                let array = linkTopic.split(",");
                 for (let j = 0; j < array.length; j++) {
                     if (topicsSelected.includes(array[j])) {
                         graph.links.push({ ...aux[i] });
@@ -537,6 +541,7 @@ function checkbox(value, check) {
         resetSlider();
     } else if (check === false && $("#dropFilters").val() === null) {
         graph = { ...graphOG }; //none selected
+        linksByTopic(graphOG.links);
     } else {
         linksByTopic();
     }

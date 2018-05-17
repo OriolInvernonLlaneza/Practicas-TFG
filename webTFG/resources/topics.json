@@ -5,26 +5,26 @@
     },
     {
         "id": 2,
-        "name": "Poesía"
+        "name": "Formal"
     },
     {
         "id": 3,
-        "name": "Literatura"
+        "name": "Perdida"
     },
     {
         "id": 4,
-        "name": "Historia"
+        "name": "Íntimo"
     },
     {
         "id": 5,
-        "name": "Lugares"
+        "name": "Recopilador"
     },
     {
         "id": 6,
-        "name": "Perdidas"
+        "name": "Poesía"
     },
     {
         "id": 7,
-        "name": "Sociedad"
+        "name": "Guerra"
     }
 ]

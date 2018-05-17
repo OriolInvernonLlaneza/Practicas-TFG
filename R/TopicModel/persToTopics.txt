@@ -32,7 +32,6 @@ Tomás Menéndez Jove;Pol-Int?-Perd-intFormal-Recop-
 Carlos Ricardo Fox;Int-
 Francisco de Paula Jovellanos;Int-intFormal-Pol-Perd-Guerra-Recop-Poes-
 Gregorio Menéndez Valdés;Pol-
-Manuel de Aizpún y Redín;Pol-
 Andrés Carlos de Prada;Int-
 Diputación de Asturias;Pol-
 Condesa de la Vega del Pozo;Poes-
@@ -78,7 +77,7 @@ Ayuntamiento de Gijón;Pol-
 José Antonio Quintana;Perd-
 Vicente Joaquín Noguera;Recop-
 María de la Bermeja;intFormal-
-Ventura de Arguellada-Perd-
+Ventura de Arguellada;Perd-
 Antonio Bernardino de Sierra y Quiñones;Pol-
 Juan Francisco Masdeu;Poes-
 Fray Dionisio Otaño;Pol-
@@ -239,7 +238,6 @@ Tomás García Tamargo;Perd-
 Fray Juan Fernández de Rojas;Perd-Poes-
 Priora del convento de agustinas de Gijón;Perd-Int-
 Agustín Pedrayes;Perd-
-Conde del Campo de Alange;Pol-
 Juan Bautista Muñoz;Pol-
 Diego de Sierra;Perd-
 Francisco Vallejo;Perd-
