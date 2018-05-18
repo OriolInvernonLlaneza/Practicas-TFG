@@ -785,54 +785,6 @@ plot(m, col=hdb$cluster+1L, cex = .5)
 plot(hdb)
 plot(hdb$hc, main="HDBSCAN* Hierarchy")
 
-#----------------5-fold cross-validation, different numbers of topics----------------
-# set up a cluster for parallel processing
-cluster <- makeCluster(detectCores(logical = TRUE) - 1) # leave one CPU spare...
-registerDoParallel(cluster)
-
-# load up the needed R package on all the parallel sessions
-clusterEvalQ(cluster, {
-  library(topicmodels)
-})
-
-full_data <- dtm
-n <- nrow(full_data)
-burnin <- 4000
-iter <- 1500
-keep <- 50
-folds <- 5
-splitfolds <- sample(1:folds, n, replace = TRUE)
-candidate_k <- c(3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 23, 25, 30) # candidates for how many topics
-
-# export all the needed R objects to the parallel sessions
-clusterExport(cluster, c("full_data", "burnin", "iter", "keep", "splitfolds", "folds", "candidate_k"))
-
-# parallel
-system.time({
-  results <- foreach(j = 1:length(candidate_k), .combine = rbind) %dopar%{
-    k <- candidate_k[j]
-    results_1k <- matrix(0, nrow = folds, ncol = 2)
-    colnames(results_1k) <- c("k", "perplexity")
-    for(i in 1:folds){
-      train_set <- full_data[splitfolds != i , ]
-      valid_set <- full_data[splitfolds == i, ]
-      
-      fitted <- LDA(train_set, k = k, method = "Gibbs",
-                    control = list(burnin = burnin, iter = iter, keep = keep) )
-      results_1k[i,] <- c(k, perplexity(fitted, newdata = valid_set))
-    }
-    return(results_1k)
-  }
-})
-stopCluster(cluster)
-
-results_df <- as.data.frame(results)
-
-ggplot(results_df, aes(x = k, y = perplexity)) +
-  geom_point() +
-  geom_smooth(se = FALSE) +
-  ggtitle("5-fold cross-validation of topic modelling with the 'CartasJove' dataset") +
-  labs(x = "Candidate number of topics", y = "Perplexity when fitting the trained model to the hold-out set")
 
 #Topic modeling
 #Set parameters for Gibbs sampling
@@ -848,25 +800,18 @@ ldaOut <-LDA(dtmCSV, k, method="Gibbs", control=list(nstart=nstart, seed = seed,
 ldaOut5 <-LDA(dtm.new, 5, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut6 <-LDA(dtm.new, 6, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
 ldaOut9 <-LDA(dtm.new, 9, method="Gibbs", control=list(nstart=nstart, seed = seed, best=best, burnin = burnin, iter = iter, thin=thin))
-#write out results
+
 #docs to topics
 ldaOut.topics <- as.matrix(topics(ldaOut))
 write.csv(ldaOut.topics,file=paste("TopicModel/LDAGibbsSparse",k,"V2DocsToTopics.csv"))
-#top 10 terms in each topic
+
+#top 25 terms by topic
 ldaOut.terms <- as.matrix(terms(ldaOut,25))
 write.csv(ldaOut.terms,file=paste("TopicModel/LDAGibbsSparse",k,"V2TopicsToTerms.csv"))
-#probabilities associated with each topic assignment
+
+#probabilities
 topicProbabilities <- as.data.frame(ldaOut@gamma)
 write.csv(topicProbabilities,file=paste("TopicModel/LDAGibbsSparse",k,"V2TopicProbabilities.csv"))
-#Find relative importance of top 2 topics
-topic1ToTopic2 <- lapply(1:nrow(dtm),function(x){
-      sort(topicProbabilities[x,])[k]/sort(topicProbabilities[x,])[k-1]})
-#Find relative importance of second and third most important topics
-topic2ToTopic3 <- lapply(1:nrow(dtm),function(x) {
-        sort(topicProbabilities[x,])[k-1]/sort(topicProbabilities[x,])[k-2]})
-#write to file
-write.csv(topic1ToTopic2,file=paste("TopicModel/LDAGibbs",k,"Topic1ToTopic2.csv"))
-write.csv(topic2ToTopic3,file=paste("TopicModel/LDAGibbs",k,"Topic2ToTopic3.csv"))
 
 jo_topics <- tidy(ldaOut, matrix = "beta")
 library(ggplot2)
