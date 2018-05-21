@@ -518,7 +518,7 @@ function linksByTopic() {//filter links by topics selected on filters
 //adjust threshold
 function threshold(thresh) {
     currentThreshValue = thresh;
-    if ($("#dropFilters").val() === null) {
+    if ($("#dropFilters").val().length === 0) {
         linksByValue(graphOG.links);
     } else {
         linksByTopic();
@@ -540,7 +540,7 @@ function checkbox(value, check) {
             graph = { ...wGraph };
         }
         resetSlider();
-    } else if (check === false && $("#dropFilters").val() === null) {
+    } else if (check === false && $("#dropFilters").val().length === 0) {
         graph = { ...graphOG }; //none selected
         linksByValue(graphOG.links);
     } else {

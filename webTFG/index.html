@@ -3,24 +3,22 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap-slider.css">
+  <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"> </script>
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.min.js"> </script>
+  <script src="js/d3.js"></script>
+  <script src="js/bootstrap-multiselect.js"></script>
+  <script src="js/bootstrap-slider.js"></script>
   <script src="js/brush-lite.js"></script>
   <script src="js/graph.js"></script>
   <script src="js/wiki.js"></script>
-
-  <link rel="stylesheet" href="css/bootstrap-slider.css">
-  <script src="js/bootstrap-slider.js"></script>
-  <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
-  <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+  <script src="js/multiselect.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Visualización Correspondencia Jovellanos">
@@ -91,7 +89,9 @@
               <p>
                 <strong>Búsqueda:</strong> Para buscar una persona utilice la barra situada debajo.</p>
               <p>
-                <strong>Filtrar:</strong> Para filtrar por el número de cartas utilice el deslizador situado justo debajo. Para filtrar por sexo o temas  (Política, Círculo cercano formal e íntimo, Guerra, Poesía, Cartas perdidas, Trabajo como recopilador) use el desplegable.</p>
+                <strong>Filtrar:</strong> Para filtrar por el número de cartas utilice el deslizador situado justo debajo. Para filtrar
+                por sexo o temas (Política, Círculo cercano formal e íntimo, Guerra, Poesía, Cartas perdidas, Trabajo como
+                recopilador) use el desplegable.</p>
               <p>
                 <strong>Selección simple:</strong> Para seleccionar un nodo haga click sobre él. Mantenga pulsado para arrastrarlo.</p>
               <p>
@@ -113,8 +113,7 @@
       <!-- Graph -->
       <div id="graph" class="framed">
         <div style="float: right">
-          <h3> Mínimo nº de cartas: 0
-            <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25"
+          <h3> Mínimo nº de cartas: 0  <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25"
               data-slider-step="1" data-slider-value="0" title="Deslizador mínimo número de cartas" /> 25 </h3>
           <script>$("#slider").bootstrapSlider({
               formatter: function (value) {
@@ -140,29 +139,7 @@
             <option class="checks" id="womanCheck" title="Mujeres" value="womanCheck">Mujeres</option>
           </select>
         </span>
-        <script type="text/javascript">
-          $(document).ready(function () {
-            $("#dropFilters").multiselect({
-              nonSelectedText: "Filtros tema",
-              numberDisplayed: 2,
-              nSelectedText: "Seleccionados",
-              allSelectedText: "Todos",
-              onChange: function (element, checked) {
-                checkbox(element["0"].value, checked);
-              }
-            });
-          });
-          $(document).ready(function () {
-            d3.json("resources/topics.json", function (error, json) {
-              for (let i = 0; i < json.length; i++) {
-                $("#dropFilters").append("<option class='checks' title='" + json[i].name + "' value=" + json[i].name + ">" + json[i].name + "</option>");
-              }
-              $("#dropFilters").multiselect("rebuild");
-            });
-          });
-        </script>
-        <noscript>Filtros de cartas no se pueden mostrar, active JavaScript</noscript>
-        <svg id="d3" onLoad="document.getElementById('tabC').click()"></svg>
+        <svg id="d3"></svg>
         <div id="wiki"></div>
       </div>
 
@@ -301,11 +278,9 @@
       </div>
     </div>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
+  <script src="js/popper.min.js"></script>
   <noscript>Popper, active JavaScript</noscript>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
   <noscript>Bootstrap, active JavaScript</noscript>
 </body>
 
