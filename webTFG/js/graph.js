@@ -531,13 +531,20 @@ function resetSlider() {
     currentThreshValue = 0;
 }
 
+function resetFilters() {
+    $("#dropFilters").multiselect("deselectAll", false).multiselect("refresh");
+}
+
 //Checkbox
 function checkbox(value, check) {
     if (value === "womanCheck") {
         if (!check) {//if woman not checked -> full graph
             graph = { ...graphOG };
+            resetFilters();
         } else {//if woman checked -> women graph
             graph = { ...wGraph };
+            resetFilters();
+            $("#dropFilters").multiselect('select', value);
         }
         resetSlider();
     } else if (check === false && $("#dropFilters").val().length === 0) {
@@ -595,7 +602,7 @@ function changeTab(evt) {
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
     resetSlider();
-    $("#dropFilters").multiselect("deselectAll", false).multiselect("refresh");
+    resetFilters();
 }
 
 function addGraph(resource, evt) {
