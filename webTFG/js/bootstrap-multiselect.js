@@ -882,10 +882,10 @@
             }
 
             if (this.options.enableHTML) {
-                $label.html(" " + label);
+                $label.html(" " + label + " ");
             }
             else {
-                $label.text(" " + label);
+                $label.text(" " + label + " ");
             }
 
             var $checkbox = $('<input/>').attr('type', inputType);
@@ -895,7 +895,7 @@
                 $checkbox.attr('name', name);
             }
 
-            $label.prepend($checkbox);
+            $label.append($checkbox);
 
             var selected = $element.prop('selected') || false;
             $checkbox.val(value);
@@ -951,18 +951,18 @@
             $li.addClass(classes);
 
             if (this.options.enableHTML) {
-                $('label strong', $li).html(". " + label);
+                $('label strong', $li).html(label);
             }
             else {
-                $('label strong', $li).text(". " + label);
+                $('label strong', $li).text(label);
             }
 
             if (this.options.enableCollapsibleOptGroups && this.options.multiple) {
-                $('a', $li).append('.<span class="caret-container"><strong class="caret"></strong></span>');
+                $('a', $li).append('<span class="caret-container"><strong class="caret"></strong></span>');
             }
 
             if (this.options.enableClickableOptGroups && this.options.multiple) {
-                $('a label', $li).prepend('.<input type="checkbox" title="'+ value +'" value="' + value + '"/>');
+                $('a label', $li).prepend('<input type="checkbox" title="'+ value +'" value="' + value + '"/>');
             }
 
             if ($(group).is(':disabled')) {
@@ -1029,17 +1029,17 @@
                 $('label', $li).addClass("checkbox");
 
                 if (this.options.enableHTML) {
-                    $('label', $li).html(". " + this.options.selectAllText);
+                    $('label', $li).html(this.options.selectAllText);
                 }
                 else {
-                    $('label', $li).text(". " + this.options.selectAllText);
+                    $('label', $li).text(this.options.selectAllText);
                 }
 
                 if (this.options.selectAllName) {
-                    $('label', $li).prepend('.<input type="checkbox" title="'+ this.options.selectAllName +'" name="' + this.options.selectAllName + '" />');
+                    $('label', $li).prepend('<input type="checkbox" title="'+ this.options.selectAllName +'" name="' + this.options.selectAllName + '" />');
                 }
                 else {
-                    $('label', $li).prepend('.<input title="checkbox" type="checkbox" />');
+                    $('label', $li).prepend('<input title="checkbox" type="checkbox" />');
                 }
 
                 var $checkbox = $('input', $li);
