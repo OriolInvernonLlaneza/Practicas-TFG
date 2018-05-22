@@ -113,8 +113,9 @@
       <!-- Graph -->
       <div id="graph" class="framed">
         <div style="float: right">
-          <h3> Mínimo nº de cartas: 0  <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0" data-slider-max="25"
-              data-slider-step="1" data-slider-value="0" title="Deslizador mínimo número de cartas" /> 25 </h3>
+          <h3> Mínimo nº de cartas: 0
+            <input id="slider" data-slider-id="sli" type="text" onchange="threshold(this.value)" data-slider-min="0"
+              data-slider-max="25" data-slider-step="1" data-slider-value="0" title="Deslizador mínimo número de cartas" /> 25 </h3>
           <script>$("#slider").bootstrapSlider({
               formatter: function (value) {
                 return value;
@@ -124,12 +125,20 @@
         </div>
         <div class="ui-widget" style="float:left; width:50%;">
           <div class="input-group mb-3">
-            <input id="search" type="text" class="form-control" title="Barra de búsqueda">
+            <input id="search" type="text" class="form-control" title="Barra de búsqueda" placeholder="Introduzca el nombre de un personaje">
             <div class="input-group-append">
-              <button class="btn btn-search btn-outline-secondary" type="button" onclick="searchNode()">Buscar</button>
+              <button id="searchB" class="btn btn-search btn-outline-secondary" type="button" onclick="searchNode()">Buscar</button>
             </div>
           </div>
         </div>
+        <script>
+          $(document).ready(function () {
+            $("#search").keypress(function (e) {
+              if (e.keyCode === 13)
+                $("#searchB").click();
+            });
+          });
+        </script>
         <div style="float: left">
           <h3>Min
             <img src="css/scheme.png" alt="Escala colores"></img> Max</h3>
@@ -146,7 +155,7 @@
       <!-- Graphics  -->
       <h2 id="wc" style="clear:both">Gráficas</h2>
       <div class="framed">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
