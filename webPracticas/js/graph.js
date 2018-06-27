@@ -12,7 +12,7 @@ let wGraph;
 
 function createGraph(ngraph) {
 
-    if(ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
+    if (ngraph === null || ngraph.links.length === 0 || ngraph.nodes.length === 0) {
         alert("No hay resultados con los filtros actuales");
         return;
     } //No nodes due to filters
@@ -157,11 +157,7 @@ function createGraph(ngraph) {
     linkV = gDraw.selectAll(".link").data(ngraph.links).enter()
         .append("path")
         .attr("id", function (d, i) { return "link" + i; })
-        /*.attr("source", function (d) { Commented 4 the sake of validating the HTML
-            //return d.source.id;
-        }).attr("target", function (d) {
-            //return d.target.id;
-        })*/.attr("class", "link")
+        .attr("class", "link")
         .attr("fill-opacity", 0)
         .attr("stroke-width", function (d) { return Math.sqrt(d.value); })
         .attr("stroke", function (d) { return fill(Math.sqrt(d.value)); })
@@ -179,11 +175,7 @@ function createGraph(ngraph) {
         .append("path")
         .attr("class", "edgepath")
         .attr("id", function (d, i) { return "edgepath" + i; })
-        /*.attr("source", function (d) { Commented 4 the sake of validating the HTML
-            //return d.source;
-        }).attr("target", function (d) {
-            //return d.target;
-        })*/.attr("fill-opacity", 0)
+        .attr("fill-opacity", 0)
         .attr("marker-end", "url(#arrow)")
         .attr("visibility", function (d) {
             if (d.target === 1) { // id=1 is Jovellanos (avoid reduced visibility)
@@ -488,6 +480,7 @@ function linksByValue(links) {//push link by value (n of cards)
     }
 }
 
+
 function linksByTopic() {//filter links by topics selected on filters
     let topicsSelected = $("#dropFilters").val();
     if (topicsSelected.length === 1 && topicsSelected.includes("womanCheck")) {
@@ -517,7 +510,7 @@ function linksByTopic() {//filter links by topics selected on filters
 //adjust threshold
 function threshold(thresh) {
     currentThreshValue = thresh;
-    if ($("#dropFilters").val() === null) {
+    if ($("#dropFilters").val().length === 0) {
         linksByValue(graphOG.links);
     } else {
         linksByTopic();
@@ -530,18 +523,25 @@ function resetSlider() {
     currentThreshValue = 0;
 }
 
+function resetFilters() {
+    $("#dropFilters").multiselect("deselectAll", false).multiselect("refresh");
+}
+
 //Checkbox
 function checkbox(value, check) {
     if (value === "womanCheck") {
         if (!check) {//if woman not checked -> full graph
             graph = { ...graphOG };
+            resetFilters();
         } else {//if woman checked -> women graph
             graph = { ...wGraph };
+            resetFilters();
+            $("#dropFilters").multiselect('select', value);
         }
         resetSlider();
-    } else if (check === false && $("#dropFilters").val() === null) {
+    } else if (check === false && $("#dropFilters").val().length === 0) {
         graph = { ...graphOG }; //none selected
-        linksByTopic(graphOG.links);
+        linksByValue(graphOG.links);
     } else {
         linksByTopic();
     }
@@ -594,7 +594,7 @@ function changeTab(evt) {
     document.getElementById("graph").style.visibility = "visible";
     evt.currentTarget.className += " active";
     resetSlider();
-    $("#dropFilters").multiselect("deselectAll", false).multiselect("refresh");
+    resetFilters();
 }
 
 function addGraph(resource, evt) {
